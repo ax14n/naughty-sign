@@ -232,6 +232,10 @@
             android:layout_height="wrap_content" />
 
 
+        <!--
+            Falta agregar fotos del perfil y acomodar el mapa
+            de forma que no quede feo en pantalla.
+        -->
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
