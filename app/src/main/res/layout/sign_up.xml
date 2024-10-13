@@ -6,8 +6,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -15,43 +18,47 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical"
-            android:text="Sign up"
+            android:text="Registro"
             android:textSize="35sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:text="Pareces interesante. ¡Cuéntanos sobre tí!"
             android:textColor="@color/gray" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
+            android:text="Correo"
+            android:layout_marginTop="25dp"
             android:textColor="@color/passion_red" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Your email adress"
+            android:hint="Introduce tu correo"
             android:textColor="@color/gray" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"
+            android:text="Contraseña"
+            android:layout_marginTop="25dp"
             android:textColor="@color/passion_red" />
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Your password"
+            android:hint="Introduce tu contraseña"
             android:textColor="@color/gray" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp">
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -60,7 +67,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I agree to the Terms of Services and Privacy Policy" />
+                android:text="Estoy de acuerdo con los Términos y la Política de Privacidad" />
 
         </LinearLayout>
 
@@ -68,8 +75,9 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:layout_marginTop="25dp"
             android:backgroundTint="@color/passion_red"
-            android:text="Continue" />
+            android:text="Continuar" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -84,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/trans"
-                android:text="Sign in"
+                android:text="Iniciar sesión"
                 android:textColor="@color/passion_red"/>
 
 
