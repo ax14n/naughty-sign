@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@tools:sample/avatars" />
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/match_quote_text_view"
@@ -129,7 +129,7 @@
             android:layout_marginStart="60dp"
             android:layout_marginEnd="69dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintSTart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/interests_text_view">
 
             <!--
@@ -229,13 +229,36 @@
 
         <com.google.android.gms.maps.MapView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:contentDescription="mapa"/>
 
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="0,1,2"
+            >
 
-        <!--
-            Falta agregar fotos del perfil y acomodar el mapa
-            de forma que no quede feo en pantalla.
-        -->
+            <TableRow>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    tools:src="@tools:sample/avatars"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    tools:src="@tools:sample/avatars"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    tools:src="@tools:sample/avatars" />
+
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
