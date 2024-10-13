@@ -8,5 +8,7 @@
     <color name="rose_light">#FAE5F3</color>
     <color name="rose_pastel">#F8D6F7</color>
     <color name="passion_red">#C82929</color>
+    <color name="trans">#00000000</color>
+    <color name="yellow_sun">#FEFFB8</color>
 
 </resources>
