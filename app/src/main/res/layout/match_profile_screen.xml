@@ -92,173 +92,180 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/match_profile_header">
 
-        <TextView
-            android:id="@+id/match_description_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="60dp"
-            android:text='"¡Hola! Soy Sophia, una artista española que adora capturar la belleza y el misterio en cada pincelada 🎨💋; mi mundo está lleno de colores intensos, trazos atrevidos y esa chispa que solo el arte puede encender; si tienes el valor de perderte entre líneas curvas y formas seductoras, quizás encuentres más de lo que imaginas; me gusta que las miradas hablen, que las manos creen y que cada encuentro sea una obra maestra; si te apetece ser mi musa y dejar que nuestros mundos choquen con pasión… ¿te atreves a inspirarme? 🔥💫🎨"'
-            android:textSize="12sp"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="60dp"
-            android:text='Intereses'
-            android:textColor="@color/passion_red"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText" />
-
-        <com.google.android.material.chip.ChipGroup
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="69dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/interests_text_view">
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/match_profile_header">
 
-            <!--
-                La idea es con el código agregar tantos Chip como intereses
-                almacenados dentro de un vector para que sea más sencillo
-                agregarlos. Ahora mismo pondré algunos manualmente de ejemplo.
-            -->
-            <com.google.android.material.chip.Chip
+            <TextView
+                android:id="@+id/match_description_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Música"
-                android:textSize="8sp"
-                app:chipCornerRadius="20dp" />
+                android:layout_gravity="center"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="60dp"
+                android:text='"¡Hola! Soy Sophia, una artista española que adora capturar la belleza y el misterio en cada pincelada 🎨💋; mi mundo está lleno de colores intensos, trazos atrevidos y esa chispa que solo el arte puede encender; si tienes el valor de perderte entre líneas curvas y formas seductoras, quizás encuentres más de lo que imaginas; me gusta que las miradas hablen, que las manos creen y que cada encuentro sea una obra maestra; si te apetece ser mi musa y dejar que nuestros mundos choquen con pasión… ¿te atreves a inspirarme? 🔥💫🎨"'
+                android:textSize="12sp"
+                tools:ignore="HardcodedText" />
 
-            <com.google.android.material.chip.Chip
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Artes"
-                android:textSize="8sp"
-                app:chipCornerRadius="20dp" />
+                android:layout_gravity="center"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="60dp"
+                android:text='Intereses'
+                android:textColor="@color/passion_red"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Pintura"
-                android:textSize="8sp"
-                app:chipCornerRadius="20dp" />
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="69dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/interests_text_view">
 
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Fotografía"
-                android:textSize="8sp"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Lectura"
-                android:textSize="8sp"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Cocina"
-                android:textSize="8sp"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Deportes"
-                android:textSize="8sp"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Jardinería"
-                android:textSize="8sp"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Escritura"
-                android:textSize="8sp"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Viajes"
-                android:textSize="8sp"
-                app:chipCornerRadius="20dp" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Videojuegos"
-                android:textSize="8sp"
-                app:chipCornerRadius="20dp" />
-
-        </com.google.android.material.chip.ChipGroup>
-
-        <com.google.android.gms.maps.MapView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="mapa"/>
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="0,1,2"
-            >
-
-            <TableRow>
-
-                <ImageView
-                    android:layout_width="match_parent"
+                <!--
+                    La idea es con el código agregar tantos Chip como intereses
+                    almacenados dentro de un vector para que sea más sencillo
+                    agregarlos. Ahora mismo pondré algunos manualmente de ejemplo.
+                -->
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    tools:src="@tools:sample/avatars"/>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    tools:src="@tools:sample/avatars"/>
+                    android:backgroundTint="@color/white"
+                    android:text="Música"
+                    android:textSize="8sp"
+                    app:chipCornerRadius="20dp" />
 
-                <ImageView
-                    android:layout_width="match_parent"
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    tools:src="@tools:sample/avatars" />
+                    android:backgroundTint="@color/white"
+                    android:text="Artes"
+                    android:textSize="8sp"
+                    app:chipCornerRadius="20dp" />
 
-            </TableRow>
-        </TableLayout>
-    </LinearLayout>
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="Pintura"
+                    android:textSize="8sp"
+                    app:chipCornerRadius="20dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="Fotografía"
+                    android:textSize="8sp"
+                    app:chipCornerRadius="20dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="Lectura"
+                    android:textSize="8sp"
+                    app:chipCornerRadius="20dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="Cocina"
+                    android:textSize="8sp"
+                    app:chipCornerRadius="20dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="Deportes"
+                    android:textSize="8sp"
+                    app:chipCornerRadius="20dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="Jardinería"
+                    android:textSize="8sp"
+                    app:chipCornerRadius="20dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="Escritura"
+                    android:textSize="8sp"
+                    app:chipCornerRadius="20dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="Viajes"
+                    android:textSize="8sp"
+                    app:chipCornerRadius="20dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:text="Videojuegos"
+                    android:textSize="8sp"
+                    app:chipCornerRadius="20dp" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.gms.maps.MapView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="mapa" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1,2">
+
+                <TableRow>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        tools:src="@tools:sample/avatars" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        tools:src="@tools:sample/avatars" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        tools:src="@tools:sample/avatars" />
+
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
