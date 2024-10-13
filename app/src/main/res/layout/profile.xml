@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/match_profile_header"
+        android:id="@+id/profile_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FCF0F0"
@@ -16,26 +16,26 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/match_profile_name_text_view"
+            android:id="@+id/profile_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingTop="40dp"
             android:paddingBottom="15dp"
-            android:text="Sophia"
+            android:text="David Bisbal"
             android:textColor="@color/black"
             android:textSize="35sp"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/match_profile_photo_image_view"
+            android:id="@+id/profile_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/match_quote_text_view"
+            android:id="@+id/profile_quote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -43,7 +43,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="15dp"
-            android:text='"Que cada día sea tan fresco y tan dulce como esta tarta. 🍰"'
+            android:text='"Aquí las bulerías las canto yo"'
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -54,7 +54,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/match_profession_text_view"
+                android:id="@+id/profile_profession"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -62,7 +62,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="15dp"
-                android:text='Artista española'
+                android:text='Cantante español'
                 android:textSize="12sp" />
 
             <TextView
@@ -96,23 +96,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/match_profile_header">
+        app:layout_constraintTop_toBottomOf="@+id/profile_header">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/match_profile_header">
+            app:layout_constraintTop_toBottomOf="@+id/profile_header">
 
             <TextView
-                android:id="@+id/match_description_text_view"
+                android:id="@+id/profile_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="60dp"
-                android:text='"¡Hola! Soy Sophia, una artista española que adora capturar la belleza y el misterio en cada pincelada 🎨💋; mi mundo está lleno de colores intensos, trazos atrevidos y esa chispa que solo el arte puede encender; si tienes el valor de perderte entre líneas curvas y formas seductoras, quizás encuentres más de lo que imaginas; me gusta que las miradas hablen, que las manos creen y que cada encuentro sea una obra maestra; si te apetece ser mi musa y dejar que nuestros mundos choquen con pasión… ¿te atreves a inspirarme? 🔥💫🎨"'
+                android:text='"¡Hola! Soy David, un apasionado de la música y de vivir con intensidad. Si te gusta el ritmo, seguro que te suena mi canción "Bulería" 😉💃. Siempre busco a alguien con quien compartir momentos vibrantes, que se sume al compás y que se deje llevar por la pasión y la alegría. Si te atreves a bailar a mi lado y vivir con la energía de las bulerías, entonces... ¡hagamos que esta canción suene a dos corazones! 🎵🔥✨ "'
                 android:textSize="12sp"
                 tools:ignore="HardcodedText" />
 
@@ -232,11 +232,6 @@
                     app:chipCornerRadius="20dp" />
 
             </com.google.android.material.chip.ChipGroup>
-
-            <com.google.android.gms.maps.MapView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:contentDescription="mapa" />
 
             <TableLayout
                 android:layout_width="match_parent"
