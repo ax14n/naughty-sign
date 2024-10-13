@@ -10,7 +10,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background=""
+        android:background="@color/rose_light"
         android:orientation="vertical">
 
         <!-- Botón de cerrar sesión. -->
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/trans"
             android:text="Editar foto o avatar"
             android:textColor="@color/blue" />
 
