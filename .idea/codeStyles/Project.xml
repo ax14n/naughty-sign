@@ -1,11 +1,5 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
-<<<<<<< HEAD
-=======
-    <JetCodeStyleSettings>
-      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
-    </JetCodeStyleSettings>
->>>>>>> master/feature_profile
     <codeStyleSettings language="XML">
       <option name="FORCE_REARRANGE_MODE" value="1" />
       <indentOptions>
@@ -119,11 +113,5 @@
         </rules>
       </arrangement>
     </codeStyleSettings>
-<<<<<<< HEAD
-=======
-    <codeStyleSettings language="kotlin">
-      <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
-    </codeStyleSettings>
->>>>>>> master/feature_profile
   </code_scheme>
 </component>

@@ -14,7 +14,7 @@
         android:paddingTop="25dp"
         android:paddingBottom="8dp"
         android:text="Intereses"
-        android:textColor="@color/rose_fuchsia"
+        android:textColor="@color/passion_red"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
