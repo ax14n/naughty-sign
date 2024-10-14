@@ -112,7 +112,7 @@
                 android:text="Soy una apasionada del arte que disfruta explorando exposiciones, perdiéndome entre pinceles y lienzos, o saboreando una copa de vino en algún rincón encantador de la ciudad."
                 android:textAlignment="textEnd"
                 android:textColor="@color/white"
-                android:textStyle="bold"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ScrollView
