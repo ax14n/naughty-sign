@@ -28,6 +28,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:paddingStart="20dp"
+                android:paddingEnd="0dp"
                 android:text="YOUR"
                 android:textColor="@color/white"
                 android:textSize="25sp"
