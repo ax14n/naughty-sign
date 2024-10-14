@@ -4,7 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#9D9D9D</color>
     <color name="blue">#3D8AF7</color>
-    <color name="rose_fuchsia">#92FFFFFF</color>
+    <color name="rose_fuchsia">#EE0986</color>
     <color name="rose_light">#FAE5F3</color>
     <color name="rose_pastel">#F8D6F7</color>
     <color name="passion_red">#C82929</color>
@@ -26,8 +26,7 @@
     <color name="peach_puff">#FFDAB9</color>
     <color name="cold">#FFD700</color>
     <color name="pink">#FFC0CB</color>
-    <color name="light_pink">#FF7697</color>
-    <color name="blasboom_pink">#FFB6C1</color>
+    <color name="light_pink">#FFB6C1</color>
     <color name="orange">#FFA500</color>
     <color name="light_salmon">#FFA07A</color>
     <color name="dark_orange">#FF8C00</color>
