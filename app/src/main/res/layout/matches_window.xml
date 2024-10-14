@@ -10,9 +10,11 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/light_pink"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/blasboom_pink">
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -21,22 +23,32 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:padding="16dp"
+                android:paddingStart="20dp"
                 android:text="YOUR"
-                android:textColor="@color/passion_red"
-                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/goat"
-                />
+                android:layout_gravity="center"
+                android:src="@drawable/goat" />
 
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="150dp"
+            android:background="@android:color/white"
+            />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -45,23 +57,28 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="16dp"
+                android:paddingStart="16dp"
                 android:text="MAT"
-                android:textColor="@color/passion_red"
-                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/moon"
+                android:layout_gravity="center_vertical"/>
+
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="16dp"
                 android:text="CHES"
-                android:textColor="@color/passion_red"
-                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
 
