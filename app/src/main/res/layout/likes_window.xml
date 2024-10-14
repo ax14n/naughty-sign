@@ -93,8 +93,8 @@
     </LinearLayout>
 
     <!-- Lista de contactos -->
-    <ListView
-        android:id="@+id/likes_list"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@android:color/darker_gray"

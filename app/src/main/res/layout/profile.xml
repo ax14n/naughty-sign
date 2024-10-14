@@ -7,6 +7,15 @@
     android:background="@color/rose_light"
     android:orientation="vertical">
 
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parentt"/>
+
+
+
     <LinearLayout
         android:id="@+id/profile_header"
         android:layout_width="match_parent"
