@@ -8,36 +8,29 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardview.ItemData
 import com.example.cardview.RecyclerViewAdapter
-import com.example.naughty_sign.databinding.ActivityLikesBinding
-import com.example.naughty_sign.databinding.ActivityMainBinding
-import com.example.naughty_sign.databinding.ActivityMatchesBinding
+import com.example.naughty_sign.databinding.LikesBinding
+import com.example.naughty_sign.databinding.MainBinding
+import com.example.naughty_sign.databinding.MatchesBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding;
-    lateinit var likesBinding: ActivityLikesBinding;
-    lateinit var matchesBinding: ActivityMatchesBinding;
-
+    lateinit var binding: MainBinding;
+    lateinit var likesBinding: LikesBinding;
+    lateinit var matchesBinding: MatchesBinding;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-
-        likesBinding = ActivityLikesBinding.inflate(layoutInflater)
-
-        matchesBinding = ActivityMatchesBinding.inflate (layoutInflater)
-
-
+        binding = MainBinding.inflate(layoutInflater)
+        likesBinding = LikesBinding.inflate(layoutInflater)
+        matchesBinding = MatchesBinding.inflate(layoutInflater)
 
         binding.recycleView.layoutManager = LinearLayoutManager(this)
         val items = listOf(
@@ -87,9 +80,8 @@ class MainActivity : AppCompatActivity() {
             ItemData("7", R.drawable.ic_launcher_background),
             ItemData("8", R.drawable.ic_launcher_background),
         )
-        matchesBinding.matchesView.adapter= RecyclerViewAdapter(itemsMatches)
+        matchesBinding.matchesView.adapter = RecyclerViewAdapter(itemsMatches)
 
         setContentView(matchesBinding.root)
-
     }
 }
