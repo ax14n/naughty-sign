@@ -1,15 +1,15 @@
 package com.example.naughty_sign
 
-import android.app.Activity
 import android.os.Bundle
-import android.renderscript.ScriptGroup.Binding
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardview.ItemData
+import com.example.cardview.RecyclerViewAdapter
 import com.example.naughty_sign.databinding.ActivityMainBinding
+import com.example.naughty_sign.databinding.ItemCardViewBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +19,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -34,11 +39,6 @@ class MainActivity : AppCompatActivity() {
             ItemData("7", R.drawable.ic_launcher_background),
             ItemData("8", R.drawable.ic_launcher_background),
         )
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding.recycleView.adapter = RecyclerViewAdapter(items)
     }
 }
