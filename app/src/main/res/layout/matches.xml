@@ -89,9 +89,11 @@
     <ScrollView
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/header_matcher_layout">
+        android:layout_height="0dp"
+        android:orientation="vertical"
 
+        app:layout_constraintTop_toBottomOf="@+id/header_matcher_layout"
+        app:layout_constraintBottom_toTopOf="@+id/table_layout">
         <!-- Lista de contactos -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,6 +112,7 @@
 
 
     <TableLayout
+        android:id="@+id/table_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"

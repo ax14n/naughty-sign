@@ -94,8 +94,9 @@
     <ScrollView
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/header_likes_layout">
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/header_likes_layout"
+        app:layout_constraintBottom_toTopOf="@+id/table_layout">
 
         <!-- Lista de contactos -->
         <LinearLayout
@@ -114,6 +115,7 @@
     </ScrollView>
 
     <TableLayout
+        android:id="@+id/table_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"

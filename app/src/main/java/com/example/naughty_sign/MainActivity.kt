@@ -82,6 +82,6 @@ class MainActivity : AppCompatActivity() {
         )
         matchesBinding.matchesView.adapter = RecyclerViewAdapter(itemsMatches)
 
-        setContentView(matchesBinding.root)
+        setContentView(likesBinding.root)
     }
 }
