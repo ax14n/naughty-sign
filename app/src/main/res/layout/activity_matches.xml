@@ -8,7 +8,7 @@
 
     <!-- Título de la interfaz -->
     <LinearLayout
-        android:id="@+id/title"
+        android:id="@+id/header_matcher_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/light_pink"
@@ -87,19 +87,29 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Lista de contactos -->
-    <LinearLayout
+    <ScrollView
+
+        app:layout_constraintTop_toBottomOf="@+id/header_matcher_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:layout_height="wrap_content" >
+
+        <!-- Lista de contactos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/matches_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        </LinearLayout>
 
-    </LinearLayout>
+
+    </ScrollView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

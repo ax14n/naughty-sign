@@ -11,13 +11,12 @@ import com.example.cardview.RecyclerViewAdapter
 import com.example.naughty_sign.databinding.ActivityLikesBinding
 import com.example.naughty_sign.databinding.ActivityMainBinding
 import com.example.naughty_sign.databinding.ActivityMatchesBinding
-import com.example.naughty_sign.databinding.ItemCardViewBinding
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding;
-    lateinit var bindingLikesBinding: ActivityLikesBinding;
-    lateinit var bindingMatchesBinding: ActivityMatchesBinding;
+    lateinit var likesBinding: ActivityLikesBinding;
+    lateinit var matchesBinding: ActivityMatchesBinding;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,9 +33,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        bindingLikesBinding = ActivityLikesBinding.inflate(layoutInflater)
+        likesBinding = ActivityLikesBinding.inflate(layoutInflater)
 
-        bindingMatchesBinding = ActivityMatchesBinding.inflate (layoutInflater)
+        matchesBinding = ActivityMatchesBinding.inflate (layoutInflater)
 
 
 
@@ -50,10 +49,16 @@ class MainActivity : AppCompatActivity() {
             ItemData("6", R.drawable.ic_launcher_background),
             ItemData("7", R.drawable.ic_launcher_background),
             ItemData("8", R.drawable.ic_launcher_background),
+            ItemData("9", R.drawable.ic_launcher_background),
+            ItemData("10", R.drawable.ic_launcher_background),
+            ItemData("11", R.drawable.ic_launcher_background),
+            ItemData("12", R.drawable.ic_launcher_background),
+            ItemData("13", R.drawable.ic_launcher_background),
+            ItemData("14", R.drawable.ic_launcher_background),
         )
         binding.recycleView.adapter = RecyclerViewAdapter(items)
 
-        binding.recycleView.layoutManager = LinearLayoutManager(this)
+        likesBinding.likesView.layoutManager = LinearLayoutManager(this)
         val itemsLikes = listOf(
             ItemData("1", R.drawable.ic_launcher_background),
             ItemData("2", R.drawable.ic_launcher_background),
@@ -62,11 +67,16 @@ class MainActivity : AppCompatActivity() {
             ItemData("5", R.drawable.ic_launcher_background),
             ItemData("6", R.drawable.ic_launcher_background),
             ItemData("7", R.drawable.ic_launcher_background),
+            ItemData("7", R.drawable.ic_launcher_background),
+            ItemData("7", R.drawable.ic_launcher_background),
+            ItemData("7", R.drawable.ic_launcher_background),
+            ItemData("7", R.drawable.ic_launcher_background),
+            ItemData("7", R.drawable.ic_launcher_background),
             ItemData("8", R.drawable.ic_launcher_background),
         )
-        bindingLikesBinding.likesView.adapter = RecyclerViewAdapter(itemsLikes)
+        likesBinding.likesView.adapter = RecyclerViewAdapter(itemsLikes)
 
-        binding.recycleView.layoutManager = LinearLayoutManager(this)
+        matchesBinding.matchesView.layoutManager = LinearLayoutManager(this)
         val itemsMatches = listOf(
             ItemData("1", R.drawable.ic_launcher_background),
             ItemData("2", R.drawable.ic_launcher_background),
@@ -77,9 +87,9 @@ class MainActivity : AppCompatActivity() {
             ItemData("7", R.drawable.ic_launcher_background),
             ItemData("8", R.drawable.ic_launcher_background),
         )
-        bindingMatchesBinding.matchesView.adapter= RecyclerViewAdapter(itemsMatches)
+        matchesBinding.matchesView.adapter= RecyclerViewAdapter(itemsMatches)
 
-        setContentView(bindingMatchesBinding.root)
+        setContentView(matchesBinding.root)
 
     }
 }
