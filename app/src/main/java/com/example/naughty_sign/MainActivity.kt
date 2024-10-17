@@ -32,24 +32,6 @@ class MainActivity : AppCompatActivity() {
         likesBinding = LikesBinding.inflate(layoutInflater)
         matchesBinding = MatchesBinding.inflate(layoutInflater)
 
-        binding.recycleView.layoutManager = LinearLayoutManager(this)
-        val items = listOf(
-            ItemData("1", R.drawable.ic_launcher_background),
-            ItemData("2", R.drawable.ic_launcher_background),
-            ItemData("3", R.drawable.ic_launcher_background),
-            ItemData("4", R.drawable.ic_launcher_background),
-            ItemData("5", R.drawable.ic_launcher_background),
-            ItemData("6", R.drawable.ic_launcher_background),
-            ItemData("7", R.drawable.ic_launcher_background),
-            ItemData("8", R.drawable.ic_launcher_background),
-            ItemData("9", R.drawable.ic_launcher_background),
-            ItemData("10", R.drawable.ic_launcher_background),
-            ItemData("11", R.drawable.ic_launcher_background),
-            ItemData("12", R.drawable.ic_launcher_background),
-            ItemData("13", R.drawable.ic_launcher_background),
-            ItemData("14", R.drawable.ic_launcher_background),
-        )
-        binding.recycleView.adapter = RecyclerViewAdapter(items)
 
         likesBinding.likesView.layoutManager = LinearLayoutManager(this)
         val itemsLikes = listOf(
