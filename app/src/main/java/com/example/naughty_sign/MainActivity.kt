@@ -5,6 +5,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardview.ItemData
 import com.example.cardview.RecyclerViewAdapter
@@ -14,24 +16,17 @@ import com.example.naughty_sign.databinding.FragmentMatchesBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding;
-    lateinit var likesBinding: FragmentLikesBinding;
-    lateinit var matchesBinding: FragmentMatchesBinding;
+    private lateinit var binding: ActivityMainBinding;
+    private lateinit var likesBinding: FragmentLikesBinding;
+    private lateinit var matchesBinding: FragmentMatchesBinding;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         likesBinding = FragmentLikesBinding.inflate(layoutInflater)
         matchesBinding = FragmentMatchesBinding.inflate(layoutInflater)
-
+        setContentView(binding.root)
 
         likesBinding.likesView.layoutManager = LinearLayoutManager(this)
         val itemsLikes = listOf(
@@ -64,6 +59,14 @@ class MainActivity : AppCompatActivity() {
         )
         matchesBinding.matchesView.adapter = RecyclerViewAdapter(itemsMatches)
 
-        setContentView(likesBinding.root)
+        setContentView(binding.root)
+
+        // Configura el NavController con el BottomNavigationView
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        // Conectar el BottomNavigationView con el NavController
+        binding.bottomNavigation.setupWithNavController(navController)
     }
 }
