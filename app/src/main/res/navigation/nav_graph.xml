@@ -19,8 +19,8 @@
         android:label="Notifications" />
 
     <fragment
-        android:id="@+id/match_profile_fragment"
-        android:name="com.example.naughty_sign.FragmentMatchProfile"
+        android:id="@+id/profile_fragment"
+        android:name="com.example.naughty_sign.FragmentProfile"
         android:label="Notifications" />
 
 </navigation>
