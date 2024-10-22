@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cardview.ItemData
+import com.example.cardview.RecyclerViewAdapter
+import com.example.naughty_sign.databinding.FragmentLikesBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,7 +24,11 @@ class FragmentLikes : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var binding: FragmentLikesBinding? = null
 
+    /**
+     * Se inicializan variables y se preparan recursos no relacionados con la vista.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -29,12 +37,42 @@ class FragmentLikes : Fragment() {
         }
     }
 
+    /**
+     * Se infla la vista del fragmento, creando su interfaz visual.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_likes, container, false)
+        binding = FragmentLikesBinding.inflate(inflater, container, false)
+        return binding!!.root
+    }
+
+    /**
+     * Se realiza la configuración adicional de la vista, como establecer adaptadores y manejar eventos.
+     */
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding?.likesView?.layoutManager = LinearLayoutManager(this.context)
+
+        // TODO: Please, don't forget about change this for real users profiles in the future.
+        val itemsLikes = listOf(
+            ItemData("1", R.drawable.ic_launcher_background),
+            ItemData("2", R.drawable.ic_launcher_background),
+            ItemData("3", R.drawable.ic_launcher_background),
+            ItemData("4", R.drawable.ic_launcher_background),
+            ItemData("5", R.drawable.ic_launcher_background),
+            ItemData("6", R.drawable.ic_launcher_background),
+            ItemData("7", R.drawable.ic_launcher_background),
+            ItemData("8", R.drawable.ic_launcher_background),
+            ItemData("9", R.drawable.ic_launcher_background),
+            ItemData("10", R.drawable.ic_launcher_background),
+            ItemData("11", R.drawable.ic_launcher_background),
+            ItemData("12", R.drawable.ic_launcher_background),
+            ItemData("13", R.drawable.ic_launcher_background),
+        )
+        binding?.likesView?.adapter = RecyclerViewAdapter(itemsLikes)
     }
 
     companion object {
