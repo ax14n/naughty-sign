@@ -27,5 +27,6 @@ class MainActivity : AppCompatActivity() {
         // Conectar el BottomNavigationView con el NavController
         binding.bottomNavigation.setupWithNavController(navController)
         setContentView(binding.root)
+
     }
 }
