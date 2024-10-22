@@ -1,5 +1,6 @@
 package com.example.naughty_sign
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -25,7 +26,10 @@ class ConfigurationActivity : AppCompatActivity() {
         // Se inicia el binding.
         binding = ActivitySettingsBinding.inflate(layoutInflater)
 
-
-
+        binding.logOutButton.setOnClickListener{
+            val intent = Intent(this,LogInActivity::class.java)
+            startActivity(intent)
+        }
+        setContentView(binding.root)
     }
 }
