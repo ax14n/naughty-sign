@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Se inicializan variables y se preparan recursos no relacionados con la vista.
      */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,5 +28,6 @@ class MainActivity : AppCompatActivity() {
         // Conectar el BottomNavigationView con el NavController
         binding.bottomNavigation.setupWithNavController(navController)
         setContentView(binding.root)
+
     }
 }
