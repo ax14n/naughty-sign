@@ -28,11 +28,15 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/match_profile_photo_image_view"
-            android:layout_width="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            tools:src="@tools:sample/avatars" />
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:src="@mipmap/sophia_profile_example_round"
+            android:scaleY="1.7"
+            android:scaleX="1.7"
+            />
 
         <TextView
             android:id="@+id/match_quote_text_view"

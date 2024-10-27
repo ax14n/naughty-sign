@@ -27,7 +27,13 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:src="@mipmap/david_bisbal_round"
+            
+            android:scaleY="1.7"
+            android:scaleX="1.7"
+            />
 
         <!-- Botón de cambiar foto del usuario de la aplicación. -->
         <Button
@@ -56,6 +62,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:orientation="horizontal"
             android:paddingStart="5dp"
             android:paddingEnd="5dp">
@@ -66,7 +74,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Nombre de usuario"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/username_button_icon"
@@ -81,6 +90,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:orientation="horizontal"
             android:paddingStart="5dp"
             android:paddingEnd="5dp">
@@ -91,7 +101,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Descripción"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/description_button_icon"
@@ -106,8 +117,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:orientation="horizontal"
             android:paddingStart="5dp"
+
             android:paddingEnd="5dp">
 
             <TextView
@@ -116,7 +129,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Cita del perfil"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/quote_button_icon"
@@ -130,7 +144,9 @@
         <!-- Botón de cambio de preferencias románticas de usuario -->
         <LinearLayout
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingStart="5dp"
@@ -142,7 +158,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Preferencias románticas"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/romantic_interests_button_icon"
@@ -157,6 +174,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingStart="5dp"
@@ -168,7 +186,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Rango de edad"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/age_rate_button_icon"
@@ -183,6 +202,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingStart="5dp"
@@ -194,7 +214,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Modificar aficiones"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/change_hobbies_button_icon"
@@ -209,6 +230,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingStart="5dp"
@@ -220,7 +242,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Modificar fotos"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/modify_photos_button_icon"
@@ -245,6 +268,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingStart="5dp"
@@ -256,7 +280,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Distancia máxima"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/max_distance_button_icon"
@@ -271,6 +296,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingStart="5dp"
@@ -282,7 +308,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Tema oscuro"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/dark_theme_chooser_button_icon"
