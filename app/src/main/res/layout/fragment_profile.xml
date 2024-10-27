@@ -47,11 +47,16 @@
 
 
         <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            tools:src="@tools:sample/avatars" />
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:src="@mipmap/david_bisbal_round"
+
+            android:scaleY="1.7"
+            android:scaleX="1.7"
+            />
 
         <TextView
             android:id="@+id/profile_quote"

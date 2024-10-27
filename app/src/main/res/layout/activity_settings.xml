@@ -27,7 +27,13 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:src="@mipmap/david_bisbal_round"
+            
+            android:scaleY="1.7"
+            android:scaleX="1.7"
+            />
 
         <!-- Botón de cambiar foto del usuario de la aplicación. -->
         <Button
