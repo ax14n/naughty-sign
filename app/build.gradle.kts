@@ -58,6 +58,8 @@ dependencies {
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.filament.android)
+    implementation(libs.support.annotations)
+    implementation(libs.androidx.annotation)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

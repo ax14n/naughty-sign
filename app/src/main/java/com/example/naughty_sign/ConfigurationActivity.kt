@@ -5,8 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.NumberPicker
+import android.widget.SeekBar
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.naughty_sign.databinding.ActivitySettingsBinding
@@ -58,7 +61,7 @@ class ConfigurationActivity : AppCompatActivity() {
             binding.changeHobbiesButton to { goToHobbiesSelector() },       // ARREGLAR
             binding.changePhotosButton to { goToPhotosSelector() },         // ARREGLAR
 
-            binding.changeMaxDistanceButton to { showNumberRangePopUp(1, 1000) },
+            binding.changeMaxDistanceButton to { showMaxDistancePopUp(1, 1000) },
             binding.changeThemeButton to { /* TODO: Ya nos encargaremos más tarde de esto */ }
         )
 
@@ -97,30 +100,74 @@ class ConfigurationActivity : AppCompatActivity() {
 
     private fun showNumberRangePopUp(min: Int, max: Int) {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Selecciona tu Edad")
+        builder.setTitle("Selecciona el rango de edad")
 
-        // Crear un NumberPicker programáticamente
-        val numberPicker = NumberPicker(this)
-        numberPicker.minValue = min  // Valor mínimo
-        numberPicker.maxValue = max  // Valor máximo
-        numberPicker.wrapSelectorWheel = false    // Hace que el selector sea circular
+        // Crear un layout para agregar los SeekBars
+        val layout = LinearLayout(this)
+        layout.orientation = LinearLayout.VERTICAL
+        layout.setPadding(50, 40, 50, 10)
 
-        // Agregar el NumberPicker al diálogo
-        builder.setView(numberPicker)
+        // Crear SeekBars para seleccionar la edad mínima y máxima
+        val minAgeSeekBar = SeekBar(this).apply {
+            this.max = max - min  // Establecemos el valor máximo del SeekBar
+            progress = 0
+        }
+
+        val maxAgeSeekBar = SeekBar(this).apply {
+            this.max = max - min  // Establecemos el valor máximo del SeekBar
+            progress = max - min
+        }
+
+        // Agregar etiquetas para mostrar valores seleccionados
+        val minAgeTextView = TextView(this)
+        val maxAgeTextView = TextView(this)
+        minAgeTextView.text = "Edad mínima: $min"
+        maxAgeTextView.text = "Edad máxima: $max"
+
+        // Listener para actualizar el valor de edad mínima y el TextView
+        minAgeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                minAgeTextView.text = "Edad mínima: ${min + progress}"
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
+
+        // Listener para actualizar el valor de edad máxima y el TextView
+        maxAgeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                maxAgeTextView.text = "Edad máxima: ${min + progress}"
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
+
+        // Agregar elementos al layout
+        layout.addView(minAgeTextView)
+        layout.addView(minAgeSeekBar)
+        layout.addView(maxAgeTextView)
+        layout.addView(maxAgeSeekBar)
+        builder.setView(layout)
 
         builder.setPositiveButton("Aceptar") { dialog, _ ->
-            val selectedAge = numberPicker.value
-            showToast("Has seleccionado la edad: $selectedAge")
+            val selectedMinAge = min + minAgeSeekBar.progress
+            val selectedMaxAge = min + maxAgeSeekBar.progress
+            if (selectedMinAge < selectedMaxAge) {
+                showToast("Rango de edad seleccionado: $selectedMinAge - $selectedMaxAge")
+            } else {
+                showToast("El rango seleccionado no es válido.")
+            }
             dialog.dismiss()
         }
+
         builder.setNegativeButton("Cancelar") { dialog, _ ->
             dialog.dismiss()
         }
 
         val dialog: AlertDialog = builder.create()
         dialog.show()
-
     }
+
 
     private fun showTextPopUp(motivo: String, largo: Int) {
         val builder = AlertDialog.Builder(this)
@@ -175,6 +222,57 @@ class ConfigurationActivity : AppCompatActivity() {
         dialog.show()
 
     }
+
+    private fun showMaxDistancePopUp(min: Int, max: Int) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Selecciona la distancia máxima")
+
+        // Crear un layout para agregar el SeekBar
+        val layout = LinearLayout(this)
+        layout.orientation = LinearLayout.VERTICAL
+        layout.setPadding(50, 40, 50, 10)
+
+        // Crear un SeekBar para seleccionar la distancia
+        val distanceSeekBar = SeekBar(this).apply {
+            this.max = max  // Establecemos el valor máximo del SeekBar
+            progress = min  // Valor inicial (distancia mínima)
+        }
+
+        // Crear un TextView para mostrar la distancia seleccionada
+        val distanceTextView = TextView(this).apply {
+            text = "Distancia máxima: ${min} km" // Texto inicial
+        }
+
+        // Listener para actualizar el valor de distancia y el TextView
+        distanceSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                distanceTextView.text = "Distancia máxima: ${progress} km"
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
+
+        // Agregar elementos al layout
+        layout.addView(distanceTextView)
+        layout.addView(distanceSeekBar)
+        builder.setView(layout)
+
+        builder.setPositiveButton("Aceptar") { dialog, _ ->
+            val selectedDistance = distanceSeekBar.progress
+            showToast("Distancia máxima seleccionada: $selectedDistance km")
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton("Cancelar") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
