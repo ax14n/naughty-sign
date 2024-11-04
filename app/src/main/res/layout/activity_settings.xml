@@ -1,326 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <!-- Layout que engloba toda la pantalla. -->
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <!-- Botón de cerrar sesión. -->
+    <ImageView
+        android:id="@+id/log_out_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:contentDescription="Botón para cerrar sesión"
+        android:padding="12dp"
+        android:src="@drawable/logout_24dp_ff1e1e_fill0_wght400_grad0_opsz24" /> <!-- Descripción añadida -->
+
+    <!-- Foto de perfil del usuario de la aplicación. -->
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/rose_light"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:contentDescription="Foto de perfil del usuario"
+        android:scaleX="1.7"
+        android:scaleY="1.7"
+        android:src="@mipmap/david_bisbal_round" /> <!-- Descripción añadida -->
 
-        <!-- Botón de cerrar sesión. -->
-        <ImageView
-            android:id="@+id/log_out_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:padding="12dp"
-            android:src="@drawable/logout_24dp_ff1e1e_fill0_wght400_grad0_opsz24" />
+    <!-- Botón de cambiar foto del usuario de la aplicación. -->
+    <Button
+        android:id="@+id/change_avatar_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/trans"
+        android:text="Editar foto o avatar"
+        android:textColor="@color/blue" />
 
-        <!-- Foto de perfil del usuario de la aplicación. -->
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:src="@mipmap/david_bisbal_round"
-            
-            android:scaleY="1.7"
-            android:scaleX="1.7"
-            />
+    <!-- Etiqueta que representa la entrada a la categoría de 'About you' -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Sobre ti"
+        android:textColor="@color/black" /> <!-- Updated text color -->
 
-        <!-- Botón de cambiar foto del usuario de la aplicación. -->
-        <Button
-            android:id="@+id/change_avatar_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/trans"
-            android:text="Editar foto o avatar"
-            android:textColor="@color/blue" />
+    <!--
+        A PARTIR DE AHORA APARECERÁN BOTONES COMPUESTOS
+     -->
 
-        <!-- Etiqueta que representa la entrada a la categoría de 'About you' -->
-        <TextView
-            android:id="@+id/about_you_textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Sobre ti"
-            android:textColor="@color/gray" />
+    <!-- Botón para cambiar el nombre de usuario -->
+    <include
+        android:id="@+id/change_username_button"
+        layout="@layout/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <!--
-            A PARTIR DE AHORA APARECERÁN BOTONES COMPUESTOS
-         -->
+    <!-- Botón para cambiar la descripción del usuario -->
+    <include
+        android:id="@+id/change_description_button"
+        layout="@layout/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <!-- Botón de cambio de nombre de usuario -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp">
+    <!-- Botón para cambiar la cita del usuario -->
+    <include
+        android:id="@+id/change_quote_button"
+        layout="@layout/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/username_button_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nombre de usuario"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
+    <!-- Botón para cambiar las preferencias románticas -->
+    <include
+        android:id="@+id/change_romatic_preferences_button"
+        layout="@layout/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-            <ImageView
-                android:id="@+id/username_button_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="arrow_icon"
-                android:src="@drawable/chevron_right_30dp_e8eaed_fill0_wght400_grad0_opsz24"
-                tools:ignore="HardcodedText" />
-        </LinearLayout>
+    <!-- Botón para cambiar el rango de edad -->
+    <include
+        android:id="@+id/change_age_range_button"
+        layout="@layout/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <!-- Botón de cambio de descripción del usuario -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp">
+    <!-- Botón para cambiar los hobbies del usuario -->
+    <include
+        android:id="@+id/change_hobbies_button"
+        layout="@layout/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/description_button_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Descripción"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
+    <!-- Botón para cambiar las fotos del usuario -->
+    <include
+        android:id="@+id/change_photos_button"
+        layout="@layout/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-            <ImageView
-                android:id="@+id/description_button_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="arrow_icon"
-                android:src="@drawable/chevron_right_30dp_e8eaed_fill0_wght400_grad0_opsz24"
-                tools:ignore="HardcodedText" />
-        </LinearLayout>
+    <!-- Comienzo de la sección de ajustes generales de la aplicación -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Generales"
+        android:textColor="@color/black" />
 
-        <!-- Botón de cambio de cita del perfil de usuario -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
-            android:paddingStart="5dp"
+    <!-- Botón para cambiar los hobbies del usuario -->
+    <include
+        android:id="@+id/change_max_distance_button"
+        layout="@layout/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-            android:paddingEnd="5dp">
+    <!-- Botón para cambiar las fotos del usuario -->
+    <include
+        android:id="@+id/change_theme_button"
+        layout="@layout/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/quote_button_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Cita del perfil"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/quote_button_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="arrow_icon"
-                android:src="@drawable/chevron_right_30dp_e8eaed_fill0_wght400_grad0_opsz24"
-                tools:ignore="HardcodedText" />
-        </LinearLayout>
-
-        <!-- Botón de cambio de preferencias románticas de usuario -->
-        <LinearLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp">
-
-            <TextView
-                android:id="@+id/romantic_interests_button_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Preferencias románticas"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/romantic_interests_button_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="arrow_icon"
-                android:src="@drawable/chevron_right_30dp_e8eaed_fill0_wght400_grad0_opsz24"
-                tools:ignore="HardcodedText" />
-        </LinearLayout>
-
-        <!-- Botón de cambio de nombre de usuario -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp">
-
-            <TextView
-                android:id="@+id/age_rate_button_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Rango de edad"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/age_rate_button_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="arrow_icon"
-                android:src="@drawable/chevron_right_30dp_e8eaed_fill0_wght400_grad0_opsz24"
-                tools:ignore="HardcodedText" />
-        </LinearLayout>
-
-        <!-- Botón de cambio de hobbies del usuario -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp">
-
-            <TextView
-                android:id="@+id/change_hobbies_button_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Modificar aficiones"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/change_hobbies_button_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="arrow_icon"
-                android:src="@drawable/chevron_right_30dp_e8eaed_fill0_wght400_grad0_opsz24"
-                tools:ignore="HardcodedText" />
-        </LinearLayout>
-
-        <!-- Botón de modificar fotos del perfil del usuario -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp">
-
-            <TextView
-                android:id="@+id/modify_photos_button_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Modificar fotos"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/modify_photos_button_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="arrow_icon"
-                android:src="@drawable/chevron_right_30dp_e8eaed_fill0_wght400_grad0_opsz24"
-                tools:ignore="HardcodedText" />
-        </LinearLayout>
-
-        <!-- Comienzo de la sección de ajustes generales de la aplicación -->
-        <TextView
-            android:id="@+id/general_settings_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:padding="5dp"
-            android:text="Generales"
-            android:textColor="@color/gray" />
-
-        <!-- Botón de cambio de distancia máxima de los objetivos del usuario -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp">
-
-            <TextView
-                android:id="@+id/max_distance_button_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Distancia máxima"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/max_distance_button_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="arrow_icon"
-                android:src="@drawable/chevron_right_30dp_e8eaed_fill0_wght400_grad0_opsz24"
-                tools:ignore="HardcodedText" />
-        </LinearLayout>
-
-        <!-- Botón de cambio tema de la aplicación -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp">
-
-            <TextView
-                android:id="@+id/dark_theme_chooser_button_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Tema oscuro"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/dark_theme_chooser_button_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="arrow_icon"
-                android:src="@drawable/chevron_right_30dp_e8eaed_fill0_wght400_grad0_opsz24"
-                tools:ignore="HardcodedText" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

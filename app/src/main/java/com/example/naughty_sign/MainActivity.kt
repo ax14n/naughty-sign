@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
     /**
      * Se inicializan variables y se preparan recursos no relacionados con la vista.
      */
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

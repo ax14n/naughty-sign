@@ -9,12 +9,12 @@
         android:title=""/>
 
     <item
-        android:id="@+id/likes_fragment"
         android:icon="@drawable/star"
+        android:id="@+id/matches_fragment"
         android:title="" />
 
     <item
-        android:id="@+id/matches_fragment"
+        android:id="@+id/likes_fragment"
         android:icon="@drawable/thumb_up"
         android:title="" />
 
