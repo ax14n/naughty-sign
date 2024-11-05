@@ -23,7 +23,7 @@ class RecyclerViewAdapter(private val items: List<ItemData>) :
         holder.itemView.setOnClickListener {
             Toast.makeText(
                 holder.itemView.context,
-                "Clic en: ${currentItem.text}",
+                "Clic en: ${currentItem.name}",
                 Toast.LENGTH_SHORT
             ).show()
         }

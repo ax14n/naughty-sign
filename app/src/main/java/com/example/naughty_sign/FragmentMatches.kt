@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardview.ItemData
 import com.example.cardview.RecyclerViewAdapter
 import com.example.naughty_sign.databinding.FragmentMatchesBinding
+import org.json.JSONArray
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,23 +57,68 @@ class FragmentMatches : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.matchesView?.layoutManager = LinearLayoutManager(this.context)
 
-        // TODO: Please, don't forget about change this for real users profiles in the future.
-        val itemsLikes = listOf(
-            ItemData("1", R.drawable.ic_launcher_background),
-            ItemData("2", R.drawable.ic_launcher_background),
-            ItemData("3", R.drawable.ic_launcher_background),
-            ItemData("4", R.drawable.ic_launcher_background),
-            ItemData("5", R.drawable.ic_launcher_background),
-            ItemData("6", R.drawable.ic_launcher_background),
-            ItemData("7", R.drawable.ic_launcher_background),
-            ItemData("8", R.drawable.ic_launcher_background),
-            ItemData("9", R.drawable.ic_launcher_background),
-            ItemData("10", R.drawable.ic_launcher_background),
-            ItemData("11", R.drawable.ic_launcher_background),
-            ItemData("12", R.drawable.ic_launcher_background),
-            ItemData("13", R.drawable.ic_launcher_background),
-        )
+        // Meto el JSON en una lista (Hay que cambiarlo para que se muestre desde una carpeta aparte)
+        val jsonData = """
+        [
+          {"id": "1", "name": "Juan Pérez", "age": 25, "city": "Madrid"},
+          {"id": "2", "name": "María Gómez", "age": 30, "city": "Barcelona"},
+          {"id": "3", "name": "Carlos Rodríguez", "age": 22, "city": "Valencia"},
+          {"id": "4", "name": "Lucía Fernández", "age": 27, "city": "Sevilla"},
+          {"id": "5", "name": "Pedro Martínez", "age": 31, "city": "Bilbao"},
+          {"id": "6", "name": "Laura Sánchez", "age": 29, "city": "Málaga"},
+          {"id": "7", "name": "Javier López", "age": 35, "city": "Zaragoza"},
+          {"id": "8", "name": "Ana Torres", "age": 24, "city": "Granada"},
+          {"id": "9", "name": "Miguel Ruiz", "age": 28, "city": "Santander"},
+          {"id": "10", "name": "Cristina Morales", "age": 26, "city": "Murcia"},
+          {"id": "11", "name": "Roberto Díaz", "age": 32, "city": "Alicante"},
+          {"id": "12", "name": "Elena Ortiz", "age": 21, "city": "Valladolid"},
+          {"id": "13", "name": "Alberto Romero", "age": 34, "city": "Córdoba"},
+          {"id": "14", "name": "Paula Navarro", "age": 23, "city": "Almería"},
+          {"id": "15", "name": "Luis Ramírez", "age": 29, "city": "Toledo"},
+          {"id": "16", "name": "Sandra Herrera", "age": 27, "city": "Badajoz"},
+          {"id": "17", "name": "Fernando Castro", "age": 33, "city": "León"},
+          {"id": "18", "name": "Patricia Vega", "age": 24, "city": "Pamplona"},
+          {"id": "19", "name": "Raúl Gil", "age": 30, "city": "Salamanca"},
+          {"id": "20", "name": "Isabel Flores", "age": 26, "city": "Tarragona"}
+        ]
+        """
+        // Parseo los items para que me los muestre como en el JSON
+        val itemsLikes = parseJsonToItemData(jsonData)
+
         binding?.matchesView?.adapter = RecyclerViewAdapter(itemsLikes)
+    }
+
+    /**
+     * Analiza una cadena JSON que representa una lista de elementos y la convierte en una lista de objetos ItemData.
+     *
+     * Esta función toma una cadena formateada en JSON que contiene un array de objetos, cada uno representando
+     * a un individuo con atributos como nombre, edad y ciudad. Crea y llena una lista de objetos ItemData
+     * basándose en la información extraída.
+     *
+     * @param jsonData Una cadena JSON que contiene un array de objetos con los campos: nombre, edad y ciudad.
+     * @return Una lista de objetos ItemData, cada uno poblado con los valores correspondientes del JSON.
+     */
+    private fun parseJsonToItemData(jsonData: String): List<ItemData> {
+        //Creo una lista mutable para almacenar los objetos ItemData
+        val itemList = mutableListOf<ItemData>()
+
+        //Convierto el String del JSON en un array de JSON
+        val jsonArray = JSONArray(jsonData)
+
+        //Recorro cada elemento del array al contrario para que me muestre ejemplos diferentes de Matches
+        for (i in jsonArray.length() - 1 downTo 0) {
+
+            //Obtengo el objeto actual y extraigo sus valores
+            val jsonObject = jsonArray.getJSONObject(i)
+            val name = jsonObject.getString("name")
+            val age = jsonObject.getInt("age")
+            val city = jsonObject.getString("city")
+
+            val imageResId =
+                R.drawable.ic_launcher_background // Reemplazar con un recurso de imagen real
+            itemList.add(ItemData(name,age,city, imageResId))
+        }
+        return itemList
     }
 
     companion object {
