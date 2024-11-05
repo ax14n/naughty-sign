@@ -1,10 +1,13 @@
 package com.example.naughty_sign
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.example.naughty_sign.databinding.FragmentMatchProfileBinding
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,10 +19,11 @@ private const val ARG_PARAM2 = "param2"
  * Use the [FragmentMatchProfile.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FragmentMatchProfile : Fragment() {
+class FragmentMatchProfile : Fragment(), OnMapReadyCallback {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var binding: FragmentMatchProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +36,12 @@ class FragmentMatchProfile : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_match_profile, container, false)
+        binding = FragmentMatchProfileBinding.inflate(inflater, container, false)
+        binding.map.onCreate(savedInstanceState)
+        binding.map.getMapAsync(this)
+        return binding.root
     }
 
     companion object {
@@ -55,5 +62,9 @@ class FragmentMatchProfile : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onMapReady(p0: GoogleMap) {
+
     }
 }

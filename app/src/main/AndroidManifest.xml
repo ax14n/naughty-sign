@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NaughtySign"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDpqqkYgv0oTJZpdEIBA6tcI_C-mNyl4iU" />
+
         <activity
             android:name=".LogInActivity"
             android:exported="true">
