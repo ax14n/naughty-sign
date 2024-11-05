@@ -33,10 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
-            android:src="@mipmap/sophia_profile_example_round"
-            android:scaleY="1.7"
             android:scaleX="1.7"
-            />
+            android:scaleY="1.7"
+            android:src="@mipmap/sophia_profile_example_round" />
 
         <TextView
             android:id="@+id/match_quote_text_view"
@@ -98,8 +97,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/match_profile_header">
 
         <LinearLayout
@@ -118,19 +118,6 @@
                 android:layout_marginEnd="60dp"
                 android:text='"¡Hola! Soy Sophia, una artista española que adora capturar la belleza y el misterio en cada pincelada 🎨💋; mi mundo está lleno de colores intensos, trazos atrevidos y esa chispa que solo el arte puede encender; si tienes el valor de perderte entre líneas curvas y formas seductoras, quizás encuentres más de lo que imaginas; me gusta que las miradas hablen, que las manos creen y que cada encuentro sea una obra maestra; si te apetece ser mi musa y dejar que nuestros mundos choquen con pasión… ¿te atreves a inspirarme? 🔥💫🎨"'
                 android:textSize="12sp"
-                tools:ignore="HardcodedText" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="60dp"
-                android:text='Intereses'
-                android:textColor="@color/passion_red"
-                android:textSize="15sp"
-                android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.chip.ChipGroup
@@ -238,8 +225,9 @@
             </com.google.android.material.chip.ChipGroup>
 
             <com.google.android.gms.maps.MapView
+                android:id="@+id/map"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="250dp"
                 android:contentDescription="mapa" />
 
             <TableLayout
