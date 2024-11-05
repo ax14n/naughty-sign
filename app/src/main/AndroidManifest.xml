@@ -12,29 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NaughtySign"
         tools:targetApi="31">
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDpqqkYgv0oTJZpdEIBA6tcI_C-mNyl4iU" />
-
         <activity
-            android:name=".LogInActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InterestsActivity" />
-        <activity android:name=".PhotoSelectorActivity" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SignUpActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ConfigurationActivity"
-            android:exported="true" />
     </application>
 
 </manifest>
