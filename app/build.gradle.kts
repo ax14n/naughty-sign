@@ -41,10 +41,17 @@ android {
 }
 
 dependencies {
-    implementation (libs.androidx.navigation.fragment.ktx)
-    implementation (libs.androidx.navigation.ui.ktx)
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
+    /*
+    * Se importan las librerías necesarias para importar los contenidos JSON
+    * del servidor de Postman.
+    * */
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp)
 
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.cardview)
@@ -63,4 +70,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
 }

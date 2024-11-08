@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
@@ -25,6 +23,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="Imagen"
                 android:src="@android:drawable/alert_dark_frame"
                 android:layout_marginEnd="16dp" /> <!-- Margen para separar de texto -->
 
@@ -37,13 +36,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{item.name}"
+                    android:text="@{item.nombre}"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{item.city}"
+                    android:text="@{item.ciudad}"
                     android:paddingTop="4dp" />
 
                 <TextView

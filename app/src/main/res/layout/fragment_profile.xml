@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/profile_fragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/rose_light"
     android:orientation="vertical">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 
     <LinearLayout
         android:id="@+id/profile_header"
@@ -24,14 +22,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/config_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/config_button"
             android:layout_gravity="end"
-            android:src="@drawable/settings_24dp_000000_fill1_wght400_grad0_opsz24"
+            android:contentDescription=""
+            android:paddingTop="20dp"
             android:paddingEnd="20dp"
-            android:paddingTop="20dp"/>
-
+            android:src="@drawable/settings_24dp_000000_fill1_wght400_grad0_opsz24" />
 
         <TextView
             android:id="@+id/profile_name"
@@ -40,11 +38,10 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="15dp"
-            android:text="David Bisbal"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="35sp"
             android:textStyle="bold" />
-
 
         <ImageView
             android:id="@+id/imageView"
@@ -52,11 +49,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
-            android:src="@mipmap/david_bisbal_round"
-
-            android:scaleY="1.7"
             android:scaleX="1.7"
-            />
+            android:scaleY="1.7"
+            android:src="@mipmap/david_bisbal_round" />
 
         <TextView
             android:id="@+id/profile_quote"
@@ -67,7 +62,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="15dp"
-            android:text='"Aquí las bulerías las canto yo"'
+            android:text=""
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -86,7 +81,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="15dp"
-                android:text='Cantante español'
+                android:text=""
                 android:textSize="12sp" />
 
             <TextView
@@ -97,22 +92,21 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="1dp"
                 android:layout_marginBottom="15dp"
-                android:text=' | '
+                android:text=""
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/profile_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="15dp"
-                android:text='Madrid, España'
+                android:text=""
                 android:textSize="12sp" />
 
-
         </LinearLayout>
-
 
     </LinearLayout>
 
@@ -136,7 +130,7 @@
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="60dp"
-                android:text='"¡Hola! Soy David, un apasionado de la música y de vivir con intensidad. Si te gusta el ritmo, seguro que te suena mi canción "Bulería" 😉💃. Siempre busco a alguien con quien compartir momentos vibrantes, que se sume al compás y que se deje llevar por la pasión y la alegría. Si te atreves a bailar a mi lado y vivir con la energía de las bulerías, entonces... ¡hagamos que esta canción suene a dos corazones! 🎵🔥✨ "'
+                android:text=""
                 android:textSize="12sp"
                 tools:ignore="HardcodedText" />
 
@@ -147,115 +141,21 @@
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="60dp"
-                android:text='Intereses'
+                android:text=""
                 android:textColor="@color/passion_red"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
                 android:layout_marginEnd="69dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/interests_text_view">
-
-                <!--
-                    La idea es con el código agregar tantos Chip como intereses
-                    almacenados dentro de un vector para que sea más sencillo
-                    agregarlos. Ahora mismo pondré algunos manualmente de ejemplo.
-                -->
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:text="Música"
-                    android:textSize="8sp"
-                    app:chipCornerRadius="20dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:text="Artes"
-                    android:textSize="8sp"
-                    app:chipCornerRadius="20dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:text="Pintura"
-                    android:textSize="8sp"
-                    app:chipCornerRadius="20dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:text="Fotografía"
-                    android:textSize="8sp"
-                    app:chipCornerRadius="20dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:text="Lectura"
-                    android:textSize="8sp"
-                    app:chipCornerRadius="20dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:text="Cocina"
-                    android:textSize="8sp"
-                    app:chipCornerRadius="20dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:text="Deportes"
-                    android:textSize="8sp"
-                    app:chipCornerRadius="20dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:text="Jardinería"
-                    android:textSize="8sp"
-                    app:chipCornerRadius="20dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:text="Escritura"
-                    android:textSize="8sp"
-                    app:chipCornerRadius="20dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:text="Viajes"
-                    android:textSize="8sp"
-                    app:chipCornerRadius="20dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:text="Videojuegos"
-                    android:textSize="8sp"
-                    app:chipCornerRadius="20dp" />
-
-            </com.google.android.material.chip.ChipGroup>
+                app:layout_constraintTop_toBottomOf="@+id/interests_text_view" />
 
             <TableLayout
                 android:layout_width="match_parent"

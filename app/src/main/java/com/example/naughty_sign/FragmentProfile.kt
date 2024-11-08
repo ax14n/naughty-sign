@@ -2,8 +2,8 @@ package com.example.naughty_sign
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
@@ -11,10 +11,16 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.naughty_sign.FragmentProfile.Companion.newInstance
 import com.example.naughty_sign.databinding.FragmentProfileBinding
+import com.google.android.material.chip.Chip
+import kotlinx.coroutines.launch
+
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private const val PROFILE_ID = 11
 
 /**
  * Un [Fragment] que representa el perfil del usuario.
@@ -29,9 +35,6 @@ class FragmentProfile : Fragment() {
 
     // Enlace con la vista del fragmento para facilitar el acceso a los elementos UI.
     private lateinit var binding: FragmentProfileBinding
-
-    // Instancia del menú que será mostrada en el PopupMenu.
-    private lateinit var menu: Menu
 
     /**
      * Método llamado para crear la instancia del fragmento.
@@ -54,7 +57,6 @@ class FragmentProfile : Fragment() {
 
     /**
      * Método para inflar el layout de este fragmento.
-     * Configura el comportamiento del botón de configuración, que despliega un menú al ser pulsado.
      *
      * @param inflater El objeto LayoutInflater que puede usarse para inflar cualquier vista en el fragmento.
      * @param container Si no es nulo, es la vista primaria que contiene el fragmento.
@@ -66,13 +68,87 @@ class FragmentProfile : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+
+        // Retorna la vista raíz del binding (la vista principal del layout del fragmento)
+        return binding.root
+    }
+
+    /**
+     * Método que establece los elementos de la interfáz una vez formada la misma.
+     */
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         // Configura el botón de configuración para mostrar el menú desplegable al hacer clic
         binding.configButton.setOnClickListener {
             mostrarMenuDesplegable(it)
         }
 
-        // Retorna la vista raíz del binding (la vista principal del layout del fragmento)
-        return binding.root
+        // Carga los datos del usuario especificado
+        loadProfile()
+    }
+
+    /**
+     * Carga el pefil del usuario tras leer el JSON del servidor.
+     */
+    private fun loadProfile() {
+        /*
+        * Inicia una corutina
+        * */
+        lifecycleScope.launch {
+            try {
+
+                /*
+                * Almaceno la lista de usuarios y, si la respuesta ha sido efectiva, relleno el perfil
+                * con los datos del usuario.
+                * */
+                val response = RetrofitInstance().api.getUsers()
+                if (response.isSuccessful) {
+                    response.body()?.let { users ->
+                        /*
+                        * Recorro los usuarios y relleno su perfil según el ID.
+                        * */
+                        for (user in users) {
+                            if (user.id == PROFILE_ID) {
+                                binding.profileName.text = user.nombre
+                                binding.profileQuote.text = user.cita
+                                binding.profileProfession.text = user.profesion
+                                binding.profileCity.text = user.ciudad
+                                binding.profileDescription.text = user.descripcion
+
+                                /*
+                                * Obtengo los intereses del usuario y los recorro para formar chips
+                                * */
+                                for (interest in user.intereses) {
+                                    val chipInteres = Chip(requireContext())
+                                    chipInteres.text = interest
+                                    chipInteres.isCloseIconVisible = false
+
+                                    // Ajusta los colores para mejorar la estética
+                                    chipInteres.setChipBackgroundColorResource(R.color.seashell) // Fondo más suaveç
+                                    chipInteres.setTextSize(9F)
+                                    chipInteres.setTextColor(R.color.dark_orange.toInt()) // Texto contrastante
+                                    chipInteres.setChipStrokeColorResource(R.color.silver) // Borde sutil
+                                    chipInteres.setChipStrokeWidth(2f) // Grosor del borde
+                                    chipInteres.setPadding(20, 10, 20, 10) // Ajustar el padding
+
+                                    // Desactivar la selección
+                                    chipInteres.isClickable = false
+                                    chipInteres.isCheckable = false
+
+                                    binding.chipGroup.addView(chipInteres)
+
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    Log.e("API ERROR", "ERROR:  ${response.code()} - ${response.message()}")
+                }
+            } catch (e: Exception) {
+                Log.e("NETWORK ERROR", "Exception: $e")
+            }
+        }
     }
 
     /**
