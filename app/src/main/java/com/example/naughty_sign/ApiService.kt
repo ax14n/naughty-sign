@@ -1,5 +1,6 @@
 package com.example.naughty_sign
 
+import com.example.cardview.ItemData
 import retrofit2.Response
 import retrofit2.http.GET
 
@@ -9,10 +10,10 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("likes")
-    suspend fun getLikes(): Response<List<Like>>
+    suspend fun getLikes(): Response<List<ItemData>>
 
     @GET("matches")
-    suspend fun getMatches(): Response<List<Match>>
+    suspend fun getMatches(): Response<List<ItemData>>
 
     @GET("users")
     suspend fun getUsers(): Response<List<User>>

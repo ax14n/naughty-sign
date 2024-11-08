@@ -3,7 +3,9 @@ package com.example.naughty_sign
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private const val BASE_URL = "https://44880554-72d1-459b-a085-93821eead137.mock.pstmn.io/";
+
+private const val BASE_URL = "https://44880554-72d1-459b-a085-93821eead137.mock.pstmn.io/"
+
 
 class RetrofitInstance {
 
@@ -12,7 +14,7 @@ class RetrofitInstance {
             .build()
     }
 
-    val ap: ApiService by lazy {
+    val api: ApiService by lazy {
         retrofit.create(ApiService::class.java)
     }
 }

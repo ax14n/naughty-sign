@@ -1,14 +1,17 @@
 package com.example.naughty_sign
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardview.ItemData
 import com.example.cardview.RecyclerViewAdapter
 import com.example.naughty_sign.databinding.FragmentMatchesBinding
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 
 // TODO: Rename parameter arguments, choose names that match
@@ -57,35 +60,7 @@ class FragmentMatches : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.matchesView?.layoutManager = LinearLayoutManager(this.context)
 
-        // Meto el JSON en una lista (Hay que cambiarlo para que se muestre desde una carpeta aparte)
-        val jsonData = """
-        [
-          {"id": "1", "name": "Juan Pérez", "age": 25, "city": "Madrid"},
-          {"id": "2", "name": "María Gómez", "age": 30, "city": "Barcelona"},
-          {"id": "3", "name": "Carlos Rodríguez", "age": 22, "city": "Valencia"},
-          {"id": "4", "name": "Lucía Fernández", "age": 27, "city": "Sevilla"},
-          {"id": "5", "name": "Pedro Martínez", "age": 31, "city": "Bilbao"},
-          {"id": "6", "name": "Laura Sánchez", "age": 29, "city": "Málaga"},
-          {"id": "7", "name": "Javier López", "age": 35, "city": "Zaragoza"},
-          {"id": "8", "name": "Ana Torres", "age": 24, "city": "Granada"},
-          {"id": "9", "name": "Miguel Ruiz", "age": 28, "city": "Santander"},
-          {"id": "10", "name": "Cristina Morales", "age": 26, "city": "Murcia"},
-          {"id": "11", "name": "Roberto Díaz", "age": 32, "city": "Alicante"},
-          {"id": "12", "name": "Elena Ortiz", "age": 21, "city": "Valladolid"},
-          {"id": "13", "name": "Alberto Romero", "age": 34, "city": "Córdoba"},
-          {"id": "14", "name": "Paula Navarro", "age": 23, "city": "Almería"},
-          {"id": "15", "name": "Luis Ramírez", "age": 29, "city": "Toledo"},
-          {"id": "16", "name": "Sandra Herrera", "age": 27, "city": "Badajoz"},
-          {"id": "17", "name": "Fernando Castro", "age": 33, "city": "León"},
-          {"id": "18", "name": "Patricia Vega", "age": 24, "city": "Pamplona"},
-          {"id": "19", "name": "Raúl Gil", "age": 30, "city": "Salamanca"},
-          {"id": "20", "name": "Isabel Flores", "age": 26, "city": "Tarragona"}
-        ]
-        """
-        // Parseo los items para que me los muestre como en el JSON
-        val itemsLikes = parseJsonToItemData(jsonData)
-
-        binding?.matchesView?.adapter = RecyclerViewAdapter(itemsLikes)
+        loadMatches()
     }
 
     /**
@@ -116,10 +91,28 @@ class FragmentMatches : Fragment() {
 
             val imageResId =
                 R.drawable.ic_launcher_background // Reemplazar con un recurso de imagen real
-            itemList.add(ItemData(name,age,city, imageResId))
+            itemList.add(ItemData(name, age, city, imageResId))
         }
         return itemList
     }
+
+    private fun loadMatches() {
+        lifecycleScope.launch {
+            try {
+                val response = RetrofitInstance().api.getMatches()
+                if (response.isSuccessful) {
+                    response.body()?.let { matches ->
+                        binding?.matchesView?.adapter = RecyclerViewAdapter(matches)
+                    }
+                } else {
+                    Log.e("API ERROR", "ERROR:  ${response.code()} - ${response.message()}")
+                }
+            } catch (e: Exception) {
+                Log.e("NETWORK ERROR", "Exception: $e")
+            }
+        }
+    }
+
 
     companion object {
         /**
