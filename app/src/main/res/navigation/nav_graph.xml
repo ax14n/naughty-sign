@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/profile_fragment"
-        android:name="com.example.naughty_sign.FragmentMatchProfile"
+        android:name="com.example.naughty_sign.FragmentProfile"
         android:label="Profile" />
 
 </navigation>
