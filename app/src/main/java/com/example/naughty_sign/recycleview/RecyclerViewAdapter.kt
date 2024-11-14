@@ -1,12 +1,10 @@
-package com.example.cardview
+package com.example.naughty_sign.recycleview
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.naughty_sign.FragmentMatchProfile
 import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.ItemCardViewBinding
 

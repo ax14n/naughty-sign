@@ -1,4 +1,4 @@
-package com.example.naughty_sign
+package com.example.naughty_sign.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.FragmentMatchProfileBinding
+import com.example.naughty_sign.json.RetrofitInstance
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.material.chip.Chip
@@ -89,10 +91,10 @@ class FragmentMatchProfile : Fragment(), OnMapReadyCallback {
 
                                     // Ajusta los colores para mejorar la estética
                                     chipInteres.setChipBackgroundColorResource(R.color.seashell) // Fondo más suaveç
-                                    chipInteres.setTextSize(9F)
+                                    chipInteres.textSize = 9F
                                     chipInteres.setTextColor(R.color.dark_orange.toInt()) // Texto contrastante
                                     chipInteres.setChipStrokeColorResource(R.color.silver) // Borde sutil
-                                    chipInteres.setChipStrokeWidth(2f) // Grosor del borde
+                                    chipInteres.chipStrokeWidth = 2f // Grosor del borde
                                     chipInteres.setPadding(20, 10, 20, 10) // Ajustar el padding
 
                                     // Desactivar la selección

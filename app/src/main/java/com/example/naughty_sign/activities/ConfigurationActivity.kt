@@ -1,4 +1,4 @@
-package com.example.naughty_sign
+package com.example.naughty_sign.activities
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.ActivitySettingsBinding
 import com.google.android.material.slider.RangeSlider
 
@@ -337,7 +338,7 @@ class ConfigurationActivity : AppCompatActivity() {
         * por pantalla mostrando el valor seleccionado del Spinner.
         * */
         builder.setPositiveButton("Aceptar") { dialog, _ ->
-            showToast("Se ha seleccionado ${spinner.selectedItem.toString()}")
+            showToast("Se ha seleccionado ${spinner.selectedItem}")
         }
 
         /*

@@ -1,4 +1,4 @@
-package com.example.naughty_sign
+package com.example.naughty_sign.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,8 +12,11 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.naughty_sign.FragmentProfile.Companion.newInstance
+import com.example.naughty_sign.R
+import com.example.naughty_sign.activities.ConfigurationActivity
 import com.example.naughty_sign.databinding.FragmentProfileBinding
+import com.example.naughty_sign.fragments.FragmentProfile.Companion.newInstance
+import com.example.naughty_sign.json.RetrofitInstance
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
 

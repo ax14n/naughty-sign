@@ -1,6 +1,6 @@
-package com.example.naughty_sign
+package com.example.naughty_sign.json
 
-import com.example.cardview.ItemData
+import com.example.naughty_sign.recycleview.ItemData
 import retrofit2.Response
 import retrofit2.http.GET
 

@@ -1,4 +1,4 @@
-package com.example.naughty_sign
+package com.example.naughty_sign.activities
 
 import android.content.Intent
 import android.os.Bundle
