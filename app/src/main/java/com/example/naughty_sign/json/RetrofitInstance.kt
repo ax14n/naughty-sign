@@ -1,4 +1,4 @@
-package com.example.naughty_sign
+package com.example.naughty_sign.json
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

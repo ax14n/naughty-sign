@@ -1,4 +1,4 @@
-package com.example.cardview
+package com.example.naughty_sign.recycleview
 
 data class ItemData(
     val nombre: String,     // Nombre del usuario del match.

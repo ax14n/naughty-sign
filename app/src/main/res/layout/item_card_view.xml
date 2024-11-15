@@ -2,9 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="item"
-            type="com.example.cardview.ItemData" />
+            type="com.example.naughty_sign.recycleview.ItemData" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -16,16 +17,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:padding="16dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:contentDescription="Imagen"
-                android:src="@android:drawable/alert_dark_frame"
-                android:layout_marginEnd="16dp" /> <!-- Margen para separar de texto -->
+                android:src="@android:drawable/alert_dark_frame" /> <!-- Margen para separar de texto -->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -42,14 +43,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{item.ciudad}"
-                    android:paddingTop="4dp" />
+                    android:paddingTop="4dp"
+                    android:text="@{item.ciudad}" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{item.getFormattedAge()}"
-                    android:paddingTop="4dp" />
+                    android:paddingTop="4dp"
+                    android:text="@{item.getFormattedAge()}" />
             </LinearLayout>
         </LinearLayout>
 

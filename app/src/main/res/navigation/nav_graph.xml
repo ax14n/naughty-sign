@@ -5,27 +5,27 @@
 
     <fragment
         android:id="@+id/profile_swipe_fragment"
-        android:name="com.example.naughty_sign.FragmentProfileSwipe"
+        android:name="com.example.naughty_sign.fragments.FragmentProfileSwipe"
         android:label="Home" />
 
     <fragment
         android:id="@+id/matches_fragment"
-        android:name="com.example.naughty_sign.FragmentMatches"
+        android:name="com.example.naughty_sign.fragments.FragmentMatches"
         android:label="Matches" />
 
     <fragment
         android:id="@+id/likes_fragment"
-        android:name="com.example.naughty_sign.FragmentLikes"
+        android:name="com.example.naughty_sign.fragments.FragmentLikes"
         android:label="Likes" />
 
     <fragment
         android:id="@+id/profile_fragment"
-        android:name="com.example.naughty_sign.FragmentProfile"
+        android:name="com.example.naughty_sign.fragments.FragmentProfile"
         android:label="Profile" />
 
     <fragment
         android:id="@+id/match_profile_fragment"
-        android:name="com.example.naughty_sign.FragmentMatchProfile"
+        android:name="com.example.naughty_sign.fragments.FragmentMatchProfile"
         android:label="Profile" />
 
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.naughty_sign
+package com.example.naughty_sign.json
 
 /**
  * Estructura de datos que representa los datos que tendrá un usuario

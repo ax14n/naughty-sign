@@ -6,11 +6,11 @@
         android:id="@+id/profile_swipe_fragment"
         android:icon="@drawable/home_24dp_000000_fill0_wght400_grad0_opsz24"
         android:iconTint="@color/green"
-        android:title=""/>
+        android:title="" />
 
     <item
-        android:icon="@drawable/star"
         android:id="@+id/matches_fragment"
+        android:icon="@drawable/star"
         android:title="" />
 
     <item

@@ -1,10 +1,11 @@
-package com.example.cardview
+package com.example.naughty_sign.recycleview
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.naughty_sign.databinding.ItemCardViewBinding
 
-class ItemViewHolder(private val binding: ItemCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(item :ItemData){
+class ItemViewHolder(private val binding: ItemCardViewBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+    fun bind(item: ItemData) {
         binding.item = item
         binding.executePendingBindings()
     }

@@ -1,16 +1,18 @@
-package com.example.naughty_sign
+package com.example.naughty_sign.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cardview.ItemData
-import com.example.cardview.RecyclerViewAdapter
+import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.FragmentMatchesBinding
+import com.example.naughty_sign.json.RetrofitInstance
+import com.example.naughty_sign.recycleview.ItemData
+import com.example.naughty_sign.recycleview.RecyclerViewAdapter
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 
@@ -45,8 +47,7 @@ class FragmentMatches : Fragment() {
      * Se infla la vista del fragmento, creando su interfaz visual.
      */
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentMatchesBinding.inflate(inflater, container, false)
@@ -125,12 +126,11 @@ class FragmentMatches : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentMatches().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        fun newInstance(param1: String, param2: String) = FragmentMatches().apply {
+            arguments = Bundle().apply {
+                putString(ARG_PARAM1, param1)
+                putString(ARG_PARAM2, param2)
             }
+        }
     }
 }

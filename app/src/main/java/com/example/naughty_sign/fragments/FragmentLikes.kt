@@ -1,4 +1,4 @@
-package com.example.naughty_sign
+package com.example.naughty_sign.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cardview.RecyclerViewAdapter
 import com.example.naughty_sign.databinding.FragmentLikesBinding
+import com.example.naughty_sign.json.RetrofitInstance
+import com.example.naughty_sign.recycleview.RecyclerViewAdapter
 import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
