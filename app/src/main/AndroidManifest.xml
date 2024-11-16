@@ -37,7 +37,10 @@
             android:name=".activities.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.ConfigurationActivity"
+            android:name=".activities.ProfileConfigurationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.GeneralSettingsActivity"
             android:exported="true" />
     </application>
 

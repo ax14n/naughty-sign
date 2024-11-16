@@ -22,7 +22,7 @@ import com.google.android.material.slider.RangeSlider
  * Esta clase representa la actividad de configuración de la aplicación, permitiendo al usuario
  * modificar su información personal, preferencias, y otras configuraciones de su perfil.
  */
-class ConfigurationActivity : AppCompatActivity() {
+class ProfileConfigurationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
     private val camara =
@@ -69,9 +69,7 @@ class ConfigurationActivity : AppCompatActivity() {
             binding.changeRomaticPreferencesButton to "Cambiar Preferencias Románticas",
             binding.changeAgeRangeButton to "Cambiar Rango de Edad",
             binding.changeHobbiesButton to "Cambiar Hobbies",
-            binding.changePhotosButton to "Cambiar Fotos",
-            binding.changeMaxDistanceButton to "Cambiar Distancia Máxima",
-            binding.changeThemeButton to "Cambiar Tema"
+            binding.changePhotosButton to "Cambiar Fotos"
         )
 
         /*
@@ -92,9 +90,7 @@ class ConfigurationActivity : AppCompatActivity() {
                 },
                 binding.changeAgeRangeButton to { showNumberRangePopUp(18, 100) },
                 binding.changeHobbiesButton to { goToHobbiesSelector() },
-                binding.changePhotosButton to { goToPhotosSelector() },
-                binding.changeMaxDistanceButton to { showMaxDistancePopUp(1, 1000) },
-                binding.changeThemeButton to { /* TODO: Ya nos encargaremos más tarde de esto */ })
+                binding.changePhotosButton to { goToPhotosSelector() })
 
         /*
         * A cada botón del diccionario se le asigna el texto y la función correspondientes.
@@ -388,82 +384,6 @@ class ConfigurationActivity : AppCompatActivity() {
         builder.setNegativeButton("Cancelar") { dialog, _ ->
             dialog.dismiss()
         }
-
-        /*
-        * Una vez configurado el cuadro de dialogo, se forma finalmente y se muestra por pantalla
-        * */
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-    }
-
-    /**
-     * Muestra un diálogo para seleccionar la distancia máxima de búsqueda.
-     *
-     * @param min Distancia mínima en kilómetros.
-     * @param max Distancia máxima en kilómetros.
-     */
-    private fun showMaxDistancePopUp(min: Int, max: Int) {
-
-        /*
-        * Crea un cuadro de dialogo que existe en el mismo contexto que esta ventana y le establece
-        * el título de 'Selecciona el rango de distancia'.
-        */
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Selecciona el rango de distancia")
-
-        /*
-        * Se crea un LinearLayout para que los elementos se agrupen de forma verticial. Establece
-        * un margen interior de 50, 40, 50, 10. (LEFT, TOP, RIGHT, BOTTOM).
-        * */
-        val layout = LinearLayout(this)
-        layout.orientation = LinearLayout.VERTICAL
-        layout.setPadding(50, 40, 50, 10)
-
-        /*
-        * Configuro un TextView con un valor inicial de 'Rango de edad' ajunto con el mínimo y el
-        * máximo pasado por parámetro. El valor será actualizado más tarde según como el usuario
-        * interacute con la barra.
-        * */
-        val kmRangeTextView = TextView(this).apply {
-            text = "Rango de distancia: $min - $max"
-        }
-
-        /*
-        * Se crea un RangeSlider donde se representará el rango de edad que se quiere alcanzar. En
-        * su interior contiene los siguientes parámetros:
-        * -----------------------------------------------------------------------------------------
-        * valueFrom -> Representación del valor mínimo que usará la barra.
-        * valueTo   -> Representación del valor máximo que usará la barra.
-        * setpSize  -> Cuánto incrementará la barra por nivel alcanzado.
-        * values    -> Una lista donde se indica el valor inicial y final que aparecerá por omisión.
-        * */
-        val kmRangeSlider = RangeSlider(this).apply {
-            valueFrom = 18f             // Valor mínimo del RangeSlider.
-            valueTo = 100f              // Valor máximo del RangeSlider.
-            stepSize = 1f               // Incremento de 1 año para cada paso.
-            values = listOf(18f, 100f)  // Valores iniciales: 18 como mínimo y 100 como máximo.
-
-            /*
-            * Establezco un Listener que se encargará de que cuando se detecte un cambio actualice
-            * el texto informativo para el usaurio de forma que refleje el rango por pantalla.
-            * */
-            addOnChangeListener { slider, _, _ ->
-                val selectedMinKm = slider.values[0].toInt()
-                val selectedMaxKm = slider.values[1].toInt()
-                kmRangeTextView.text = "Rango de km: $selectedMinKm - $selectedMaxKm"
-            }
-        }
-
-        /*
-        * Añado al LayoutManager el TextView y el RangeSlider que declaramos y manipulamos antes.
-        * */
-        layout.addView(kmRangeTextView)
-        layout.addView(kmRangeSlider)
-
-        /*
-        * Añado el LayoutMangaer a dentro del cuadro de dialogo que hicimos anteriormente.
-        * */
-        builder.setView(layout)
 
         /*
         * Una vez configurado el cuadro de dialogo, se forma finalmente y se muestra por pantalla

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Comienzo de la sección de ajustes generales de la aplicación -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Generales"
+        android:textColor="@color/black" />
+
+    <!-- Botón para cambiar el nombre de usuario -->
+    <include
+        android:id="@+id/change_max_distance_button"
+        layout="@layout/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Botón para cambiar la descripción del usuario -->
+    <include
+        android:id="@+id/change_theme"
+        layout="@layout/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Botón para cambiar el idioma de la aplicación -->
+    <include
+        android:id="@+id/change_language"
+        layout="@layout/custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
