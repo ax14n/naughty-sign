@@ -32,6 +32,7 @@
             <TableRow>
 
                 <Button
+                    android:id="@+id/add_photo_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/trans"
@@ -39,10 +40,11 @@
                     android:textColor="@color/blue" />
 
                 <Button
+                    android:id="@+id/remove_photo_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/trans"
-                    android:text="Agregar Imágenes"
+                    android:text="Remover Imágenes"
                     android:textColor="@color/blue" />
 
             </TableRow>
