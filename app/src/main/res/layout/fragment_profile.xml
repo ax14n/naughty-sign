@@ -29,7 +29,8 @@
             android:contentDescription=""
             android:paddingTop="20dp"
             android:paddingEnd="20dp"
-            android:src="@drawable/settings_24dp_000000_fill1_wght400_grad0_opsz24" />
+            android:src="@drawable/settings_24dp_000000_fill1_wght400_grad0_opsz24"
+            tools:ignore="ContentDescription,RtlSymmetry" />
 
         <TextView
             android:id="@+id/profile_name"
@@ -49,9 +50,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
+            android:contentDescription=""
             android:scaleX="1.7"
             android:scaleY="1.7"
-            android:src="@mipmap/david_bisbal_round" />
+            android:src="@mipmap/david_bisbal_round"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/profile_quote"
@@ -162,24 +165,30 @@
                 android:layout_height="wrap_content"
                 android:stretchColumns="0,1,2">
 
-                <TableRow>
+                <TableRow tools:ignore="UselessParent">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription=""
                         android:scaleType="fitXY"
+                        tools:ignore="ContentDescription"
                         tools:src="@tools:sample/avatars" />
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription=""
                         android:scaleType="fitXY"
+                        tools:ignore="ContentDescription"
                         tools:src="@tools:sample/avatars" />
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription=""
                         android:scaleType="fitXY"
+                        tools:ignore="ContentDescription"
                         tools:src="@tools:sample/avatars" />
 
                 </TableRow>

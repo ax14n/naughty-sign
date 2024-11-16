@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -12,7 +13,8 @@
         android:layout_gravity="end"
         android:contentDescription="Botón para cerrar sesión"
         android:padding="12dp"
-        android:src="@drawable/logout_24dp_ff1e1e_fill0_wght400_grad0_opsz24" /> <!-- Descripción añadida -->
+        android:src="@drawable/logout_24dp_ff1e1e_fill0_wght400_grad0_opsz24"
+        tools:ignore="HardcodedText" /> <!-- Descripción añadida -->
 
     <!-- Foto de perfil del usuario de la aplicación. -->
     <ImageView
@@ -24,7 +26,8 @@
         android:contentDescription="Foto de perfil del usuario"
         android:scaleX="1.7"
         android:scaleY="1.7"
-        android:src="@mipmap/david_bisbal_round" /> <!-- Descripción añadida -->
+        android:src="@mipmap/david_bisbal_round"
+        tools:ignore="HardcodedText" /> <!-- Descripción añadida -->
 
     <!-- Botón de cambiar foto del usuario de la aplicación. -->
     <Button
@@ -33,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@color/trans"
-        android:text="Editar foto o avatar"
+        android:text="@string/editar_foto_o_avatar"
         android:textColor="@color/blue" />
 
     <!-- Etiqueta que representa la entrada a la categoría de 'About you' -->
@@ -41,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="Sobre ti"
+        android:text="@string/sobre_ti"
         android:textColor="@color/black" /> <!-- Updated text color -->
 
     <!--
@@ -102,7 +105,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="Generales"
+        android:text="@string/generales"
         android:textColor="@color/black" />
 
     <!-- Botón para cambiar los hobbies del usuario -->

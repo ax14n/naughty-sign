@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/misty_rose">
@@ -20,7 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseCompoundDrawables">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -29,7 +31,7 @@
                 android:gravity="center"
                 android:paddingStart="20dp"
                 android:paddingEnd="0dp"
-                android:text="YOUR"
+                android:text="@string/your"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -63,26 +65,29 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingStart="16dp"
-                android:text="LIK"
+                android:text="@string/lik"
                 android:textColor="@color/white"
                 android:textSize="40sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="RtlSymmetry" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:contentDescription=""
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
-                android:src="@drawable/thumb_up" />
+                android:src="@drawable/thumb_up"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="ES"
+                android:text="@string/es"
                 android:textColor="@color/white"
                 android:textSize="40sp"
                 android:textStyle="bold" />

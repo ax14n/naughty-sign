@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/flowers">
@@ -24,14 +25,16 @@
             android:layout_gravity="center"
             android:layout_marginTop="-60dp"
             android:layout_marginBottom="-70dp"
-            android:src="@drawable/image_removebg_preview" />
+            android:contentDescription="naughty_sign_icon"
+            android:src="@drawable/image_removebg_preview"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical"
-            android:text="Iniciar Sesión"
+            android:text="@string/iniciar_sesion"
             android:textSize="35sp" />
 
         <TextView
@@ -39,20 +42,22 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:text="¡Dinos quién eres!"
+            android:text="@string/dinos_quien_eres"
             android:textColor="@color/gray" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Correo"
+            android:text="@string/correo"
             android:textColor="@color/passion_red" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Introduce tu correo"
+            android:autofillHints=""
+            android:hint="@string/introduce_tu_correo"
+            android:inputType="textEmailAddress"
             android:textColor="@color/gray"
             android:textSize="20sp" />
 
@@ -60,13 +65,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Contraseña"
+            android:text="@string/contrasena"
             android:textColor="@color/passion_red" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Introduce tu contraseña"
+            android:autofillHints=""
+            android:hint="@string/introduce_tu_contrasena"
+            android:inputType="text"
             android:textColor="@color/gray"
             android:textSize="20sp" />
 
@@ -78,7 +85,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
             android:backgroundTint="@color/passion_red"
-            android:text="Iniciar Sesión" />
+            android:text="@string/iniciar_sesion_login" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -87,7 +94,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¿Olvidaste la contraseña?"
+                android:text="@string/olvidaste_la_contrase_a"
                 android:textColor="@color/gray" />
 
             <Button
@@ -95,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/trans"
-                android:text="Registrarse"
+                android:text="@string/registrarse"
                 android:textColor="@color/passion_red" />
 
         </LinearLayout>
@@ -106,7 +113,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/passion_red"
-            android:text="Accede mediante tu cuenta de Google" />
+            android:text="@string/accede_mediante_tu_cuenta_de_google" />
     </LinearLayout>
 
 
