@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Naughty-Sign</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello empty fragment</string>
+    <string name="intereses">Interests</string>
+    <string name="musica">Music</string>
+    <string name="viajes">Travel</string>
+    <string name="fotografia">Photography</string>
+    <string name="arte">Art</string>
+    <string name="baile">Dance</string>
+    <string name="deporte">Sport</string>
+    <string name="aventuras">Adventures</string>
+    <string name="guitarra">Guitar</string>
+    <string name="iniciar_sesion">Log In</string>
+    <string name="dinos_quien_eres">Tell us who you are!</string>
+    <string name="correo">Email</string>
+    <string name="introduce_tu_correo">Enter your email</string>
+    <string name="contrasena">Password</string>
+    <string name="introduce_tu_contrasena">Enter your password</string>
+    <string name="iniciar_sesion_login">Log In</string>
+    <string name="olvidaste_la_contrase_a">Forgot your password?</string>
+    <string name="registrarse">Sign Up</string>
+    <string name="accede_mediante_tu_cuenta_de_google">Log in with your Google account</string>
+    <string name="modificar_fotos">Edit photos</string>
+    <string name="agregar_im_genes">Add Images</string>
+    <string name="remover_im_genes">Remove Images</string>
+    <string name="editar_foto_o_avatar">Edit photo or avatar</string>
+    <string name="sobre_ti">About you</string>
+    <string name="generales">General</string>
+    <string name="registro">Registration</string>
+    <string name="pareces_interesante_cu_ntanos_sobre_t">You seem interesting. Tell us about yourself!</string>
+    <string name="estoy_de_acuerdo_con_los_t_rminos_y_la_pol_tica_de_privacidad">I agree with the Terms and Privacy Policy</string>
+    <string name="continuar">Continue</string>
+    <string name="ya_nos_conocemos">Do we already know each other?</string>
+    <string name="iniciar_sesi_n">Log In</string>
+    <string name="your">Your</string>
+    <string name="lik">Li</string>
+    <string name="es"> kes</string>
+    <string name="mat">Mat </string>
+    <string name="ches"> ches</string>
+    <string name="km_de_distancia">KM away.</string>
+    <string name="configuraci_n">Settings</string>
+    <string name="acerca_de">About us</string>
+</resources>
