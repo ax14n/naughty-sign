@@ -1,14 +1,18 @@
 package com.example.naughty_sign.activities
 
 import android.app.AlertDialog
+import android.content.ContentValues
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.ActivitySettingsBinding
@@ -21,6 +25,15 @@ import com.google.android.material.slider.RangeSlider
 class ConfigurationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
+    private val camara =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { resultado ->
+            if (resultado) {
+                Toast.makeText(this, "Si se ha tomado la foto", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "No se ha almacenado la foto", Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
     /**
      * Inicializa la actividad, configura los botones y sus funciones, y establece el listener para
@@ -96,6 +109,11 @@ class ConfigurationActivity : AppCompatActivity() {
             }
         }
 
+        binding.changeAvatarButton.setOnClickListener {
+            val uri = obtenerUriImagen() // Obtén la URI de destino donde se almacenará la foto
+            camara.launch(uri)
+        }
+
         /*
         * Le asigno al botón 'logOutButton' mediante una expresión lambda en 'setOnClickListener',
         * que cambie la ventana actual por la ventana de inicio de sesión mediante la llamada a
@@ -108,6 +126,27 @@ class ConfigurationActivity : AppCompatActivity() {
         * las variables y asignaciones hayan concluido de forma satisfactoria.
         * */
         setContentView(binding.root)
+    }
+
+    // Obtener la URI para guardar la foto en la galería
+    private fun obtenerUriImagen(): Uri {
+        val contentResolver = contentResolver
+
+        // Crear un conjunto de valores para la imagen
+        val values = ContentValues().apply {
+            put(
+                MediaStore.Images.Media.DISPLAY_NAME,
+                "foto_${System.currentTimeMillis()}.jpg"
+            )  // Nombre del archivo
+            put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")  // Tipo de la imagen
+            put(
+                MediaStore.Images.Media.RELATIVE_PATH,
+                "Pictures/Camera"
+            )  // Directorio en la galería
+        }
+
+        // Insertar en MediaStore y obtener la URI
+        return contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)!!
     }
 
     /**
@@ -254,8 +293,9 @@ class ConfigurationActivity : AppCompatActivity() {
         * Crea un cuadro de dialogo que existe en el mismo contexto que esta ventana y le establece
         * el título de 'Insertar $motivo'.
         **/
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Insertar $motivo")
+        val builder = AlertDialog.Builder(this).apply {
+            setTitle("Insertar $motivo")
+        }
 
         /*
         * Se crea un campo de texto donde el usaurio introducirá su respuesta y se agrega al
