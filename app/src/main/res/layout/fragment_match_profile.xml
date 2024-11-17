@@ -33,9 +33,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
+            android:contentDescription=""
             android:scaleX="1.7"
             android:scaleY="1.7"
-            android:src="@mipmap/sophia_profile_example_round" />
+            android:src="@mipmap/sophia_profile_example_round"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/profile_quote"
@@ -133,31 +135,38 @@
                 android:id="@+id/map"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:contentDescription="mapa" />
+                android:contentDescription="mapa"
+                tools:ignore="HardcodedText" />
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="0,1,2">
 
-                <TableRow>
+                <TableRow tools:ignore="UselessParent">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription=""
                         android:scaleType="fitXY"
+                        tools:ignore="ContentDescription"
                         tools:src="@tools:sample/avatars" />
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription=""
                         android:scaleType="fitXY"
+                        tools:ignore="ContentDescription"
                         tools:src="@tools:sample/avatars" />
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription=""
                         android:scaleType="fitXY"
+                        tools:ignore="ContentDescription"
                         tools:src="@tools:sample/avatars" />
 
                 </TableRow>

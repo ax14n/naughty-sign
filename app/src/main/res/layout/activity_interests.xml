@@ -13,7 +13,7 @@
         android:gravity="center"
         android:paddingTop="25dp"
         android:paddingBottom="8dp"
-        android:text="Intereses"
+        android:text="@string/intereses"
         android:textColor="@color/passion_red"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            android:text="Música"
+            android:text="@string/musica"
             app:chipCornerRadius="20dp" />
 
         <!--
@@ -55,43 +55,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/rose_pastel"
-            android:text="Viajes"
+            android:text="@string/viajes"
             app:chipCornerRadius="20dp" />
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fotografía"
+            android:text="@string/fotografia"
             app:chipCornerRadius="20dp" />
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Arte"
+            android:text="@string/arte"
             app:chipCornerRadius="20dp" />
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Baile"
+            android:text="@string/baile"
             app:chipCornerRadius="20dp" />
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deporte"
+            android:text="@string/deporte"
             app:chipCornerRadius="20dp" />
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Aventuras"
+            android:text="@string/aventuras"
             app:chipCornerRadius="20dp" />
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Guitarra"
+            android:text="@string/guitarra"
             app:chipCornerRadius="20dp" />
 
     </com.google.android.material.chip.ChipGroup>
