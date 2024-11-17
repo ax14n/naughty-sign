@@ -36,6 +36,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        //noinspection DataBindingWithoutKapt
         dataBinding = true
     }
 }
@@ -52,6 +53,8 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
 
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.cardview)
