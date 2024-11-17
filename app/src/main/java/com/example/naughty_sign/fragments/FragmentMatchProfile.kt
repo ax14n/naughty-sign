@@ -19,7 +19,8 @@ import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val PARAM1 = "userId"
+private const val PARAM1 = "userIdParam"
+private const val PARAM2 = "fromFragmentPram"
 
 /**
  * A simple [Fragment] subclass.
@@ -28,7 +29,8 @@ private const val PARAM1 = "userId"
  */
 class FragmentMatchProfile : Fragment(), OnMapReadyCallback {
     // TODO: Rename and change types of parameters
-    private var param1: Int? = null
+    private var userIdParam: Int? = null
+    private var fromFragmentPram: String? = null
 
     private lateinit var binding: FragmentMatchProfileBinding
 
@@ -39,7 +41,8 @@ class FragmentMatchProfile : Fragment(), OnMapReadyCallback {
         * Obtengo el parámetro que se lo asignó a este fragmento mediante la clave
         * */
         arguments?.let {
-            param1 = it.getInt(PARAM1)
+            userIdParam = it.getInt(PARAM1)
+            fromFragmentPram = it.getString(PARAM2)
         }
     }
 
@@ -49,8 +52,11 @@ class FragmentMatchProfile : Fragment(), OnMapReadyCallback {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentMatchProfileBinding.inflate(inflater, container, false)
-        binding.map.onCreate(savedInstanceState)
-        binding.map.getMapAsync(this)
+
+        if (fromFragmentPram.equals("Matches", true)) {
+            binding.map.onCreate(savedInstanceState)
+            binding.map.getMapAsync(this)
+        }
         loadProfile()
         return binding.root
     }
@@ -76,7 +82,7 @@ class FragmentMatchProfile : Fragment(), OnMapReadyCallback {
                         * Recorro los usuarios y relleno su perfil según el ID.
                         * */
                         for (user in users) {
-                            if (user.id == param1) {
+                            if (user.id == userIdParam) {
                                 binding.profileName.text = user.nombre
                                 binding.profileQuote.text = user.cita
                                 binding.profileProfession.text = user.profesion
@@ -139,10 +145,11 @@ class FragmentMatchProfile : Fragment(), OnMapReadyCallback {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: Int) =
+        fun newInstance(param1: Int, param2: String) =
             FragmentMatchProfile().apply {
                 arguments = Bundle().apply {
                     putInt(PARAM1.toString(), param1)
+                    putString(PARAM2.toString(), param2)
                 }
             }
     }
