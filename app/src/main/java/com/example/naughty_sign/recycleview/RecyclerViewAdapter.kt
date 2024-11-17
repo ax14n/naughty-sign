@@ -25,10 +25,12 @@ class RecyclerViewAdapter(private val items: List<ItemData>) :
         holder.itemView.setOnClickListener {
             // Obtener el NavController
             val navController = Navigation.findNavController(holder.itemView)
+            val currentFragmentName = navController.currentDestination?.label.toString()
 
             // Crear un bundle con el ID del usuario
             val bundle = Bundle().apply {
-                putInt("userId", currentItem.id)
+                putInt("userIdParam", currentItem.id)
+                putString("fromFragmentPram", currentFragmentName)
             }
 
             // Navegar al FragmentMatchProfile pasando el ID
