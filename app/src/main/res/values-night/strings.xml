@@ -1,4 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="configurar_perfil">Configurar perfil</string>
+    <string name="app_name">Naughty-Sign</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="intereses">Intereses</string>
+    <string name="musica">Música</string>
+    <string name="viajes">Viajes</string>
+    <string name="fotografia">Fotografía</string>
+    <string name="arte">Arte</string>
+    <string name="baile">Baile</string>
+    <string name="deporte">Deporte</string>
+    <string name="aventuras">Aventuras</string>
+    <string name="guitarra">Guitarra</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="dinos_quien_eres">¡Dinos quién eres!</string>
+    <string name="correo">Correo</string>
+    <string name="introduce_tu_correo">Introduce tu correo</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="introduce_tu_contrasena">Introduce tu contraseña</string>
+    <string name="iniciar_sesion_login">Iniciar Sesión</string>
+    <string name="olvidaste_la_contrase_a">¿Olvidaste la contraseña?</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="accede_mediante_tu_cuenta_de_google">Accede mediante tu cuenta de Google</string>
+    <string name="modificar_fotos">Modificar fotos</string>
+    <string name="agregar_im_genes">Agregar Imágenes</string>
+    <string name="remover_im_genes">Remover Imágenes</string>
+    <string name="editar_foto_o_avatar">Editar foto o avatar</string>
+    <string name="sobre_ti">Sobre ti</string>
+    <string name="generales">Generales</string>
+    <string name="registro">Registro</string>
+    <string name="pareces_interesante_cu_ntanos_sobre_t">Pareces interesante. ¡Cuéntanos sobre tí!</string>
+    <string name="estoy_de_acuerdo_con_los_t_rminos_y_la_pol_tica_de_privacidad">Estoy de acuerdo con los Términos y la Política de Privacidad</string>
+    <string name="continuar">Continuar</string>
+    <string name="ya_nos_conocemos">¿Ya nos conocemos?</string>
+    <string name="iniciar_sesi_n">Iniciar sesión</string>
+    <string name="your">YOUR</string>
+    <string name="lik">LIK</string>
+    <string name="es">ES</string>
+    <string name="mat">MAT</string>
+    <string name="ches">CHES</string>
+    <string name="km_de_distancia">KM de distancia.</string>
+    <string name="configuraci_n">Configuración</string>
+    <string name="acerca_de">Acerca de</string>
+    <string name="language_english">Inglés</string>
+    <string name="language_italiano">Italiano</string>
+    <string name="language_español">Español</string>
+    <string name="select_language">Selecciona un idioma</string>
 </resources>

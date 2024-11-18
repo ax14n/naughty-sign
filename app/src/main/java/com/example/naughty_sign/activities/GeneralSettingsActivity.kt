@@ -1,23 +1,43 @@
 package com.example.naughty_sign.activities
 
 import android.app.AlertDialog
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.naughty_sign.R
+import com.example.naughty_sign.R.string.language_italiano
 import com.example.naughty_sign.databinding.ActivityGeneralConfigurationsBinding
 import com.google.android.material.slider.RangeSlider
 
 
 class GeneralSettingsActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityGeneralConfigurationsBinding
+    private lateinit var binding: ActivityGeneralConfigurationsBinding
+    private lateinit var sharedPreferences: SharedPreferences
+    /*
+    * Se establece conexión con el fichero donde se guardará la información de las pantallas.
+    * */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Inicializa el binding para enlazar la vista del layout
         binding = ActivityGeneralConfigurationsBinding.inflate(layoutInflater)
+        createButtons()
 
+        // TODO: ESTABLECER PREFERENCIAS DEL MENú
+
+        sharedPreferences =
+            getSharedPreferences("general_config", MODE_PRIVATE)
+
+        // TODO: FINAL
+
+        setContentView(binding.root)
+    }
+
+    private fun createButtons() {
         val botonesYTexto = mapOf(
             binding.changeMaxDistanceButton to "Cambiar distancia máxima",
             binding.changeTheme to "Cambiar tema",
@@ -25,16 +45,20 @@ class GeneralSettingsActivity : AppCompatActivity() {
         )
 
         val botonesYFunciones =
-            mapOf(binding.changeMaxDistanceButton to { showMaxDistancePopUp(10, 100) },
+            mapOf(binding.changeMaxDistanceButton to {
+                showMaxDistancePopUp(
+                    sharedPreferences.getInt("min_distance", 10),
+                    sharedPreferences.getInt("max_distance", 500)
+                )
+            },
+
                 binding.changeTheme to { changeTheme() },
-                binding.changeLanguage to { changeLanguage() })
+                binding.changeLanguage to { changeLanguage("it") })
 
         for (boton in botonesYTexto.keys) {
             boton.text.text = botonesYTexto[boton]
             boton.root.setOnClickListener { botonesYFunciones[boton]?.invoke() }
         }
-
-        setContentView(binding.root)
     }
 
     /**
@@ -45,6 +69,11 @@ class GeneralSettingsActivity : AppCompatActivity() {
      */
     private fun showMaxDistancePopUp(min: Int, max: Int) {
 
+        /*
+        * Se crea un editor para modificar los datos (se permite la escritura, que,
+        * por defecto, es de lecutra)
+        * */
+        val myEdit = sharedPreferences.edit()
         /*
         * Crea un cuadro de dialogo que existe en el mismo contexto que esta ventana y le establece
         * el título de 'Selecciona el rango de distancia'.
@@ -78,6 +107,9 @@ class GeneralSettingsActivity : AppCompatActivity() {
         * setpSize  -> Cuánto incrementará la barra por nivel alcanzado.
         * values    -> Una lista donde se indica el valor inicial y final que aparecerá por omisión.
         * */
+        var selectedMinKm = 10
+        var selectedMaxKm = 100
+
         val kmRangeSlider = RangeSlider(this).apply {
             valueFrom = 18f             // Valor mínimo del RangeSlider.
             valueTo = 100f              // Valor máximo del RangeSlider.
@@ -89,8 +121,8 @@ class GeneralSettingsActivity : AppCompatActivity() {
             * el texto informativo para el usaurio de forma que refleje el rango por pantalla.
             * */
             addOnChangeListener { slider, _, _ ->
-                val selectedMinKm = slider.values[0].toInt()
-                val selectedMaxKm = slider.values[1].toInt()
+                selectedMinKm = slider.values[0].toInt()
+                selectedMaxKm = slider.values[1].toInt()
                 kmRangeTextView.text = "Rango de km: $selectedMinKm - $selectedMaxKm"
             }
         }
@@ -106,6 +138,19 @@ class GeneralSettingsActivity : AppCompatActivity() {
         * */
         builder.setView(layout)
 
+
+        /*
+        * Configuro el botón de aceptar del cuadro de dialogo usando una expresión lambda. Cuando
+        * se presiona el botón, surge un Toast que informa el valor mínimo seleccionado y el máximo.
+        * Al finalizar el Toast se cierra.
+        * */
+        builder.setPositiveButton("Aceptar") { dialog, _ ->
+            myEdit.putInt("max_distance", selectedMaxKm)
+            myEdit.putInt("min_distance", selectedMinKm)
+            dialog.dismiss()
+            myEdit.apply()
+        }
+
         /*
         * Una vez configurado el cuadro de dialogo, se forma finalmente y se muestra por pantalla
         * */
@@ -115,6 +160,52 @@ class GeneralSettingsActivity : AppCompatActivity() {
 
     private fun changeTheme() {}
 
-    private fun changeLanguage() {}
+    private fun changeLanguage(language: String) {
+        /*
+        * Se crea un editor para modificar los datos (se permite la escritura, que,
+        * por defecto, es de lecutra)
+        * */
+        val myEdit = sharedPreferences.edit()
+        myEdit.putString("language", language)
+
+
+
+
+
+
+
+        myEdit.apply()
+
+    }
+
+    private fun showLanguageOptions() {
+        val dialog: AlertDialog
+
+        val layout = LinearLayout(this)
+        layout.orientation = LinearLayout.VERTICAL
+
+        val englishButton = Button(this)
+        englishButton.text = getString(R.string.language_english)
+        englishButton.setOnClickListener { changeLanguage("en") }
+
+        val spanishButton = Button(this)
+        spanishButton.text = getString(R.string.language_español)
+        spanishButton.setOnClickListener { changeLanguage("es") }
+
+        val italianButton = Button(this)
+        italianButton.text = getString(language_italiano)
+        italianButton.setOnClickListener { changeLanguage("it") }
+
+        layout.addView(englishButton)
+        layout.addView(spanishButton)
+        layout.addView(italianButton)
+
+        dialog = AlertDialog.Builder(this)
+            .setTitle(getString(R.string.select_language))
+            .setView(layout)
+            .setCancelable(false)
+            .show()
+        dialog?.dismiss()
+    }
 
 }
