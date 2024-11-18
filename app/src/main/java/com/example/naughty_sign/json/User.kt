@@ -12,5 +12,7 @@ data class User(
     val ciudad: String,             // Ciudad del usuario.
     val descripcion: String,        // Descripción del usuario.
     val intereses: List<String>,    // Intereses del usuario.
-    val foto_perfil: String         // Intereses del usuario.
+    val foto_perfil: String,         // Intereses del usuario.
+    val ubicacion: String  // Enlace de Google Maps con la ubicación
+
 )

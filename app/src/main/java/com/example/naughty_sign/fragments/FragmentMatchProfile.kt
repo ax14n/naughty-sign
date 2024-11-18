@@ -12,8 +12,11 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.FragmentMatchProfileBinding
 import com.example.naughty_sign.json.RetrofitInstance
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
 
@@ -123,6 +126,32 @@ class FragmentMatchProfile : Fragment(), OnMapReadyCallback {
                                     binding.chipGroup.addView(chipInteres)
 
                                 }
+
+                                if (fromFragmentPram.equals("Matches", true)) {
+                                    // Extraer las coordenadas de la URL
+                                    val coordinates = extractCoordinatesFromUrl(user.ubicacion)
+                                    coordinates?.let {
+                                        val (lat, lon) = it
+                                        val userLocation = LatLng(lat, lon)
+
+                                        // Añadir el marcador en el mapa
+                                        binding.map.getMapAsync { googleMap ->
+                                            googleMap.addMarker(
+                                                MarkerOptions().position(userLocation)
+                                                    .title("Ubicación de ${user.nombre}")
+                                            )
+                                            googleMap.moveCamera(
+                                                CameraUpdateFactory.newLatLngZoom(
+                                                    userLocation,
+                                                    8f
+                                                )
+                                            )
+                                        }
+                                    }
+
+                                } else {
+                                    binding.map.visibility = View.INVISIBLE
+                                }
                             }
                         }
                     }
@@ -158,4 +187,20 @@ class FragmentMatchProfile : Fragment(), OnMapReadyCallback {
     override fun onMapReady(p0: GoogleMap) {
 
     }
+
+    fun extractCoordinatesFromUrl(url: String): Pair<Double, Double>? {
+        // Usamos una expresión regular para extraer la latitud y longitud
+        val regex = """@(-?\d+\.\d+),(-?\d+\.\d+)""".toRegex()
+
+        val matchResult = regex.find(url)
+
+        return if (matchResult != null) {
+            val lat = matchResult.groupValues[1].toDouble()
+            val lon = matchResult.groupValues[2].toDouble()
+            Pair(lat, lon)
+        } else {
+            null
+        }
+    }
+
 }
