@@ -28,10 +28,10 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:layout_gravity="center"
             android:id="@+id/imageView"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
             android:contentDescription=""
@@ -133,10 +133,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/interests_text_view" />
 
             <com.google.android.gms.maps.MapView
-                android:layout_margin="20dp"
                 android:id="@+id/map"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:layout_margin="20dp"
                 android:contentDescription="mapa"
                 tools:ignore="HardcodedText" />
 
