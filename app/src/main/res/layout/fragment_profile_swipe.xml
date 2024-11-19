@@ -16,7 +16,9 @@
         android:id="@+id/attachment_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#1D000000"
         android:orientation="vertical"
+        android:padding="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/attachment_photo">
 
         <LinearLayout
@@ -101,6 +103,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:background="#52F5F5F5"
             android:orientation="vertical">
 
@@ -115,6 +118,7 @@
         </LinearLayout>
 
         <ScrollView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -170,6 +174,36 @@
             </com.google.android.material.chip.ChipGroup>
         </ScrollView>
 
-    </LinearLayout>
+        <!-- Contenedor de botones -->
+        <LinearLayout
+            android:id="@+id/button_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
 
+            <!-- Botón Like -->
+            <Button
+                android:id="@+id/btn_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/sea_green"
+                android:text="Like"
+                android:textColor="@color/white" />
+
+            <!-- Botón Dislike -->
+            <Button
+                android:id="@+id/btn_dislike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/crimson"
+                android:text="Dislike"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
