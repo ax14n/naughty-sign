@@ -18,7 +18,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="20sp"
             android:gravity="center"
-            android:text="Modificar fotos"
+            android:text="@string/modificar_fotos"
             android:textColor="@color/passion_red"
             android:textSize="35sp" />
 
@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/trans"
-                    android:text="Agregar Imágenes"
+                    android:text="@string/agregar_im_genes"
                     android:textColor="@color/blue" />
 
                 <Button
@@ -44,7 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/trans"
-                    android:text="Remover Imágenes"
+                    android:text="@string/remover_im_genes"
                     android:textColor="@color/blue" />
 
             </TableRow>
@@ -54,28 +54,17 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription=""
                     android:scaleType="fitXY"
+                    tools:ignore="ContentDescription"
                     tools:src="@tools:sample/avatars" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription=""
                     android:scaleType="fitXY"
-                    tools:src="@tools:sample/avatars" />
-            </TableRow>
-
-            <TableRow>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    tools:src="@tools:sample/avatars" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
+                    tools:ignore="ContentDescription"
                     tools:src="@tools:sample/avatars" />
             </TableRow>
 
@@ -84,13 +73,36 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription=""
                     android:scaleType="fitXY"
+                    tools:ignore="ContentDescription"
                     tools:src="@tools:sample/avatars" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription=""
                     android:scaleType="fitXY"
+                    tools:ignore="ContentDescription"
+                    tools:src="@tools:sample/avatars" />
+            </TableRow>
+
+            <TableRow>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription=""
+                    android:scaleType="fitXY"
+                    tools:ignore="ContentDescription"
+                    tools:src="@tools:sample/avatars" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription=""
+                    android:scaleType="fitXY"
+                    tools:ignore="ContentDescription"
                     tools:src="@tools:sample/avatars" />
             </TableRow>
 

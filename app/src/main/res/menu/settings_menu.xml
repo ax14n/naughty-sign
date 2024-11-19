@@ -8,9 +8,9 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/go_settings_button"
-        android:title="Configuración" />
+        android:title="@string/configuraci_n" />
     <item
         android:id="@+id/about_us_button"
-        android:title="Acerca de"
+        android:title="@string/acerca_de"
         app:showAsAction="never" />
 </menu>

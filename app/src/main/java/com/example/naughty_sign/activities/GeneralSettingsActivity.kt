@@ -3,14 +3,15 @@ package com.example.naughty_sign.activities
 import android.app.AlertDialog
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Button
+import android.widget.ArrayAdapter
 import android.widget.LinearLayout
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.naughty_sign.R
-import com.example.naughty_sign.R.string.language_italiano
 import com.example.naughty_sign.databinding.ActivityGeneralConfigurationsBinding
 import com.google.android.material.slider.RangeSlider
+import java.util.Locale
 
 
 class GeneralSettingsActivity : AppCompatActivity() {
@@ -39,9 +40,9 @@ class GeneralSettingsActivity : AppCompatActivity() {
 
     private fun createButtons() {
         val botonesYTexto = mapOf(
-            binding.changeMaxDistanceButton to "Cambiar distancia máxima",
-            binding.changeTheme to "Cambiar tema",
-            binding.changeLanguage to "Cambiar idioma"
+            binding.changeMaxDistanceButton to getString(R.string.cambiar_distancia_m_xima),
+            binding.changeTheme to getString(R.string.cambiar_tema),
+            binding.changeLanguage to getString(R.string.cambiar_idioma)
         )
 
         val botonesYFunciones =
@@ -53,7 +54,7 @@ class GeneralSettingsActivity : AppCompatActivity() {
             },
 
                 binding.changeTheme to { changeTheme() },
-                binding.changeLanguage to { changeLanguage("it") })
+                binding.changeLanguage to { showLanguageOptions() })
 
         for (boton in botonesYTexto.keys) {
             boton.text.text = botonesYTexto[boton]
@@ -168,11 +169,17 @@ class GeneralSettingsActivity : AppCompatActivity() {
         val myEdit = sharedPreferences.edit()
         myEdit.putString("language", language)
 
+        val locale = Locale(language)
+        Locale.setDefault(locale)
 
+        val config = resources.configuration
+        config.setLocale(locale)
 
+        // Actualizar la configuración del contexto
+        resources.updateConfiguration(config, resources.displayMetrics)
 
-
-
+        // Reiniciar la actividad para aplicar el idioma
+        recreate()
 
         myEdit.apply()
 
@@ -181,31 +188,38 @@ class GeneralSettingsActivity : AppCompatActivity() {
     private fun showLanguageOptions() {
         val dialog: AlertDialog
 
-        val layout = LinearLayout(this)
-        layout.orientation = LinearLayout.VERTICAL
+        // Crear un array con los idiomas disponibles
+        val languages = arrayOf(
+            getString(R.string.language_english) to "en",
+            getString(R.string.language_español) to "es",
+            getString(R.string.language_italian) to "it"
+        )
 
-        val englishButton = Button(this)
-        englishButton.text = getString(R.string.language_english)
-        englishButton.setOnClickListener { changeLanguage("en") }
+        // Crear un Spinner
+        val spinner = Spinner(this)
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            languages.map { it.first } // Solo mostrar los nombres de los idiomas
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
 
-        val spanishButton = Button(this)
-        spanishButton.text = getString(R.string.language_español)
-        spanishButton.setOnClickListener { changeLanguage("es") }
-
-        val italianButton = Button(this)
-        italianButton.text = getString(language_italiano)
-        italianButton.setOnClickListener { changeLanguage("it") }
-
-        layout.addView(englishButton)
-        layout.addView(spanishButton)
-        layout.addView(italianButton)
-
+        // Configurar el AlertDialog con el Spinner
         dialog = AlertDialog.Builder(this)
             .setTitle(getString(R.string.select_language))
-            .setView(layout)
-            .setCancelable(false)
+            .setView(spinner)
+            .setPositiveButton(getString(R.string.ok)) { _, _ ->
+                // Obtener la posición seleccionada
+                val selectedIndex = spinner.selectedItemPosition
+                val selectedLanguageCode = languages[selectedIndex].second
+                // Cambiar el idioma
+                changeLanguage(selectedLanguageCode)
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .setCancelable(true)
             .show()
-        dialog?.dismiss()
     }
+
 
 }

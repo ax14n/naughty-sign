@@ -28,9 +28,15 @@ class ProfileConfigurationActivity : AppCompatActivity() {
     private val camara =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { resultado ->
             if (resultado) {
-                Toast.makeText(this, "Si se ha tomado la foto", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    getString(R.string.se_ha_almacenado_la_foto), Toast.LENGTH_SHORT
+                ).show()
             } else {
-                Toast.makeText(this, "No se ha almacenado la foto", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    getString(R.string.no_se_ha_almacenado_la_foto), Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -63,13 +69,13 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * configurar los textos de forma programática, facilitando su mantenimiento y claridad.
         */
         val buttonAndText = mapOf(
-            binding.changeUsernameButton to "Cambiar Nombre de Usuario",
-            binding.changeDescriptionButton to "Cambiar Descripción",
-            binding.changeQuoteButton to "Cambiar Cita",
-            binding.changeRomaticPreferencesButton to "Cambiar Preferencias Románticas",
-            binding.changeAgeRangeButton to "Cambiar Rango de Edad",
-            binding.changeHobbiesButton to "Cambiar Hobbies",
-            binding.changePhotosButton to "Cambiar Fotos"
+            binding.changeUsernameButton to getString(R.string.cambiar_nombre_de_usuario),
+            binding.changeDescriptionButton to getString(R.string.cambiar_descripci_n),
+            binding.changeQuoteButton to getString(R.string.cambiar_cita),
+            binding.changeRomaticPreferencesButton to getString(R.string.cambiar_preferencias_rom_nticas),
+            binding.changeAgeRangeButton to getString(R.string.cambiar_rango_de_edad),
+            binding.changeHobbiesButton to getString(R.string.cambiar_hobbies),
+            binding.changePhotosButton to getString(R.string.cambiar_fotos)
         )
 
         /*
@@ -78,13 +84,24 @@ class ProfileConfigurationActivity : AppCompatActivity() {
          * de cada botón, manteniendo un código más legible y estructurado.
         */
         val buttonAndFunction =
-            mapOf(binding.changeUsernameButton to { showTextPopUp("nombre de usuario", 20) },
-                binding.changeDescriptionButton to { showTextPopUp("descripción", 100) },
-                binding.changeQuoteButton to { showTextPopUp("cita", 20) },
+            mapOf(binding.changeUsernameButton to {
+                showTextPopUp(
+                    getString(R.string.nombre_de_usuario),
+                    20
+                )
+            },
+                binding.changeDescriptionButton to {
+                    showTextPopUp(
+                        getString(R.string.descripci_n),
+                        100
+                    )
+                },
+                binding.changeQuoteButton to { showTextPopUp(getString(R.string.cita), 20) },
                 binding.changeRomaticPreferencesButton to {
                     showRomanticPreferencesPopUp(
                         listOf(
-                            "Hombres", "Mujeres", "Otros"
+                            getString(R.string.hombres), getString(R.string.mujeres),
+                            getString(R.string.otros)
                         )
                     )
                 },
@@ -192,7 +209,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * el título de 'Seleccionaa el rango de edad'.
         */
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Selecciona el rango de edad")
+        builder.setTitle(getString(R.string.selecciona_el_rango_de_edad))
 
         /*
         * Se crea un LinearLayout para que los elementos se agrupen de forma verticial. Establece
@@ -208,7 +225,13 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * interacute con la barra.
         * */
         val ageRangeTextView = TextView(this).apply {
-            text = "Rango de edad: $min - $max"
+            text = buildString {
+                append(context.getString(R.string.rango_de_edad))
+                append(" ")
+                append(min)
+                append(" - ")
+                append(max)
+            }
         }
 
         /*
@@ -233,7 +256,13 @@ class ProfileConfigurationActivity : AppCompatActivity() {
             addOnChangeListener { slider, _, _ ->
                 val selectedMinAge = slider.values[0].toInt()
                 val selectedMaxAge = slider.values[1].toInt()
-                ageRangeTextView.text = "Rango de edad: $selectedMinAge - $selectedMaxAge"
+                ageRangeTextView.text = buildString {
+                    append(context.getString(R.string.rango_de_edad))
+                    append(" ")
+                    append(selectedMinAge)
+                    append("-")
+                    append(selectedMaxAge)
+                }
             }
         }
 
@@ -253,13 +282,21 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * se presiona el botón, surge un Toast que informa el valor mínimo seleccionado y el máximo.
         * Al finalizar el Toast se cierra.
         * */
-        builder.setPositiveButton("Aceptar") { dialog, _ ->
+        builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
             val selectedMinAge = ageRangeSlider.values[0].toInt()
             val selectedMaxAge = ageRangeSlider.values[1].toInt()
             if (selectedMinAge < selectedMaxAge) {
-                showToast("Rango de edad seleccionado: $selectedMinAge - $selectedMaxAge")
+                showToast(
+                    buildString {
+                        append(getString(R.string.rango_de_edad_seleccionado))
+                        append(" ")
+                        append(selectedMinAge)
+                        append(" - ")
+                        append(selectedMaxAge)
+                    }
+                )
             } else {
-                showToast("El rango seleccionado no es válido.")
+                showToast(getString(R.string.el_rango_seleccionado_no_es_v_lido))
             }
             dialog.dismiss()
         }
@@ -268,7 +305,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * Configuro el botón de cancler del cuadro de digalogo usando una expresión lambda. Se pasa
         * dialog como argumento y se ignora el faltante mediante '_'. Cierra el cuadro de dialogo.
         * */
-        builder.setNegativeButton("Cancelar") { dialog, _ -> dialog.dismiss() }
+        builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ -> dialog.dismiss() }
 
         /*
         * Una vez configurado el cuadro de dialogo, se forma finalmente y se muestra por pantalla
@@ -304,10 +341,15 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * Al presionar el botón de acpetar se mostrará un Toast con un mensaje indicando lo que ha
         * introducido a mano el usuario. Tras mostrar el mensaje, se cierra el cuadro de dialogo.
         * */
-        builder.setPositiveButton("Aceptar") { dialog, _ ->
+        builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
             val introducedText: Int = text.text.length
             if (introducedText <= largo) {
-                showToast("Has introducido: $introducedText")
+                showToast(
+                    buildString {
+                        append(getString(R.string.has_introducido))
+                        append(introducedText)
+                    }
+                )
                 dialog.dismiss()
             }
         }
@@ -316,7 +358,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * El botón de cancelar configurado de forma que al presionarlo desaparezca el cuadro de
         * dialogo.
         * */
-        builder.setNegativeButton("Cancelar") { dialog, _ ->
+        builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
             dialog.dismiss()
         }
 
@@ -340,7 +382,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * el título de 'Insertar su tipo de interés'.
         **/
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Inserte su tipo de interés")
+        builder.setTitle(getString(R.string.inserte_su_tipo_de_inter_s))
 
 
         /*
@@ -373,7 +415,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * Se configura el botón de 'Aceptar' de forma que al presionarlo se imprima un mensaje
         * por pantalla mostrando el valor seleccionado del Spinner.
         * */
-        builder.setPositiveButton("Aceptar") { dialog, _ ->
+        builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
             showToast("Se ha seleccionado ${spinner.selectedItem}")
         }
 
@@ -381,7 +423,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * Se configura el botón de 'Cancelar' de forma que al presionarlo se cierre el cuadro de
         * dialogo.
         * */
-        builder.setNegativeButton("Cancelar") { dialog, _ ->
+        builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
             dialog.dismiss()
         }
 

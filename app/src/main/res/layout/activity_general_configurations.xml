@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="Generales"
+        android:text="@string/generales"
         android:textColor="@color/black" />
 
     <!-- Botón para cambiar el nombre de usuario -->

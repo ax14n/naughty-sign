@@ -33,9 +33,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
+            android:contentDescription=""
             android:scaleX="1.7"
             android:scaleY="1.7"
-            android:src="@mipmap/sophia_profile_example_round" />
+            android:src="@mipmap/sophia_profile_example_round"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/profile_quote"

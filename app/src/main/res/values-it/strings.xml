@@ -17,7 +17,6 @@
     <string name="introduce_tu_correo">Inserisci la tua email</string>
     <string name="contrasena">Password</string>
     <string name="introduce_tu_contrasena">Inserisci la tua password</string>
-    <string name="iniciar_sesion_login">Accedi</string>
     <string name="olvidaste_la_contrase_a">Hai dimenticato la password?</string>
     <string name="registrarse">Registrati</string>
     <string name="accede_mediante_tu_cuenta_de_google">Accedi con il tuo account Google</string>
@@ -45,4 +44,34 @@
     <string name="language_italiano">Italiano</string>
     <string name="language_español">Espagnolo</string>
     <string name="select_language">Seleziona la tua lingua</string>
+    <string name="language_italian">Italiano</string>
+    <string name="cancel">Annulla</string>
+    <string name="ok">OK</string>
+    <string name="configurar_perfil">Opzioni Profilo</string>
+    <string name="cambiar_distancia_m_xima">Modifica Distanza Massima</string>
+    <string name="cambiar_tema">Cambia Tema</string>
+    <string name="cambiar_idioma">Cambia Lingua</string>
+    <string name="cambiar_nombre_de_usuario">Cambia Nome Utente</string>
+    <string name="cambiar_descripci_n">Cambia Descrizione</string>
+    <string name="cambiar_cita">Cambia Citazione</string>
+    <string name="cambiar_preferencias_rom_nticas">Cambia Preferenze Romantiche</string>
+    <string name="cambiar_rango_de_edad">Cambia Fascia d\'Età</string>
+    <string name="cambiar_hobbies">Cambia Hobby</string>
+    <string name="cambiar_fotos">Cambia Foto</string>
+    <string name="nombre_de_usuario">nome utente</string>
+    <string name="descripci_n">descrizione</string>
+    <string name="cita">citazione</string>
+    <string name="hombres">Uomini</string>
+    <string name="mujeres">Donne</string>
+    <string name="otros">Altri</string>
+    <string name="selecciona_el_rango_de_edad">Seleziona la fascia d\'età</string>
+    <string name="rango_de_edad">Fascia d\'età:</string>
+    <string name="rango_de_edad_seleccionado">Fascia d\'età selezionata:</string>
+    <string name="el_rango_seleccionado_no_es_v_lido">La fascia selezionata non è valida.</string>
+    <string name="inserte_su_tipo_de_inter_s">Inserisci il tuo tipo di interesse</string>
+    <string name="has_introducido">"Hai inserito: "</string>
+    <string name="se_ha_almacenado_la_foto">La foto è stata salvata</string>
+    <string name="no_se_ha_almacenado_la_foto">La foto non è stata salvata</string>
+    <string name="a_os">años</string>
+
 </resources>

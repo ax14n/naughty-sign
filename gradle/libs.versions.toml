@@ -23,6 +23,7 @@ filamentAndroid = "1.17.1"
 retrofit = "2.9.0"
 supportAnnotations = "28.0.0"
 annotation = "1.9.1"
+uiTextAndroid = "1.7.5"
 
 [libraries]
 androidx-cardview = { module = "androidx.cardview:cardview" }
@@ -48,6 +49,7 @@ filament-android = { group = "com.google.ar.sceneform", name = "filament-android
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 support-annotations = { group = "com.android.support", name = "support-annotations", version.ref = "supportAnnotations" }
 androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
+androidx-ui-text-android = { group = "androidx.compose.ui", name = "ui-text-android", version.ref = "uiTextAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
