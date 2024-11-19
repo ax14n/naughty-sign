@@ -2,10 +2,10 @@ package com.example.naughty_sign.activities
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.example.naughty_sign.databinding.ActivityLoginBinding
+import com.example.naughty_sign.language.BaseActivity
 
-class LogInActivity : AppCompatActivity() {
+class LogInActivity : BaseActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 

@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.filament.android)
     implementation(libs.support.annotations)
     implementation(libs.androidx.annotation)
+    implementation(libs.androidx.ui.text.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

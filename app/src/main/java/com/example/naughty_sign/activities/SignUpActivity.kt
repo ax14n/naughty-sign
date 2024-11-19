@@ -31,6 +31,15 @@ class SignUpActivity : AppCompatActivity() {
             val intent = Intent(this, LogInActivity::class.java)
             startActivity(intent)
         }
+
+        /**
+         * When this button is pressed, redirects the user to Main Screen
+         */
+        binding.registerButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         setContentView(binding.root)
     }
 }

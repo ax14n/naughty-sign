@@ -1,5 +1,6 @@
 package com.example.naughty_sign.fragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,12 +9,14 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.PopupMenu
-import android.widget.Toast
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.naughty_sign.R
-import com.example.naughty_sign.activities.ConfigurationActivity
+import com.example.naughty_sign.activities.GeneralSettingsActivity
+import com.example.naughty_sign.activities.ProfileConfigurationActivity
 import com.example.naughty_sign.databinding.FragmentProfileBinding
 import com.example.naughty_sign.fragments.FragmentProfile.Companion.newInstance
 import com.example.naughty_sign.json.RetrofitInstance
@@ -174,9 +177,16 @@ class FragmentProfile : Fragment() {
             when (item.itemId) {
 
                 // Opción de ir a Configuración
-                R.id.go_settings_button -> {
+                R.id.go_profile_settings_button -> {
                     // Crea un intent para abrir la actividad ConfigurationActivity
-                    val intent = Intent(context, ConfigurationActivity::class.java)
+                    val intent = Intent(context, ProfileConfigurationActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                R.id.go_settings_button -> {
+                    // Crea un intent para abrir la actividad GeneralSettingsActivity
+                    val intent = Intent(context, GeneralSettingsActivity::class.java)
                     startActivity(intent)
                     true
                 }
@@ -184,7 +194,26 @@ class FragmentProfile : Fragment() {
                 // Opción "Acerca de Nosotros"
                 R.id.about_us_button -> {
                     // Muestra un mensaje Toast como respuesta
-                    Toast.makeText(context, "Opción 2 seleccionada", Toast.LENGTH_SHORT).show()
+
+                    val builder = AlertDialog.Builder(context).apply {
+                        this.setTitle("Acerca de")
+                    }
+
+                    val layout = LinearLayout(context)
+                    layout.orientation = LinearLayout.VERTICAL
+                    layout.setPadding(50, 40, 50, 40)
+
+                    val textView = TextView(context).apply {
+                        text =
+                            "Proyecto realizado por Cristian Pop y Zelmar Hernán para la asignatura de desarrollo de aplicaciones móviles."
+                    }
+
+                    layout.addView(textView)
+
+                    builder.setView(layout)
+                    val dialog = builder.create()
+                    dialog.show()
+
                     true
                 }
 

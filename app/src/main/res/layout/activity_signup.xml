@@ -38,9 +38,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints=""
             android:hint="@string/introduce_tu_correo"
-            android:inputType="textEmailAddress"
             android:textColor="@color/gray"
             android:textSize="20sp" />
 
@@ -54,9 +52,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints=""
             android:hint="@string/introduce_tu_contrasena"
-            android:inputType="textPassword"
             android:textColor="@color/gray"
             android:textSize="20sp" />
 
@@ -100,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/trans"
-                android:text="@string/iniciar_sesi_n"
+                android:text="@string/iniciar_sesion"
                 android:textColor="@color/passion_red" />
 
 

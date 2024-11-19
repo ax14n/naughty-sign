@@ -1,5 +1,7 @@
 package com.example.naughty_sign.recycleview
 
+import com.example.naughty_sign.R
+
 data class ItemData(
     val nombre: String,     // Nombre del usuario del match.
     val edad: Int,          // Edad del usuario del match.
@@ -7,6 +9,9 @@ data class ItemData(
     val id: Int             // Id del usuario del match.
 ) {
     fun getFormattedAge(): String {
-        return "$edad años"
+        return buildString {
+            append("$edad ")
+            append(R.string.a_os)
+        }
     }
 }

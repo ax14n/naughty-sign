@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Naughty-Sign</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="intereses">Intereses</string>
     <string name="musica">Música</string>
     <string name="viajes">Viajes</string>
@@ -37,7 +39,39 @@
     <string name="mat">MAT</string>
     <string name="ches">CHES</string>
     <string name="km_de_distancia">KM de distancia.</string>
-    <string name="it">IT</string>
     <string name="configuraci_n">Configuración</string>
     <string name="acerca_de">Acerca de</string>
+    <string name="language_english">Inglés</string>
+    <string name="language_italiano">Italiano</string>
+    <string name="language_español">Español</string>
+    <string name="select_language">Selecciona un idioma</string>
+    <string name="language_italian">Italiano</string>
+    <string name="cancel">Cancelar</string>
+    <string name="ok">Aceptar</string>
+    <string name="configurar_perfil">Opciones de perfil</string>
+    <string name="cambiar_distancia_m_xima">Cambiar distancia máxima</string>
+    <string name="cambiar_tema">Cambiar tema</string>
+    <string name="cambiar_idioma">Cambiar idioma</string>
+    <string name="cambiar_nombre_de_usuario">Cambiar Nombre de Usuario</string>
+    <string name="cambiar_descripci_n">Cambiar Descripción</string>
+    <string name="cambiar_cita">Cambiar Cita</string>
+    <string name="cambiar_preferencias_rom_nticas">Cambiar Preferencias Románticas</string>
+    <string name="cambiar_rango_de_edad">Cambiar Rango de Edad</string>
+    <string name="cambiar_hobbies">Cambiar Hobbies</string>
+    <string name="cambiar_fotos">Cambiar Fotos</string>
+    <string name="nombre_de_usuario">nombre de usuario</string>
+    <string name="descripci_n">descripción</string>
+    <string name="cita">cita</string>
+    <string name="hombres">Hombres</string>
+    <string name="mujeres">Mujeres</string>
+    <string name="otros">Otros</string>
+    <string name="selecciona_el_rango_de_edad">Selecciona el rango de edad</string>
+    <string name="rango_de_edad">Rango de edad:</string>
+    <string name="rango_de_edad_seleccionado">Rango de edad seleccionado:</string>
+    <string name="el_rango_seleccionado_no_es_v_lido">El rango seleccionado no es válido.</string>
+    <string name="inserte_su_tipo_de_inter_s">Inserte su tipo de interés</string>
+    <string name="has_introducido">"Has introducido: "</string>
+    <string name="se_ha_almacenado_la_foto">Se ha almacenado la foto</string>
+    <string name="no_se_ha_almacenado_la_foto">No se ha almacenado la foto</string>
+    <string name="a_os">años</string>
 </resources>

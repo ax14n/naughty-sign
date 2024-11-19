@@ -11,18 +11,13 @@
         android:layout_height="match_parent"
         android:contentDescription="photo"
         android:scaleType="fitXY"
-        android:src="@drawable/sophia_swipe_photo"
-        tools:ignore="HardcodedText"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:src="@drawable/sophia_swipe_photo" />
 
     <LinearLayout
         android:id="@+id/attachment_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#48171111"
         android:orientation="vertical"
-        android:paddingTop="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/attachment_photo">
 
         <LinearLayout
@@ -43,11 +38,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="@string/km_de_distancia"
                 android:textColor="@color/yellow"
-                android:textSize="15sp"
-                tools:ignore="RtlSymmetry" />
+                android:textSize="15sp" />
         </LinearLayout>
 
 
@@ -69,7 +64,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" - "
+                android:text=" — "
                 android:textColor="@color/yellow"
                 android:textSize="35sp"
                 tools:ignore="HardcodedText" />
@@ -95,11 +90,12 @@
                 android:id="@+id/attachment_nationality"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="15dp"
                 android:paddingEnd="20dp"
                 android:text="IT"
                 android:textColor="@color/yellow"
                 android:textSize="30sp"
-                tools:ignore="HardcodedText,RtlSymmetry" />
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
@@ -114,7 +110,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:background="#52F5F5F5"
             android:orientation="vertical">
 
@@ -142,102 +137,45 @@
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fotografía"
-                    app:chipCornerRadius="20dp"
-                    tools:ignore="HardcodedText" />
+                    android:text="@string/fotografia"
+                    app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Arte"
-                    app:chipCornerRadius="20dp"
-                    tools:ignore="HardcodedText" />
+                    android:text="@string/arte"
+                    app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Baile"
-                    app:chipCornerRadius="20dp"
-                    tools:ignore="HardcodedText" />
+                    android:text="@string/baile"
+                    app:chipCornerRadius="20dp" />
+
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Deporte"
-                    app:chipCornerRadius="20dp"
-                    tools:ignore="HardcodedText" />
+                    android:text="@string/deporte"
+                    app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fitness"
-                    app:chipCornerRadius="20dp"
-                    tools:ignore="HardcodedText" />
+                    android:text="@string/musica"
+                    app:chipCornerRadius="20dp" />
+
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Moda"
-                    app:chipCornerRadius="20dp"
-                    tools:ignore="HardcodedText" />
+                    android:text="@string/viajes"
+                    app:chipCornerRadius="20dp" />
 
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Caza"
-                    app:chipCornerRadius="20dp"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Caza"
-                    app:chipCornerRadius="20dp"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Caza"
-                    app:chipCornerRadius="20dp"
-                    tools:ignore="HardcodedText" />
 
             </com.google.android.material.chip.ChipGroup>
-
         </ScrollView>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
-
-            <Button
-
-                android:id="@+id/like_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/forest_green"
-                android:text="LIKE!"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/dislike_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/dislike_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/crimson"
-                android:text="DISLIKE!"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/like_button"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

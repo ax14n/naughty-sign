@@ -3,6 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/go_profile_settings_button"
+        android:title="@string/configurar_perfil"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/go_settings_button"
         android:title="@string/configuraci_n" />
     <item

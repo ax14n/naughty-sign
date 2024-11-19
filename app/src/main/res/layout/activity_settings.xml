@@ -100,26 +100,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- Comienzo de la sección de ajustes generales de la aplicación -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:text="@string/generales"
-        android:textColor="@color/black" />
-
-    <!-- Botón para cambiar los hobbies del usuario -->
-    <include
-        android:id="@+id/change_max_distance_button"
-        layout="@layout/custom_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <!-- Botón para cambiar las fotos del usuario -->
-    <include
-        android:id="@+id/change_theme_button"
-        layout="@layout/custom_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

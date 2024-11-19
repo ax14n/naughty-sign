@@ -29,11 +29,10 @@
             android:orientation="horizontal"
             android:stretchColumns="0,1">
 
-            <TableRow style="?android:attr/buttonBarStyle">
+            <TableRow>
 
                 <Button
                     android:id="@+id/add_photo_button"
-                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/trans"
@@ -42,7 +41,6 @@
 
                 <Button
                     android:id="@+id/remove_photo_button"
-                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/trans"
@@ -56,36 +54,17 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:contentDescription="photo"
+                    android:contentDescription=""
                     android:scaleType="fitXY"
-                    tools:ignore="HardcodedText"
+                    tools:ignore="ContentDescription"
                     tools:src="@tools:sample/avatars" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:contentDescription="photo"
+                    android:contentDescription=""
                     android:scaleType="fitXY"
-                    tools:ignore="HardcodedText"
-                    tools:src="@tools:sample/avatars" />
-            </TableRow>
-
-            <TableRow>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="photo"
-                    android:scaleType="fitXY"
-                    tools:ignore="HardcodedText"
-                    tools:src="@tools:sample/avatars" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="photo"
-                    android:scaleType="fitXY"
-                    tools:ignore="HardcodedText"
+                    tools:ignore="ContentDescription"
                     tools:src="@tools:sample/avatars" />
             </TableRow>
 
@@ -94,17 +73,36 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:contentDescription="photo"
+                    android:contentDescription=""
                     android:scaleType="fitXY"
-                    tools:ignore="HardcodedText"
+                    tools:ignore="ContentDescription"
                     tools:src="@tools:sample/avatars" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:contentDescription="photo"
+                    android:contentDescription=""
                     android:scaleType="fitXY"
-                    tools:ignore="HardcodedText"
+                    tools:ignore="ContentDescription"
+                    tools:src="@tools:sample/avatars" />
+            </TableRow>
+
+            <TableRow>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription=""
+                    android:scaleType="fitXY"
+                    tools:ignore="ContentDescription"
+                    tools:src="@tools:sample/avatars" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription=""
+                    android:scaleType="fitXY"
+                    tools:ignore="ContentDescription"
                     tools:src="@tools:sample/avatars" />
             </TableRow>
 
