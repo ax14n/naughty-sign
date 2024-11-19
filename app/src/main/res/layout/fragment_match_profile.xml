@@ -11,7 +11,7 @@
         android:id="@+id/match_profile_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FCF0F0"
+        android:background="@drawable/headers_shape"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,7 +22,7 @@
             android:gravity="center"
             android:paddingTop="40dp"
             android:paddingBottom="15dp"
-            android:text=""
+            android:text=" "
             android:textColor="@color/black"
             android:textSize="35sp"
             android:textStyle="bold" />
@@ -34,9 +34,9 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
             android:contentDescription=""
-            android:scaleX="1.7"
-            android:scaleY="1.7"
-            android:src="@mipmap/sophia_profile_example_round"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
+            android:src="@drawable/sophia_profile_example_background"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -117,6 +117,7 @@
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="60dp"
+                android:layout_marginBottom="40dp"
                 android:text=""
                 android:textSize="12sp"
                 tools:ignore="HardcodedText" />
@@ -127,15 +128,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
                 android:layout_marginEnd="69dp"
+                android:layout_marginBottom="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/interests_text_view" />
 
             <com.google.android.gms.maps.MapView
                 android:id="@+id/map"
-                android:layout_margin="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:layout_margin="25dp"
                 android:contentDescription="mapa" />
 
             <TableLayout
