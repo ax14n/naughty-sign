@@ -43,12 +43,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:padding="15dp"
         android:text="@string/sobre_ti"
-        android:textColor="@color/black" /> <!-- Updated text color -->
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold" /> <!-- Updated text color -->
 
     <!--
-        A PARTIR DE AHORA APARECERÁN BOTONES COMPUESTOS
+        A PARTIR DE AHORA APARECERÁN BOTONESx COMPUESTOS
      -->
 
     <!-- Botón para cambiar el nombre de usuario -->
