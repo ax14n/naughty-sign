@@ -5,9 +5,9 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
+    android:background="@drawable/configuration_button_shape"
     android:orientation="horizontal"
-    android:paddingStart="5dp"
-    android:paddingEnd="5dp"
+    android:padding="15dp"
     tools:ignore="UseCompoundDrawables">
 
     <TextView

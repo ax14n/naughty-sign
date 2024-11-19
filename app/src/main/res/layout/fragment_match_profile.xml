@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/rose_light"
+    android:background="#FFF1F1"
     android:orientation="vertical">
 
     <LinearLayout
+        android:elevation="20dp"
         android:id="@+id/match_profile_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/headers_shape"
+        android:background="@drawable/profile_header_shape"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -106,6 +107,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#FFF1F1"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@+id/match_profile_header">
 
