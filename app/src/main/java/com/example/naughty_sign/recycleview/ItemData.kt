@@ -11,7 +11,7 @@ data class ItemData(
     fun getFormattedAge(): String {
         return buildString {
             append("$edad ")
-            append(R.string.a_os)
+            append(" years")
         }
     }
 }
