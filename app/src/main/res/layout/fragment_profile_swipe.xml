@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -32,15 +31,13 @@
                 android:layout_height="wrap_content"
                 android:text="20"
                 android:textColor="@color/yellow"
-                android:textSize="15sp"
-                tools:ignore="HardcodedText" />
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="@string/km_de_distancia"
+                android:text=" KM de distancia."
                 android:textColor="@color/yellow"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -58,16 +55,14 @@
                 android:layout_height="wrap_content"
                 android:text="21"
                 android:textColor="@color/yellow"
-                android:textSize="30sp"
-                tools:ignore="HardcodedText" />
+                android:textSize="30sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" — "
+                android:text=" - "
                 android:textColor="@color/yellow"
-                android:textSize="35sp"
-                tools:ignore="HardcodedText" />
+                android:textSize="35sp" />
 
             <TextView
                 android:id="@+id/attachment_name"
@@ -75,27 +70,23 @@
                 android:layout_height="wrap_content"
                 android:text="Sophia"
                 android:textColor="@color/yellow"
-                android:textSize="30sp"
-                tools:ignore="HardcodedText" />
+                android:textSize="30sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" | "
                 android:textColor="@color/yellow"
-                android:textSize="35sp"
-                tools:ignore="HardcodedText" />
+                android:textSize="35sp" />
 
             <TextView
                 android:id="@+id/attachment_nationality"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="15dp"
                 android:paddingEnd="20dp"
                 android:text="IT"
                 android:textColor="@color/yellow"
-                android:textSize="30sp"
-                tools:ignore="HardcodedText" />
+                android:textSize="30sp" />
 
         </LinearLayout>
 
@@ -120,8 +111,7 @@
                 android:text="Soy una apasionada del arte que disfruta explorando exposiciones, perdiéndome entre pinceles y lienzos, o saboreando una copa de vino en algún rincón encantador de la ciudad."
                 android:textAlignment="textEnd"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ScrollView
@@ -137,39 +127,43 @@
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/fotografia"
+                    android:text="Fotografía"
                     app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/arte"
+                    android:text="Arte"
                     app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/baile"
-                    app:chipCornerRadius="20dp" />
-
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/deporte"
+                    android:text="Baile"
                     app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/musica"
+                    android:text="Deporte"
                     app:chipCornerRadius="20dp" />
-
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/viajes"
+                    android:text="Fitness"
+                    app:chipCornerRadius="20dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Moda"
+                    app:chipCornerRadius="20dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Caza"
                     app:chipCornerRadius="20dp" />
 
 
