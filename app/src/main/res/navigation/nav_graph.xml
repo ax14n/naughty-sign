@@ -23,9 +23,5 @@
         android:name="com.example.naughty_sign.fragments.FragmentProfile"
         android:label="Profile" />
 
-    <fragment
-        android:id="@+id/match_profile_fragment"
-        android:name="com.example.naughty_sign.fragments.FragmentMatchProfile"
-        android:label="Profile" />
 
 </navigation>

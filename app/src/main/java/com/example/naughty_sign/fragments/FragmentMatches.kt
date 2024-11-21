@@ -8,13 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.FragmentMatchesBinding
 import com.example.naughty_sign.json.RetrofitInstance
-import com.example.naughty_sign.recycleview.ItemData
 import com.example.naughty_sign.recycleview.RecyclerViewAdapter
 import kotlinx.coroutines.launch
-import org.json.JSONArray
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,46 +61,13 @@ class FragmentMatches : Fragment() {
         loadMatches()
     }
 
-    /**
-     * Analiza una cadena JSON que representa una lista de elementos y la convierte en una lista de objetos ItemData.
-     *
-     * Esta función toma una cadena formateada en JSON que contiene un array de objetos, cada uno representando
-     * a un individuo con atributos como nombre, edad y ciudad. Crea y llena una lista de objetos ItemData
-     * basándose en la información extraída.
-     *
-     * @param jsonData Una cadena JSON que contiene un array de objetos con los campos: nombre, edad y ciudad.
-     * @return Una lista de objetos ItemData, cada uno poblado con los valores correspondientes del JSON.
-     */
-    private fun parseJsonToItemData(jsonData: String): List<ItemData> {
-        //Creo una lista mutable para almacenar los objetos ItemData
-        val itemList = mutableListOf<ItemData>()
-
-        //Convierto el String del JSON en un array de JSON
-        val jsonArray = JSONArray(jsonData)
-
-        //Recorro cada elemento del array al contrario para que me muestre ejemplos diferentes de Matches
-        for (i in jsonArray.length() - 1 downTo 0) {
-
-            //Obtengo el objeto actual y extraigo sus valores
-            val jsonObject = jsonArray.getJSONObject(i)
-            val name = jsonObject.getString("name")
-            val age = jsonObject.getInt("age")
-            val city = jsonObject.getString("city")
-
-            val imageResId =
-                R.drawable.ic_launcher_background // Reemplazar con un recurso de imagen real
-            itemList.add(ItemData(name, age, city, imageResId))
-        }
-        return itemList
-    }
-
     private fun loadMatches() {
         lifecycleScope.launch {
             try {
                 val response = RetrofitInstance().api.getMatches()
                 if (response.isSuccessful) {
                     response.body()?.let { matches ->
-                        binding?.matchesView?.adapter = RecyclerViewAdapter(matches)
+                        binding?.matchesView?.adapter = RecyclerViewAdapter(matches, "Matches")
                     }
                 } else {
                     Log.e("API ERROR", "ERROR:  ${response.code()} - ${response.message()}")
@@ -113,7 +77,6 @@ class FragmentMatches : Fragment() {
             }
         }
     }
-
 
     companion object {
         /**

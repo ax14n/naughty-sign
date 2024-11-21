@@ -42,6 +42,8 @@
         <activity
             android:name=".activities.GeneralSettingsActivity"
             android:exported="true" />
+        <activity android:name=".LikeMatchProfileActivity" />
+
     </application>
 
 </manifest>
