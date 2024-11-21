@@ -65,10 +65,10 @@ class FragmentLikes : Fragment() {
     private fun loadLikes() {
         lifecycleScope.launch {
             try {
-                val response = RetrofitInstance().api.getLikes()
+                val response = RetrofitInstance().api.getUsers()
                 if (response.isSuccessful) {
-                    response.body()?.let { likes ->
-                        binding?.likesView?.adapter = RecyclerViewAdapter(likes, "Likes")
+                    response.body()?.let { users ->
+                        binding?.likesView?.adapter = RecyclerViewAdapter(users, "Likes")
                     }
                 } else {
                     Log.e("API ERROR", "ERROR:  ${response.code()} - ${response.message()}")

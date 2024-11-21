@@ -64,10 +64,10 @@ class FragmentMatches : Fragment() {
     private fun loadMatches() {
         lifecycleScope.launch {
             try {
-                val response = RetrofitInstance().api.getMatches()
+                val response = RetrofitInstance().api.getUsers()
                 if (response.isSuccessful) {
-                    response.body()?.let { matches ->
-                        binding?.matchesView?.adapter = RecyclerViewAdapter(matches, "Matches")
+                    response.body()?.let { users ->
+                        binding?.matchesView?.adapter = RecyclerViewAdapter(users, "Matches")
                     }
                 } else {
                     Log.e("API ERROR", "ERROR:  ${response.code()} - ${response.message()}")
