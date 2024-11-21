@@ -17,31 +17,41 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
 
+/**
+ * Activity que se encarga de depositar los datos del usuario que se encuentra en Likes o Matches.
+ * Dependiendo si viene de un fragmetno u otro, se cargará el mapa.
+ */
 class LikeMatchProfileActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: FragmentMatchProfileBinding
     private var userIdParam: Int = -1
     private var fromFragmentPram: String? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        /* Se infla el XML para obtener las clases con las que interactuar. */
         binding = FragmentMatchProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        /*
+        * Extraigo del intent con el que se ha enlazado a esta actividad, el ID del usuario
+        * y el fragmento de donde proviene.
+        * */
         userIdParam = intent.getIntExtra("userIdParam", -1)
         fromFragmentPram = intent.getStringExtra("fromFragmentPram")
 
-        // Obtener los parámetros pasados desde otra actividad
-        intent.extras?.let {
-            userIdParam = it.getInt("userIdParam")
-            fromFragmentPram = it.getString("fromFragmentPram")
-        }
-
+        /*
+        * Dependiendo de si el parámetro extraido del fragmento proveniente es `Likes` o `Matches`,
+        * se creará el mapa o no.
+        * */
         if (fromFragmentPram.equals("Matches", true)) {
             binding.map.onCreate(savedInstanceState)
             binding.map.getMapAsync(this)
         }
 
+        /*
+        * Finalmente carga el perfil para que se pueda ver.
+        * */
         loadProfile()
     }
 
@@ -63,12 +73,9 @@ class LikeMatchProfileActivity : AppCompatActivity(), OnMapReadyCallback {
                                 binding.profileDescription.text = user.descripcion
 
                                 val imageUrl = user.foto_perfil
-                                Glide.with(this@LikeMatchProfileActivity)
-                                    .load(imageUrl)
-                                    .transform(CircleCrop())
-                                    .placeholder(R.drawable.thumb_up)
-                                    .error(R.drawable.moon)
-                                    .into(binding.imageView)
+                                Glide.with(this@LikeMatchProfileActivity).load(imageUrl)
+                                    .transform(CircleCrop()).placeholder(R.drawable.thumb_up)
+                                    .error(R.drawable.moon).into(binding.imageView)
 
                                 for (interest in user.intereses) {
                                     val chipInteres = Chip(this@LikeMatchProfileActivity).apply {
@@ -115,10 +122,25 @@ class LikeMatchProfileActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    override fun onMapReady(p0: GoogleMap) {
-        // Implementación futura para el mapa si se requiere
+    /**
+     * Método que se encarga de configurar el mapa según las necesidades una vez esté hecho.
+     */
+    override fun onMapReady(mapa: GoogleMap) {
+        mapa.uiSettings.apply {
+            /* Desactiva el desplazamiento */
+            isScrollGesturesEnabled = false
+            /* Habilita el zoom (pellizcar para acercar o alejar) */
+            isZoomGesturesEnabled = false
+            /* Desactiva la inclinación */
+            isTiltGesturesEnabled = false
+            /* Desactiva la rotación */
+            isRotateGesturesEnabled = false
+        }
     }
 
+    /**
+     * Extrae las coordenadas de la posición que puso el usaurio usando expresiones regulares.
+     */
     private fun extractCoordinatesFromUrl(url: String): Pair<Double, Double>? {
         val regex = """@(-?\d+\.\d+),(-?\d+\.\d+)""".toRegex()
         val matchResult = regex.find(url)
