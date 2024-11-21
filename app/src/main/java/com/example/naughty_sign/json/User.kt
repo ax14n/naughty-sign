@@ -13,6 +13,13 @@ data class User(
     val descripcion: String,        // Descripción del usuario.
     val intereses: List<String>,    // Intereses del usuario.
     val foto_perfil: String,         // Intereses del usuario.
-    val ubicacion: String  // Enlace de Google Maps con la ubicación
-
-)
+    val ubicacion: String,  // Enlace de Google Maps con la ubicación
+    val edad: Int
+) {
+    fun getFormattedAge(): String {
+        return buildString {
+            append(edad)
+            append(" years")
+        }
+    }
+}

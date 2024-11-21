@@ -4,10 +4,14 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.naughty_sign.LikeMatchProfileActivity
+import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.ItemCardViewBinding
+import com.example.naughty_sign.json.User
 
-class RecyclerViewAdapter(private val items: List<ItemData>, private val fromFragment: String) :
+class RecyclerViewAdapter(private val items: List<User>, private val fromFragment: String) :
     RecyclerView.Adapter<ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -20,6 +24,13 @@ class RecyclerViewAdapter(private val items: List<ItemData>, private val fromFra
         val currentItem = items[position]
 
         holder.bind(currentItem)
+
+        Glide.with(holder.itemView.context)
+            .load(currentItem.foto_perfil)
+            .transform(RoundedCorners(100))
+            .placeholder(R.drawable.ic_launcher_foreground)
+            .into(holder.binding.userPhoto)
+
         holder.itemView.setOnClickListener {
             // Crear un Intent para iniciar la actividad
             val context = holder.itemView.context
@@ -30,9 +41,8 @@ class RecyclerViewAdapter(private val items: List<ItemData>, private val fromFra
             intent.putExtra(
                 "fromFragmentPram",
                 fromFragment
-            ) // Reemplaza con el nombre actual del fragmento si es necesario
+            )
 
-            // Iniciar la actividad
             context.startActivity(intent)
         }
     }

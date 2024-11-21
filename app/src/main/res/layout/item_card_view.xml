@@ -7,15 +7,15 @@
 
         <variable
             name="item"
-            type="com.example.naughty_sign.recycleview.ItemData" />
+            type="com.example.naughty_sign.json.User" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
         android:layout_margin="10dp"
         android:backgroundTint="@color/floral_white"
+        android:elevation="4dp"
         app:cardCornerRadius="30dp">
 
         <LinearLayout
@@ -26,6 +26,7 @@
             android:padding="16dp">
 
             <ImageView
+                android:id="@+id/user_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
