@@ -14,6 +14,15 @@ import com.example.naughty_sign.json.User
 class RecyclerViewAdapter(private val items: List<User>, private val fromFragment: String) :
     RecyclerView.Adapter<ItemViewHolder>() {
 
+    // Lista de items filtrada de acuerdo al fragmento
+    private val filteredItems: List<User> = if (fromFragment == "Matches") {
+        // Cargar element   os con índice par
+        items.filterIndexed { index, _ -> index % 2 == 0 }
+    } else {
+        // Cargar elementos con índice impar
+        items.filterIndexed { index, _ -> index % 2 != 0 }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding =
             ItemCardViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -21,7 +30,7 @@ class RecyclerViewAdapter(private val items: List<User>, private val fromFragmen
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val currentItem = items[position]
+        val currentItem = filteredItems[position]
 
         holder.bind(currentItem)
 
