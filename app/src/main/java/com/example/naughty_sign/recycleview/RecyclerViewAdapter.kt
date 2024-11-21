@@ -1,14 +1,13 @@
 package com.example.naughty_sign.recycleview
 
-import android.os.Bundle
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.naughty_sign.R
+import com.example.naughty_sign.LikeMatchProfileActivity
 import com.example.naughty_sign.databinding.ItemCardViewBinding
 
-class RecyclerViewAdapter(private val items: List<ItemData>) :
+class RecyclerViewAdapter(private val items: List<ItemData>, private val fromFragment: String) :
     RecyclerView.Adapter<ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -21,20 +20,20 @@ class RecyclerViewAdapter(private val items: List<ItemData>) :
         val currentItem = items[position]
 
         holder.bind(currentItem)
-
         holder.itemView.setOnClickListener {
-            // Obtener el NavController
-            val navController = Navigation.findNavController(holder.itemView)
-            val currentFragmentName = navController.currentDestination?.label.toString()
+            // Crear un Intent para iniciar la actividad
+            val context = holder.itemView.context
+            val intent = Intent(context, LikeMatchProfileActivity::class.java)
 
-            // Crear un bundle con el ID del usuario
-            val bundle = Bundle().apply {
-                putInt("userIdParam", currentItem.id)
-                putString("fromFragmentPram", currentFragmentName)
-            }
+            // Agregar datos al Intent
+            intent.putExtra("userIdParam", currentItem.id)
+            intent.putExtra(
+                "fromFragmentPram",
+                fromFragment
+            ) // Reemplaza con el nombre actual del fragmento si es necesario
 
-            // Navegar al FragmentMatchProfile pasando el ID
-            navController.navigate(R.id.match_profile_fragment, bundle)
+            // Iniciar la actividad
+            context.startActivity(intent)
         }
     }
 

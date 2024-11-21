@@ -68,7 +68,7 @@ class FragmentLikes : Fragment() {
                 val response = RetrofitInstance().api.getLikes()
                 if (response.isSuccessful) {
                     response.body()?.let { likes ->
-                        binding?.likesView?.adapter = RecyclerViewAdapter(likes)
+                        binding?.likesView?.adapter = RecyclerViewAdapter(likes, "Likes")
                     }
                 } else {
                     Log.e("API ERROR", "ERROR:  ${response.code()} - ${response.message()}")
