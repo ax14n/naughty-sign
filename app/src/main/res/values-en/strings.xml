@@ -73,4 +73,5 @@
     <string name="se_ha_almacenado_la_foto">The photo has been saved</string>
     <string name="no_se_ha_almacenado_la_foto">The photo has not been saved</string>
     <string name="a_os">años</string>
+    <string name="mostrar_mapa">mostrar_mapa</string>
 </resources>
