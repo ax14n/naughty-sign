@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -55,6 +56,12 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
+
+    /*
+     *Importamos las librerías necesarias para las notificaciones
+     */
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.messaging.ktx)
 
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.cardview)

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "951537536311",
+    "project_id": "naughtysign-131ad",
+    "storage_bucket": "naughtysign-131ad.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951537536311:android:577871cf70d89f3a0f1eb2",
+        "android_client_info": {
+          "package_name": "com.example.naughty_sign"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuSZK3TZk_QVKMNwE4WdFZGozA4ycGPtk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
