@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.glide)
+    implementation(libs.firebase.auth.ktx)
     annotationProcessor(libs.compiler)
 
     /*
@@ -62,6 +63,9 @@ dependencies {
      */
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.messaging.ktx)
+
+    implementation("com.google.android.gms:play-services-auth:21.3.0")
+
 
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.cardview)
