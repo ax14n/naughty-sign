@@ -19,7 +19,6 @@ import com.example.naughty_sign.activities.GeneralSettingsActivity
 import com.example.naughty_sign.activities.ProfileConfigurationActivity
 import com.example.naughty_sign.databinding.FragmentProfileBinding
 import com.example.naughty_sign.fragments.FragmentProfile.Companion.newInstance
-import com.example.naughty_sign.json.RetrofitInstance
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
 
@@ -98,63 +97,7 @@ class FragmentProfile : Fragment() {
      * Carga el pefil del usuario tras leer el JSON del servidor.
      */
     private fun loadProfile() {
-        /*
-        * Inicia una corutina
-        * */
-        lifecycleScope.launch {
-            try {
 
-                /*
-                * Almaceno la lista de usuarios y, si la respuesta ha sido efectiva, relleno el perfil
-                * con los datos del usuario.
-                * */
-                val response = RetrofitInstance().api.getUsers()
-                if (response.isSuccessful) {
-                    response.body()?.let { users ->
-                        /*
-                        * Recorro los usuarios y relleno su perfil según el ID.
-                        * */
-                        for (user in users) {
-                            if (user.id == PROFILE_ID) {
-                                binding.profileName.text = user.nombre
-                                binding.profileQuote.text = user.cita
-                                binding.profileProfession.text = user.profesion
-                                binding.profileCity.text = user.ciudad
-                                binding.profileDescription.text = user.descripcion
-
-                                /*
-                                * Obtengo los intereses del usuario y los recorro para formar chips
-                                * */
-                                for (interest in user.intereses) {
-                                    val chipInteres = Chip(requireContext())
-                                    chipInteres.text = interest
-                                    chipInteres.isCloseIconVisible = false
-
-                                    // Ajusta los colores para mejorar la estética
-                                    chipInteres.setChipBackgroundColorResource(R.color.seashell) // Fondo más suaveç
-                                    chipInteres.setTextSize(9F)
-                                    chipInteres.setTextColor(R.color.dark_orange.toInt()) // Texto contrastante
-                                    chipInteres.setChipStrokeColorResource(R.color.silver) // Borde sutil
-                                    chipInteres.setChipStrokeWidth(2f) // Grosor del borde
-                                    chipInteres.setPadding(20, 10, 20, 10) // Ajustar el padding
-
-                                    // Desactivar la selección
-                                    chipInteres.isClickable = false
-                                    chipInteres.isCheckable = false
-
-                                    binding.chipGroup.addView(chipInteres)
-
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    Log.e("API ERROR", "ERROR:  ${response.code()} - ${response.message()}")
-                }
-            } catch (e: Exception) {
-                Log.e("NETWORK ERROR", "Exception: $e")
-            }
-        }
     }
 
     /**

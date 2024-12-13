@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.glide)
     implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore.ktx)
     annotationProcessor(libs.compiler)
 
     /*
