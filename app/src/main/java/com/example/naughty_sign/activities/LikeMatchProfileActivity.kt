@@ -67,7 +67,7 @@ class LikeMatchProfileActivity : AppCompatActivity(), OnMapReadyCallback {
         db.collection("Usuarios").get().addOnSuccessListener { result ->
 
             for (document in result) {
-                if (document.get("id") == userIdParam) {
+                if (Integer.parseInt(document.get("id").toString()) == userIdParam) {
 
                     //------------------ { Formación de textos } ------------------//
                     binding.profileName.text = document.get("nombre").toString()
@@ -83,7 +83,7 @@ class LikeMatchProfileActivity : AppCompatActivity(), OnMapReadyCallback {
                         .into(binding.imageView)
 
                     //------------------ { Inserción de intereses } ------------------//
-                    val intereses = document.get("intereses") as Array<*>
+                    val intereses = document.get("intereses") as List<String>
                     for (interest in intereses) {
                         val chipInteres = Chip(this@LikeMatchProfileActivity).apply {
                             text = interest.toString()
