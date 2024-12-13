@@ -98,10 +98,8 @@ class LikeMatchProfileActivity : AppCompatActivity(), OnMapReadyCallback {
                             isCheckable = false
                         }
                         binding.chipGroup.addView(chipInteres)
-
-
-                        break
                     }
+
                     if (fromFragmentPram.equals("Matches", true)) {
                         val coordinates =
                             extractCoordinatesFromUrl(document.get("ubicacion").toString())
