@@ -54,7 +54,7 @@ class PostRegisterActivity : AppCompatActivity() {
              */
             if (binding.name.text.isNotBlank() && binding.smallQuote.text.isNotBlank()) {
                 createUser()
-                startActivity(Intent(this, SignUpActivity::class.java))
+                startActivity(Intent(this, LogInActivity::class.java))
             } else Toast.makeText(
                 baseContext,
                 "No se han rellenado los campos.",
