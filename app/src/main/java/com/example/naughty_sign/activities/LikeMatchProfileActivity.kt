@@ -1,12 +1,11 @@
-package com.example.naughty_sign
+package com.example.naughty_sign.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.FragmentMatchProfileBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -16,7 +15,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.launch
 
 /**
  * Activity que se encarga de depositar los datos del usuario que se encuentra en Likes o Matches.

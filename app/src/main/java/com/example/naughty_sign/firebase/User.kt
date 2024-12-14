@@ -1,6 +1,7 @@
 package com.example.naughty_sign.firebase
 
 data class User(
+    val email : String,             // Email del usuario
     val id: Int,                    // ID del usuario.
     val nombre: String,             // Nombre del usuario.
     val cita: String,               // Cita del usuario.
