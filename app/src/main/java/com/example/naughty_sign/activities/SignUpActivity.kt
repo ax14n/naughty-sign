@@ -18,6 +18,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
     private lateinit var auth: FirebaseAuth
 
+
     /**
      * Se inicializan variables y se preparan recursos no relacionados con la vista.
      */
@@ -30,7 +31,7 @@ class SignUpActivity : AppCompatActivity() {
         * When the button is pressed sends the user to the main screen
         * */
         binding.logInButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LogInActivity::class.java)
             startActivity(intent)
         }
 
@@ -38,15 +39,11 @@ class SignUpActivity : AppCompatActivity() {
          * When this button is pressed, redirects the user to Main Screen
          */
         binding.registerButton.setOnClickListener {
-            if (binding.email.text.isNotBlank() || binding.password.text.isNotBlank()) {
+            if (binding.email.text.isNotBlank() && binding.password.text.isNotBlank() && binding.terms.isChecked) {
                 createAccount(binding.email.text.toString(), binding.password.text.toString())
             }
-
         }
-
         setContentView(binding.root)
-
-
     }
 
     public override fun onStart() {
@@ -65,6 +62,12 @@ class SignUpActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d(TAG, "createUserWithEmail:success")
                     val user = auth.currentUser
+
+                    Toast.makeText(
+                        baseContext,
+                        "Se ha registrado correctamente",
+                        Toast.LENGTH_SHORT,
+                    ).show()
 
                 } else {
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
