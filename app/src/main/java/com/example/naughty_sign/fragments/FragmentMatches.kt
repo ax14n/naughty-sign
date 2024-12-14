@@ -71,6 +71,7 @@ class FragmentMatches : Fragment() {
             for (document in result) {
                 // TODO: Arreglar fallos de parseo de datos.
                 var user = User(
+                    "",
                     Integer.parseInt(document.get("id").toString()),
                     document.get("nombre").toString(),
                     document.get("cita").toString(),
