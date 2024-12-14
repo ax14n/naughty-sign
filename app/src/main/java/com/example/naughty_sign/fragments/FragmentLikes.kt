@@ -4,18 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.IntegerRes
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.naughty_sign.databinding.FragmentLikesBinding
 import com.example.naughty_sign.firebase.User
 import com.example.naughty_sign.recycleview.RecyclerViewAdapter
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private val profile = Firebase.auth.currentUser
 
 /**
  * A simple [Fragment] subclass.
@@ -67,21 +68,22 @@ class FragmentLikes : Fragment() {
         db.collection("Usuarios").get().addOnSuccessListener { result ->
             val listaUsuarios: MutableList<User> = mutableListOf()
             for (document in result) {
-                // TODO: Arreglar fallos de parseo de datos.
-                var user = User(
-                    "",
-                    Integer.parseInt(document.get("id").toString()),
-                    document.get("nombre").toString(),
-                    document.get("cita").toString(),
-                    document.get("profesion").toString(),
-                    document.get("ciudad").toString(),
-                    document.get("descripcion").toString(),
-                    document.get("intereses") as List<String>,
-                    document.get("foto_perfil").toString(),
-                    document.get("ubicacion").toString(),
-                    Integer.parseInt(document.get("edad").toString())
-                )
-                listaUsuarios.add(user)
+                if (!profile!!.email.equals(document.get("email").toString())) {
+                    var user = User(
+                        "",
+                        Integer.parseInt(document.get("id").toString()),
+                        document.get("nombre").toString(),
+                        document.get("cita").toString(),
+                        document.get("profesion").toString(),
+                        document.get("ciudad").toString(),
+                        document.get("descripcion").toString(),
+                        document.get("intereses") as List<String>,
+                        document.get("foto_perfil").toString(),
+                        document.get("ubicacion").toString(),
+                        Integer.parseInt(document.get("edad").toString())
+                    )
+                    listaUsuarios.add(user)
+                }
             }
             binding?.likesView?.adapter = RecyclerViewAdapter(listaUsuarios, "Likes")
         }

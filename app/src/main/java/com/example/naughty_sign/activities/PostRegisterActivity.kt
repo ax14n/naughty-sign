@@ -2,14 +2,11 @@ package com.example.naughty_sign.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.naughty_sign.databinding.ActivityPostRegisterBinding
-import com.example.naughty_sign.databinding.ActivitySignupBinding
 import com.example.naughty_sign.firebase.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
