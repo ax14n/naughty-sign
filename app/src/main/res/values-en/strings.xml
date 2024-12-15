@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Naughty-Sign</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello empty fragment</string>
     <string name="intereses">Interests</string>
     <string name="musica">Music</string>

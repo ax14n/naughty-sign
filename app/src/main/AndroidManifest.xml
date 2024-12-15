@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -28,6 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".activities.InterestsActivity" />
         <activity android:name=".activities.PhotoSelectorActivity" />
         <activity
@@ -42,14 +44,18 @@
         <activity
             android:name=".activities.GeneralSettingsActivity"
             android:exported="true" />
-        <activity android:name=".LikeMatchProfileActivity" />
+
+        <activity android:name=".activities.LikeMatchProfileActivity" />
+
+        <activity android:name=".activities.PostRegisterActivity" />
+
 
 
         <service
             android:name=".notifications.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 

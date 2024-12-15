@@ -1,21 +1,20 @@
-package com.example.naughty_sign
+package com.example.naughty_sign.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.FragmentMatchProfileBinding
-import com.example.naughty_sign.json.RetrofitInstance
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.chip.Chip
-import kotlinx.coroutines.launch
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 /**
  * Activity que se encarga de depositar los datos del usuario que se encuentra en Likes o Matches.
@@ -25,6 +24,7 @@ class LikeMatchProfileActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: FragmentMatchProfileBinding
     private var userIdParam: Int = -1
     private var fromFragmentPram: String? = null
+    private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,81 +59,78 @@ class LikeMatchProfileActivity : AppCompatActivity(), OnMapReadyCallback {
      * Carga el perfil del usuario tras leer el JSON del servidor.
      */
     private fun loadProfile() {
-        lifecycleScope.launch {
-            try {
-                val response = RetrofitInstance().api.getUsers()
-                if (response.isSuccessful) {
-                    response.body()?.let { users ->
-                        for (user in users) {
-                            if (user.id == userIdParam) {
-                                binding.profileName.text = user.nombre
-                                binding.profileQuote.text = user.cita
-                                binding.profileProfession.text = user.profesion
-                                binding.profileCity.text = user.ciudad
-                                binding.profileDescription.text = user.descripcion
 
-                                val imageUrl = user.foto_perfil
-                                Glide.with(this@LikeMatchProfileActivity).load(imageUrl)
-                                    .transform(CircleCrop()).placeholder(R.drawable.thumb_up)
-                                    .error(R.drawable.moon).into(binding.imageView)
+        // Se obtienen los documentos dentro de la colección de usuarios, se extraen los datos
+        // y se asignan.
+        db.collection("Usuarios").get().addOnSuccessListener { result ->
 
-                                for (interest in user.intereses) {
-                                    val chipInteres = Chip(this@LikeMatchProfileActivity).apply {
-                                        text = interest
-                                        isCloseIconVisible = false
-                                        setChipBackgroundColorResource(R.color.seashell)
-                                        textSize = 9F
-                                        setTextColor(R.color.dark_orange.toInt())
-                                        setChipStrokeColorResource(R.color.silver)
-                                        chipStrokeWidth = 2f
-                                        setPadding(20, 10, 20, 10)
-                                        isClickable = false
-                                        isCheckable = false
-                                    }
-                                    binding.chipGroup.addView(chipInteres)
-                                }
+            for (document in result) {
+                if (Integer.parseInt(document.get("id").toString()) == userIdParam) {
 
-                                if (fromFragmentPram.equals("Matches", true)) {
-                                    val coordinates = extractCoordinatesFromUrl(user.ubicacion)
-                                    coordinates?.let { (lat, lon) ->
-                                        val userLocation = LatLng(lat, lon)
-                                        binding.map.getMapAsync { googleMap ->
-                                            googleMap.addMarker(
-                                                MarkerOptions().position(userLocation)
-                                                    .title("Ubicación de ${user.nombre}")
-                                            )
-                                            googleMap.moveCamera(
-                                                CameraUpdateFactory.newLatLngZoom(userLocation, 8f)
-                                            )
-                                        }
-                                    }
-                                } else {
-                                    binding.map.visibility = View.INVISIBLE
-                                }
+                    //------------------ { Formación de textos } ------------------//
+                    binding.profileName.text = document.get("nombre").toString()
+                    binding.profileQuote.text = document.get("cita").toString()
+                    binding.profileCity.text = document.get("ciudad").toString()
+                    binding.profileProfession.text = document.get("profesion").toString()
+                    binding.profileDescription.text = document.get("descripcion").toString()
+
+                    //------------------ { Formación de imágen } ------------------//
+                    val imageUrl = document.get("foto_perfil")
+                    Glide.with(this@LikeMatchProfileActivity).load(imageUrl).transform(CircleCrop())
+                        .placeholder(R.drawable.thumb_up).error(R.drawable.moon)
+                        .into(binding.imageView)
+
+                    //------------------ { Inserción de intereses } ------------------//
+                    val intereses = document.get("intereses") as List<String>
+                    for (interest in intereses) {
+                        val chipInteres = Chip(this@LikeMatchProfileActivity).apply {
+                            text = interest.toString()
+                            isCloseIconVisible = false
+                            setChipBackgroundColorResource(R.color.seashell)
+                            textSize = 9F
+                            setTextColor(R.color.dark_orange.toInt())
+                            setChipStrokeColorResource(R.color.silver)
+                            chipStrokeWidth = 2f
+                            setPadding(20, 10, 20, 10)
+                            isClickable = false
+                            isCheckable = false
+                        }
+                        binding.chipGroup.addView(chipInteres)
+                    }
+
+                    if (fromFragmentPram.equals("Matches", true)) {
+                        val coordinates =
+                            extractCoordinatesFromUrl(document.get("ubicacion").toString())
+                        coordinates?.let { (lat, lon) ->
+                            val userLocation = LatLng(lat, lon)
+                            binding.map.getMapAsync { googleMap ->
+                                googleMap.addMarker(
+                                    MarkerOptions().position(userLocation)
+                                        .title("Ubicación de ${document.get("nombre")}}")
+                                )
+                                googleMap.moveCamera(
+                                    CameraUpdateFactory.newLatLngZoom(userLocation, 8f)
+                                )
                             }
                         }
+                    } else {
+                        binding.map.visibility = View.INVISIBLE
                     }
-                } else {
-                    Log.e("API ERROR", "ERROR: ${response.code()} - ${response.message()}")
+
                 }
-            } catch (e: Exception) {
-                Log.e("NETWORK ERROR", "Exception: $e")
             }
         }
     }
 
     /**
-     * Método que se encarga de configurar el mapa según las necesidades una vez esté hecho.
+     * Encargado de configurar el mapa según las necesidades una vez esté hecho.
      */
     override fun onMapReady(mapa: GoogleMap) {
         mapa.uiSettings.apply {
             /* Desactiva el desplazamiento */
-            isScrollGesturesEnabled = false
-            /* Habilita el zoom (pellizcar para acercar o alejar) */
-            isZoomGesturesEnabled = false
-            /* Desactiva la inclinación */
-            isTiltGesturesEnabled = false
-            /* Desactiva la rotación */
+            isScrollGesturesEnabled = false/* Habilita el zoom (pellizcar para acercar o alejar) */
+            isZoomGesturesEnabled = false/* Desactiva la inclinación */
+            isTiltGesturesEnabled = false/* Desactiva la rotación */
             isRotateGesturesEnabled = false
         }
     }

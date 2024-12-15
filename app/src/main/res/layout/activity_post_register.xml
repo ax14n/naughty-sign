@@ -18,92 +18,78 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical"
-            android:text="@string/registro"
+            android:text="Dinos un poco más acerca de ti"
             android:textSize="35sp" />
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="¡No te preocupes, solo requerimos datos esenciales!"
+            android:textColor="@color/dark_red"
+            android:textSize="12dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="@string/pareces_interesante_cu_ntanos_sobre_t"
+            android:text="¿Cómo te llamas?"
+            android:textColor="@color/passion_red" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tu nombre"
+            android:textColor="@color/gray"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="¡Empieza con una pequeña cita!"
+            android:textColor="@color/passion_red" />
+
+        <EditText
+            android:id="@+id/small_quote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tu cita"
+            android:textColor="@color/gray"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="¡Empieza con una pequeña cita!"
+            android:textColor="@color/passion_red" />
+
+        <NumberPicker
+            android:id="@+id/age_picker"
+            android:layout_width="match_parent"
+            android:layout_height="126dp"
+            android:layout_gravity="center"
             android:textColor="@color/gray" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="@string/correo"
-            android:textColor="@color/passion_red" />
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/introduce_tu_correo"
-            android:textColor="@color/gray"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="@string/contrasena"
-            android:textColor="@color/passion_red" />
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/introduce_tu_contrasena"
-            android:textColor="@color/gray"
-            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/terms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/estoy_de_acuerdo_con_los_t_rminos_y_la_pol_tica_de_privacidad" />
-
-        </LinearLayout>
+            android:orientation="horizontal" />
 
         <Button
-            android:id="@+id/register_button"
+            android:id="@+id/finish_post_register"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
             android:backgroundTint="@color/passion_red"
             android:text="@string/continuar" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ya_nos_conocemos" />
-
-            <Button
-                android:id="@+id/log_in_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/trans"
-                android:text="@string/iniciar_sesion"
-                android:textColor="@color/passion_red" />
-
-
-        </LinearLayout>
 
     </LinearLayout>
 

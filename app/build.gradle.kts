@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.glide)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore.ktx)
     annotationProcessor(libs.compiler)
 
     /*
@@ -62,6 +64,9 @@ dependencies {
      */
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.messaging.ktx)
+
+    implementation(libs.play.services.auth)
+
 
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.cardview)

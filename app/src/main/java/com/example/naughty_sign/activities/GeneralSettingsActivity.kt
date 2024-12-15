@@ -27,13 +27,8 @@ class GeneralSettingsActivity : AppCompatActivity() {
         // Inicializa el binding para enlazar la vista del layout
         binding = ActivityGeneralConfigurationsBinding.inflate(layoutInflater)
         createButtons()
-
-        // TODO: ESTABLECER PREFERENCIAS DEL MENú
-
         sharedPreferences =
             getSharedPreferences("general_config", MODE_PRIVATE)
-
-        // TODO: FINAL
 
         setContentView(binding.root)
     }
