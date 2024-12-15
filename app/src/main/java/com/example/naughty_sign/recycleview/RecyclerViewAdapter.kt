@@ -6,10 +6,10 @@
     import androidx.recyclerview.widget.RecyclerView
     import com.bumptech.glide.Glide
     import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-    import com.example.naughty_sign.LikeMatchProfileActivity
     import com.example.naughty_sign.R
+    import com.example.naughty_sign.activities.LikeMatchProfileActivity
     import com.example.naughty_sign.databinding.ItemCardViewBinding
-    import com.example.naughty_sign.json.User
+    import com.example.naughty_sign.firebase.User
 
     class RecyclerViewAdapter(private val items: List<User>, private val fromFragment: String) :
         RecyclerView.Adapter<ItemViewHolder>() {

@@ -17,6 +17,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.ActivitySettingsBinding
 import com.google.android.material.slider.RangeSlider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 /**
  * Esta clase representa la actividad de configuración de la aplicación, permitiendo al usuario
@@ -29,17 +32,16 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.TakePicture()) { resultado ->
             if (resultado) {
                 Toast.makeText(
-                    this,
-                    getString(R.string.se_ha_almacenado_la_foto), Toast.LENGTH_SHORT
+                    this, getString(R.string.se_ha_almacenado_la_foto), Toast.LENGTH_SHORT
                 ).show()
             } else {
                 Toast.makeText(
-                    this,
-                    getString(R.string.no_se_ha_almacenado_la_foto), Toast.LENGTH_SHORT
+                    this, getString(R.string.no_se_ha_almacenado_la_foto), Toast.LENGTH_SHORT
                 ).show()
             }
         }
-
+    private val profile = Firebase.auth.currentUser
+    private val db = Firebase.firestore
 
     /**
      * Inicializa la actividad, configura los botones y sus funciones, y establece el listener para
@@ -84,37 +86,22 @@ class ProfileConfigurationActivity : AppCompatActivity() {
          * de cada botón, manteniendo un código más legible y estructurado.
         */
         val buttonAndFunction =
-            mapOf(binding.changeUsernameButton to {
-                showTextPopUp(
-                    getString(R.string.nombre_de_usuario),
-                    20
-                )
-            },
-                binding.changeDescriptionButton to {
-                    showTextPopUp(
-                        getString(R.string.descripci_n),
-                        100
-                    )
-                },
-                binding.changeQuoteButton to { showTextPopUp(getString(R.string.cita), 20) },
-                binding.changeRomaticPreferencesButton to {
-                    showRomanticPreferencesPopUp(
-                        listOf(
-                            getString(R.string.hombres), getString(R.string.mujeres),
-                            getString(R.string.otros)
-                        )
-                    )
-                },
+            mapOf(
+                binding.changeUsernameButton to { cambiarNombreUsuario() },
+                binding.changeDescriptionButton to { cambiarDescripcion() },
+                binding.changeQuoteButton to { cambiarCita() },
+                binding.changeRomaticPreferencesButton to { showRomanticPreferencesPopUp() },
                 binding.changeAgeRangeButton to { showNumberRangePopUp(18, 100) },
                 binding.changeHobbiesButton to { goToHobbiesSelector() },
-                binding.changePhotosButton to { goToPhotosSelector() })
+                binding.changePhotosButton to { goToPhotosSelector() }
+            )
 
         /*
         * A cada botón del diccionario se le asigna el texto y la función correspondientes.
         * El texto se configura directamente desde el mapa `buttonAndText` para mayor claridad.
         * Luego, mediante una expresión lambda en `setOnClickListener`, cada botón ejecutará
         * la función asignada en `buttonAndFunction` al ser presionado.
-        * */
+         */
         for (button in buttonAndFunction.keys) {
             button.text.text = buttonAndText[button]
             button.root.setOnClickListener {
@@ -141,6 +128,94 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
+    /**
+     * Solicita un nuevo nombre de usuario y actualiza el campo en la base de datos.
+     */
+    private fun cambiarNombreUsuario() {
+
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Introduzca un nuevo nombre de usuario.")
+
+        val editText = EditText(this)
+        builder.setView(editText)
+
+        builder.setPositiveButton("Positive") { dialog, _ ->
+            if (profile != null) {
+                db.collection("Usuarios").get().addOnSuccessListener { result ->
+                    for (document in result) {
+                        if (profile.email.equals(document.get("email").toString())) {
+                            document.reference.update("nombre", editText.text.toString())
+                        }
+                    }
+                }
+            }
+            dialog.dismiss()
+        }
+
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
+    /**
+     * Solicita un nuevo nombre de usuario y actualiza el campo en la base de datos.
+     */
+    private fun cambiarDescripcion() {
+
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Introduzca un nuevo nombre de usuario.")
+
+        val editText = EditText(this)
+        builder.setView(editText)
+
+        builder.setPositiveButton("Positive") { dialog, _ ->
+            if (profile != null) {
+                db.collection("Usuarios").get().addOnSuccessListener { result ->
+                    for (document in result) {
+                        if (profile.email.equals(document.get("email").toString())) {
+                            document.reference.update("descripcion", editText.text.toString())
+                        }
+                    }
+                }
+            }
+            dialog.dismiss()
+        }
+
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
+
+    /**
+     * Solicita un nuevo nombre de usuario y actualiza el campo en la base de datos.
+     */
+    private fun cambiarCita() {
+
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Introduzca una nueva cita")
+
+        val editText = EditText(this)
+        builder.setView(editText)
+
+        builder.setPositiveButton("Positive") { dialog, _ ->
+            if (profile != null) {
+                db.collection("Usuarios").get().addOnSuccessListener { result ->
+                    for (document in result) {
+                        if (profile.email.equals(document.get("email").toString())) {
+                            document.reference.update("cita", editText.text.toString())
+                        }
+                    }
+                }
+            }
+            dialog.dismiss()
+        }
+
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
     // Obtener la URI para guardar la foto en la galería
     private fun obtenerUriImagen(): Uri {
         val contentResolver = contentResolver
@@ -148,13 +223,11 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         // Crear un conjunto de valores para la imagen
         val values = ContentValues().apply {
             put(
-                MediaStore.Images.Media.DISPLAY_NAME,
-                "foto_${System.currentTimeMillis()}.jpg"
+                MediaStore.Images.Media.DISPLAY_NAME, "foto_${System.currentTimeMillis()}.jpg"
             )  // Nombre del archivo
             put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")  // Tipo de la imagen
             put(
-                MediaStore.Images.Media.RELATIVE_PATH,
-                "Pictures/Camera"
+                MediaStore.Images.Media.RELATIVE_PATH, "Pictures/Camera"
             )  // Directorio en la galería
         }
 
@@ -286,15 +359,13 @@ class ProfileConfigurationActivity : AppCompatActivity() {
             val selectedMinAge = ageRangeSlider.values[0].toInt()
             val selectedMaxAge = ageRangeSlider.values[1].toInt()
             if (selectedMinAge < selectedMaxAge) {
-                showToast(
-                    buildString {
-                        append(getString(R.string.rango_de_edad_seleccionado))
-                        append(" ")
-                        append(selectedMinAge)
-                        append(" - ")
-                        append(selectedMaxAge)
-                    }
-                )
+                showToast(buildString {
+                    append(getString(R.string.rango_de_edad_seleccionado))
+                    append(" ")
+                    append(selectedMinAge)
+                    append(" - ")
+                    append(selectedMaxAge)
+                })
             } else {
                 showToast(getString(R.string.el_rango_seleccionado_no_es_v_lido))
             }
@@ -315,67 +386,15 @@ class ProfileConfigurationActivity : AppCompatActivity() {
     }
 
     /**
-     * Muestra un diálogo de texto para insertar información de usuario.
-     *
-     * @param motivo Describe el motivo de la entrada de texto.
-     * @param largo Longitud máxima permitida para el texto ingresado.
-     */
-    private fun showTextPopUp(motivo: String, largo: Int) {
-
-        /*
-        * Crea un cuadro de dialogo que existe en el mismo contexto que esta ventana y le establece
-        * el título de 'Insertar $motivo'.
-        **/
-        val builder = AlertDialog.Builder(this).apply {
-            setTitle("Insertar $motivo")
-        }
-
-        /*
-        * Se crea un campo de texto donde el usaurio introducirá su respuesta y se agrega al
-        * cuadro de diálogo de maneara que lo envuelva.
-        * */
-        val text = EditText(this)
-        builder.setView(text)
-
-        /*
-        * Al presionar el botón de acpetar se mostrará un Toast con un mensaje indicando lo que ha
-        * introducido a mano el usuario. Tras mostrar el mensaje, se cierra el cuadro de dialogo.
-        * */
-        builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
-            val introducedText: Int = text.text.length
-            if (introducedText <= largo) {
-                showToast(
-                    buildString {
-                        append(getString(R.string.has_introducido))
-                        append(introducedText)
-                    }
-                )
-                dialog.dismiss()
-            }
-        }
-
-        /*
-        * El botón de cancelar configurado de forma que al presionarlo desaparezca el cuadro de
-        * dialogo.
-        * */
-        builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
-            dialog.dismiss()
-        }
-
-        /*
-        * Una vez configurado el cuadro de dialogo, se forma finalmente y se muestra por pantalla
-        * */
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-    }
-
-
-    /**
      * Muestra un diálogo para seleccionar preferencias románticas mediante un Spinner.
-     *
-     * @param items Lista de elementos que contendrá el Spinner.
      */
-    private fun showRomanticPreferencesPopUp(items: List<String>) {
+    private fun showRomanticPreferencesPopUp() {
+
+        val items = listOf(
+            getString(R.string.hombres),
+            getString(R.string.mujeres),
+            getString(R.string.otros)
+        )
 
         /*
         * Crea un cuadro de dialogo que existe en el mismo contexto que esta ventana y le establece

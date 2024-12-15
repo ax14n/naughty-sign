@@ -1,10 +1,7 @@
-package com.example.naughty_sign.json
+package com.example.naughty_sign.firebase
 
-/**
- * Estructura de datos que representa los datos que tendrá un usuario
- * en especifico dentro de su perfil.
- */
 data class User(
+    val email : String,             // Email del usuario
     val id: Int,                    // ID del usuario.
     val nombre: String,             // Nombre del usuario.
     val cita: String,               // Cita del usuario.

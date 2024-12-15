@@ -1,6 +1,6 @@
 package com.example.naughty_sign.activities
 
-import android.content.ContentValues.*
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,6 @@ import com.example.naughty_sign.databinding.ActivityLoginBinding
 import com.example.naughty_sign.language.BaseActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.actionCodeSettings
 import com.google.firebase.auth.auth
 
 class LogInActivity : BaseActivity() {

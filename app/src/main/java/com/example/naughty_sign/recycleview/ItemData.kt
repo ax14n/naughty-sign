@@ -1,7 +1,5 @@
 package com.example.naughty_sign.recycleview
 
-import com.example.naughty_sign.R
-
 data class ItemData(
     val nombre: String,     // Nombre del usuario del match.
     val edad: Int,          // Edad del usuario del match.

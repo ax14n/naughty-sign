@@ -1,22 +1,22 @@
 package com.example.naughty_sign.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.naughty_sign.databinding.FragmentMatchesBinding
-import com.example.naughty_sign.json.RetrofitInstance
+import com.example.naughty_sign.firebase.User
 import com.example.naughty_sign.recycleview.RecyclerViewAdapter
-import kotlinx.coroutines.launch
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
-// TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private val profile = Firebase.auth.currentUser
 
 /**
  * A simple [Fragment] subclass.
@@ -28,6 +28,7 @@ class FragmentMatches : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var binding: FragmentMatchesBinding? = null
+    private var db = Firebase.firestore
 
     /**
      * Se inicializan variables y se preparan recursos no relacionados con la vista.
@@ -62,19 +63,28 @@ class FragmentMatches : Fragment() {
     }
 
     private fun loadMatches() {
-        lifecycleScope.launch {
-            try {
-                val response = RetrofitInstance().api.getUsers()
-                if (response.isSuccessful) {
-                    response.body()?.let { users ->
-                        binding?.matchesView?.adapter = RecyclerViewAdapter(users, "Matches")
-                    }
-                } else {
-                    Log.e("API ERROR", "ERROR:  ${response.code()} - ${response.message()}")
+
+        db.collection("Usuarios").get().addOnSuccessListener { result ->
+            val listaUsuarios: MutableList<User> = mutableListOf()
+            for (document in result) {
+                if (!profile!!.email.equals(document.get("email").toString())) {
+                    var user = User(
+                        "",
+                        Integer.parseInt(document.get("id").toString()),
+                        document.get("nombre").toString(),
+                        document.get("cita").toString(),
+                        document.get("profesion").toString(),
+                        document.get("ciudad").toString(),
+                        document.get("descripcion").toString(),
+                        document.get("intereses") as List<String>,
+                        document.get("foto_perfil").toString(),
+                        document.get("ubicacion").toString(),
+                        Integer.parseInt(document.get("edad").toString())
+                    )
+                    listaUsuarios.add(user)
                 }
-            } catch (e: Exception) {
-                Log.e("NETWORK ERROR", "Exception: $e")
             }
+            binding?.matchesView?.adapter = RecyclerViewAdapter(listaUsuarios, "Matches")
         }
     }
 
