@@ -74,6 +74,8 @@ class ProfileConfigurationActivity : AppCompatActivity() {
             binding.changeUsernameButton to getString(R.string.cambiar_nombre_de_usuario),
             binding.changeDescriptionButton to getString(R.string.cambiar_descripci_n),
             binding.changeQuoteButton to getString(R.string.cambiar_cita),
+            binding.changeCityButton to "Cambiar Ciudad",
+            binding.changeProfessionButton to "Cambiar Profesión",
             binding.changeRomaticPreferencesButton to getString(R.string.cambiar_preferencias_rom_nticas),
             binding.changeAgeRangeButton to getString(R.string.cambiar_rango_de_edad),
             binding.changeHobbiesButton to getString(R.string.cambiar_hobbies),
@@ -85,16 +87,15 @@ class ProfileConfigurationActivity : AppCompatActivity() {
          * junto con sus respectivas funciones. Esto facilita añadir o cambiar la funcionalidad
          * de cada botón, manteniendo un código más legible y estructurado.
         */
-        val buttonAndFunction =
-            mapOf(
-                binding.changeUsernameButton to { cambiarNombreUsuario() },
-                binding.changeDescriptionButton to { cambiarDescripcion() },
-                binding.changeQuoteButton to { cambiarCita() },
-                binding.changeRomaticPreferencesButton to { showRomanticPreferencesPopUp() },
-                binding.changeAgeRangeButton to { showNumberRangePopUp(18, 100) },
-                binding.changeHobbiesButton to { goToHobbiesSelector() },
-                binding.changePhotosButton to { goToPhotosSelector() }
-            )
+        val buttonAndFunction = mapOf(binding.changeUsernameButton to { cambiarNombreUsuario() },
+            binding.changeDescriptionButton to { cambiarDescripcion() },
+            binding.changeQuoteButton to { cambiarCita() },
+            binding.changeCityButton to { cambiarCiudad() },
+            binding.changeProfessionButton to { cambiarProfesion() },
+            binding.changeRomaticPreferencesButton to { showRomanticPreferencesPopUp() },
+            binding.changeAgeRangeButton to { showNumberRangePopUp() },
+            binding.changeHobbiesButton to { goToHobbiesSelector() },
+            binding.changePhotosButton to { goToPhotosSelector() })
 
         /*
         * A cada botón del diccionario se le asigna el texto y la función correspondientes.
@@ -129,6 +130,102 @@ class ProfileConfigurationActivity : AppCompatActivity() {
     }
 
     /**
+     * Cambia la ciudad de residencia del usuario.
+     */
+    private fun cambiarCiudad() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Seleccione la ciudad en donde habita")
+
+        val spinner = Spinner(this)
+        val ciudades = arrayOf(
+            "Madrid",
+            "Barcelona",
+            "Valencia",
+            "Sevilla",
+            "Zaragoza",
+            "Málaga",
+            "Murcia",
+            "Palma",
+            "Las Palmas de Gran Canaria",
+            "Bilbao",
+            "Alicante",
+            "Córdoba",
+            "Valladolid",
+            "Vigo",
+            "Gijón",
+            "L'Hospitalet de Llobregat",
+            "A Coruña",
+            "Granada",
+            "Elche",
+            "Oviedo"
+        )
+        spinner.adapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, ciudades)
+        builder.setView(spinner)
+
+        builder.setPositiveButton("Aceptar") { dialog, _ ->
+            db.collection("Usuarios").get().addOnSuccessListener { result ->
+                for (document in result) {
+                    if (profile?.email.equals(document.get("email").toString())) {
+                        document.reference.update("ciudad", spinner.selectedItem.toString())
+                    }
+                }
+            }
+            dialog.dismiss()
+        }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
+    /**
+     * Cambia la profesión del usuario.
+     */
+    private fun cambiarProfesion() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Seleccione la ciudad en donde habita")
+
+        val spinner = Spinner(this)
+        val profesiones = arrayOf(
+            "Abogado",
+            "Arquitecto",
+            "Ingeniero",
+            "Médico",
+            "Enfermero",
+            "Profesor",
+            "Cocinero",
+            "Escritor",
+            "Artista",
+            "Diseñador gráfico",
+            "Desarrollador de software",
+            "Contador",
+            "Psicólogo",
+            "Científico",
+            "Periodista",
+            "Fotógrafo",
+            "Electricista",
+            "Carpintero"
+        )
+        spinner.adapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, profesiones)
+        builder.setView(spinner)
+
+        builder.setPositiveButton("Aceptar") { dialog, _ ->
+            db.collection("Usuarios").get().addOnSuccessListener { result ->
+                for (document in result) {
+                    if (profile?.email.equals(document.get("email").toString())) {
+                        document.reference.update("profesion", spinner.selectedItem.toString())
+                    }
+                }
+            }
+            dialog.dismiss()
+        }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
+    /**
      * Solicita un nuevo nombre de usuario y actualiza el campo en la base de datos.
      */
     private fun cambiarNombreUsuario() {
@@ -140,12 +237,10 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         builder.setView(editText)
 
         builder.setPositiveButton("Positive") { dialog, _ ->
-            if (profile != null) {
-                db.collection("Usuarios").get().addOnSuccessListener { result ->
-                    for (document in result) {
-                        if (profile.email.equals(document.get("email").toString())) {
-                            document.reference.update("nombre", editText.text.toString())
-                        }
+            db.collection("Usuarios").get().addOnSuccessListener { result ->
+                for (document in result) {
+                    if (profile?.email.equals(document.get("email").toString())) {
+                        document.reference.update("nombre", editText.text.toString())
                     }
                 }
             }
@@ -275,7 +370,10 @@ class ProfileConfigurationActivity : AppCompatActivity() {
      * @param min Edad mínima posible.
      * @param max Edad máxima posible.
      */
-    private fun showNumberRangePopUp(min: Int, max: Int) {
+    private fun showNumberRangePopUp() {
+
+        //------------- { Valor máximo y mínimo del rango de edad } -------------//
+        val min = 18 ; val max = 100
 
         /*
         * Crea un cuadro de dialogo que existe en el mismo contexto que esta ventana y le establece
@@ -391,9 +489,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
     private fun showRomanticPreferencesPopUp() {
 
         val items = listOf(
-            getString(R.string.hombres),
-            getString(R.string.mujeres),
-            getString(R.string.otros)
+            getString(R.string.hombres), getString(R.string.mujeres), getString(R.string.otros)
         )
 
         /*
