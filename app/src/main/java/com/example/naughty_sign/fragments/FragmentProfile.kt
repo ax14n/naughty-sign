@@ -18,13 +18,10 @@ import com.example.naughty_sign.activities.ProfileConfigurationActivity
 import com.example.naughty_sign.databinding.FragmentProfileBinding
 import com.example.naughty_sign.fragments.FragmentProfile.Companion.newInstance
 import com.example.naughty_sign.utils.LoggedUserUtils
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.android.material.chip.Chip
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private val profile = Firebase.auth.currentUser
 
 /**
  * Un [Fragment] que representa el perfil del usuario.
@@ -36,7 +33,6 @@ class FragmentProfile : Fragment() {
     // Parámetros de inicialización para el fragmento.
     private var param1: String? = null
     private var param2: String? = null
-    private val db = Firebase.firestore
 
     // Enlace con la vista del fragmento para facilitar el acceso a los elementos UI.
     private lateinit var binding: FragmentProfileBinding
@@ -86,7 +82,6 @@ class FragmentProfile : Fragment() {
         binding.configButton.setOnClickListener {
             mostrarMenuDesplegable(it)
         }
-
         // Carga los datos del usuario especificado
         cargarPerfil()
     }
@@ -95,21 +90,21 @@ class FragmentProfile : Fragment() {
      * Carga el pefil del usuario tras leer el JSON del servidor.
      */
     private fun cargarPerfil() {
-
-
-        val bundle = LoggedUserUtils.extraerDatosPerfil { bundle ->
+        LoggedUserUtils.extraerDatosPerfil { bundle ->
 
             binding.profileName.text = bundle.getString("nombre")
             binding.profileQuote.text = bundle.getString("cita").toString()
             binding.profileProfession.text = bundle.getString("profesion").toString()
             binding.profileCity.text = bundle.getString("ciudad").toString()
             binding.profileDescription.text = bundle.getString("descripcion").toString()
-            // bundle.getString("intereses") as List<String>
+            val intereses = bundle.getStringArrayList("intereses") as List<String?>
+            for (interes in intereses) binding.chipGroup.addView(Chip(requireContext()).apply {
+                text = interes.toString()
+            })
             // bundle.getString("foto_perfil").toString()
-            // bundle.getString("ubicacion").toString()
+            binding.profileCity.text = bundle.getString("ciudad").toString()
             // bundle.getString(document.get("edad").toString())
         }
-
     }
 
     /**

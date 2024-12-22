@@ -2,10 +2,10 @@ package com.example.naughty_sign.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.naughty_sign.databinding.ActivityPostRegisterBinding
 import com.example.naughty_sign.utils.LoggedUserUtils
+import com.example.naughty_sign.utils.MessageUtils
 
 /**
  * Clase encargada de enlazar y administrar los datos mínimos necesarios para el perfil del usuario
@@ -58,11 +58,7 @@ class PostRegisterActivity : AppCompatActivity() {
                 //----------- { Cambio de actividad } -----------//
                 startActivity(Intent(this, LogInActivity::class.java))
 
-            } else Toast.makeText(
-                baseContext,
-                "No se han rellenado los campos necesarios",
-                Toast.LENGTH_SHORT,
-            ).show()
+            } else MessageUtils.mostrarToast(this, "No se han rellenado los campos necesarios")
         }
 
         // Se aplica la visual a la actividad actual.

@@ -4,9 +4,9 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import com.example.naughty_sign.databinding.ActivityLoginBinding
 import com.example.naughty_sign.language.BaseActivity
+import com.example.naughty_sign.utils.MessageUtils
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -30,10 +30,9 @@ class LogInActivity : BaseActivity() {
         * */
         binding.logInButton.setOnClickListener {
 
-            if (binding.email.text.isNotBlank() || binding.password.text.isNotBlank()) {
+            if (binding.email.text.isNotBlank() && binding.password.text.isNotBlank()) {
                 sigIn(binding.email.text.toString(), binding.password.text.toString())
             }
-
         }
 
         /*
@@ -53,13 +52,8 @@ class LogInActivity : BaseActivity() {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 } else {
-                    // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(
-                        baseContext,
-                        "He maquina q esto esta mal.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
+                    MessageUtils.mostrarToast(this, "Error de inicio de sesión")
                 }
             }
     }
