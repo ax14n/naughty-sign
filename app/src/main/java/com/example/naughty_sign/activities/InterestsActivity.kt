@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.iterator
 import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.ActivityInterestsBinding
+import com.example.naughty_sign.utils.LoggedUserUtils
+import com.example.naughty_sign.utils.MessageUtils
 import com.google.android.material.chip.Chip
 
 class InterestsActivity : AppCompatActivity() {
@@ -46,6 +48,7 @@ class InterestsActivity : AppCompatActivity() {
         for (interest in interests) {
             val chip: Chip = Chip(this).apply {
                 text = interest
+                tag = interest
                 setChipBackgroundColorResource(R.color.mint_cream)
                 setChipStrokeColorResource(R.color.gray)
                 setChipStrokeWidth(2f)
@@ -63,11 +66,22 @@ class InterestsActivity : AppCompatActivity() {
             binding.chipGroup.addView(chip)
         }
 
+        binding.updateInterests.setOnClickListener {
+            actualizarIntereses()
+        }
+
     }
 
-    fun actualizarIntereses() {
+    /**
+     * Actualiza los intereses de la persona.
+     */
+    private fun actualizarIntereses() {
+        val intereses = mutableListOf<String>()
         for (chip in binding.chipGroup.iterator()) {
-
+            if (chip.isSelected) intereses.add(chip.tag.toString())
         }
+        LoggedUserUtils.actualizar("intereses", intereses)
+        MessageUtils.mostrarToast(this, "Se han actualizado los intereses")
+        finish()
     }
 }

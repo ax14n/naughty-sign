@@ -3,9 +3,9 @@ package com.example.naughty_sign.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.naughty_sign.databinding.ActivitySignupBinding
+import com.example.naughty_sign.utils.MessageUtils
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -98,18 +98,12 @@ class SignUpActivity : AppCompatActivity() {
 
             } else {
                 Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                Toast.makeText(
-                    baseContext,
-                    "Authentication failed",
-                    Toast.LENGTH_SHORT,
-                ).show()
+                MessageUtils.mostrarToast(this, "Authentication failed")
             }
         }
     }
 
     private fun reload() {
-        binding.email.text.clear()
-        binding.password.text.clear()
     }
 
     companion object {

@@ -11,12 +11,12 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.ActivitySettingsBinding
 import com.example.naughty_sign.utils.LoggedUserUtils
+import com.example.naughty_sign.utils.MessageUtils
 import com.google.android.material.slider.RangeSlider
 
 /**
@@ -28,15 +28,8 @@ class ProfileConfigurationActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
     private val camara =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { resultado ->
-            if (resultado) {
-                Toast.makeText(
-                    this, getString(R.string.se_ha_almacenado_la_foto), Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                Toast.makeText(
-                    this, getString(R.string.no_se_ha_almacenado_la_foto), Toast.LENGTH_SHORT
-                ).show()
-            }
+            if (resultado) MessageUtils.mostrarToast(this, getString(R.string.se_ha_almacenado_la_foto))
+            else MessageUtils.mostrarToast(this, getString(R.string.no_se_ha_almacenado_la_foto))
         }
 
     /**
@@ -440,7 +433,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
             val selectedMinAge = ageRangeSlider.values[0].toInt()
             val selectedMaxAge = ageRangeSlider.values[1].toInt()
             if (selectedMinAge < selectedMaxAge) {
-                showToast(buildString {
+                MessageUtils.mostrarToast(this, buildString {
                     append(getString(R.string.rango_de_edad_seleccionado))
                     append(" ")
                     append(selectedMinAge)
@@ -448,7 +441,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
                     append(selectedMaxAge)
                 })
             } else {
-                showToast(getString(R.string.el_rango_seleccionado_no_es_v_lido))
+                MessageUtils.mostrarToast(this, getString(R.string.el_rango_seleccionado_no_es_v_lido))
             }
             dialog.dismiss()
         }
@@ -516,7 +509,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * por pantalla mostrando el valor seleccionado del Spinner.
         * */
         builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
-            showToast("Se ha seleccionado ${spinner.selectedItem}")
+            MessageUtils.mostrarToast(this,"Se ha seleccionado ${spinner.selectedItem}")
         }
 
         /*
@@ -534,13 +527,4 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    /**
-     * Muestra un mensaje emergente en pantalla.
-     *
-     * @param message Texto del mensaje que se mostrará.
-     */
-    private fun showToast(message: String) {
-        // Forma un cuadro de texto con el mensaje proporcionado por parámetro.
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
 }

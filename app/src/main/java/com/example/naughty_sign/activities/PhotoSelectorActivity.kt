@@ -2,10 +2,10 @@ package com.example.naughty_sign.activities
 
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.naughty_sign.databinding.ActivityPhotoSelectorBinding
+import com.example.naughty_sign.utils.MessageUtils
 
 class PhotoSelectorActivity : AppCompatActivity() {
 
@@ -16,11 +16,11 @@ class PhotoSelectorActivity : AppCompatActivity() {
         ActivityResultContracts.GetMultipleContents()
     ) { uris: List<Uri>? -> // Recibimos una lista de URIs seleccionadas
         if (uris.isNullOrEmpty()) {
-            Toast.makeText(this, "No se seleccionaron imágenes", Toast.LENGTH_SHORT).show()
+            MessageUtils.mostrarToast(this, "No se seleccionaron imágenes")
         } else {
             // Iteramos sobre las imágenes seleccionadas y mostramos sus URIs
             uris.forEach { uri ->
-                Toast.makeText(this, "Imagen seleccionada: $uri", Toast.LENGTH_SHORT).show()
+                MessageUtils.mostrarToast(this, "Imagen seleccionada: $uri")
             }
         }
     }
