@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.naughty_sign"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.naughty_sign"
@@ -47,16 +47,10 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
-    /*
-    * Se importan las librerías necesarias para importar los contenidos JSON
-    * del servidor de Postman.
-    * */
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.okhttp)
     implementation(libs.glide)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.androidx.media3.common.ktx)
     annotationProcessor(libs.compiler)
 
     /*

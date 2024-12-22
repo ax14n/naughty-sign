@@ -70,8 +70,8 @@ class FragmentLikes : Fragment() {
             for (document in result) {
                 if (!profile!!.email.equals(document.get("email").toString())) {
                     var user = User(
+                        document.get("id").toString(),
                         "",
-                        Integer.parseInt(document.get("id").toString()),
                         document.get("nombre").toString(),
                         document.get("cita").toString(),
                         document.get("profesion").toString(),

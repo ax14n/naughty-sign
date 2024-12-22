@@ -2,6 +2,7 @@ package com.example.naughty_sign.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.iterator
 import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.ActivityInterestsBinding
 import com.google.android.material.chip.Chip
@@ -62,5 +63,11 @@ class InterestsActivity : AppCompatActivity() {
             binding.chipGroup.addView(chip)
         }
 
+    }
+
+    fun actualizarIntereses() {
+        for (chip in binding.chipGroup.iterator()) {
+
+        }
     }
 }
