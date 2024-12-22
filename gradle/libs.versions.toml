@@ -30,6 +30,7 @@ annotation = "1.9.1"
 uiTextAndroid = "1.7.5"
 firebaseAuthKtx = "23.1.0"
 firebaseFirestoreKtx = "25.1.1"
+media3CommonKtx = "1.5.1"
 
 [libraries]
 androidx-cardview = { module = "androidx.cardview:cardview" }
@@ -63,6 +64,7 @@ androidx-annotation = { group = "androidx.annotation", name = "annotation", vers
 androidx-ui-text-android = { group = "androidx.compose.ui", name = "ui-text-android", version.ref = "uiTextAndroid" }
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3CommonKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

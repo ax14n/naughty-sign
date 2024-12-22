@@ -16,10 +16,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.ActivitySettingsBinding
+import com.example.naughty_sign.utils.LoggedUserUtils
 import com.google.android.material.slider.RangeSlider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 /**
  * Esta clase representa la actividad de configuración de la aplicación, permitiendo al usuario
@@ -40,8 +38,6 @@ class ProfileConfigurationActivity : AppCompatActivity() {
                 ).show()
             }
         }
-    private val profile = Firebase.auth.currentUser
-    private val db = Firebase.firestore
 
     /**
      * Inicializa la actividad, configura los botones y sus funciones, y establece el listener para
@@ -123,10 +119,28 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         binding.logOutButton.setOnClickListener { goToLogIn() }
 
         /*
+        * Le asigno al botón 'logOutButton' mediante una expresión lambda en 'setOnClickListener',
+        * que cambie la ventana actual por la ventana de inicio de sesión mediante la llamada a
+        * la función 'goToLogIn'.
+        * */
+        binding.goBackButton.setOnClickListener { regresarActividadPrincipal() }
+
+        /*
         * Asigno la vista actual de la aplicación a la pantalla de configuración una vez todas
         * las variables y asignaciones hayan concluido de forma satisfactoria.
         * */
         setContentView(binding.root)
+    }
+
+    /**
+     * Cierra configuraciones y vuelve a la actividad princial.
+     */
+    private fun regresarActividadPrincipal() {
+        val intent = Intent(
+            this, MainActivity::class.java
+        )
+        startActivity(intent)
+        finish()
     }
 
     /**
@@ -164,13 +178,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         builder.setView(spinner)
 
         builder.setPositiveButton("Aceptar") { dialog, _ ->
-            db.collection("Usuarios").get().addOnSuccessListener { result ->
-                for (document in result) {
-                    if (profile?.email.equals(document.get("email").toString())) {
-                        document.reference.update("ciudad", spinner.selectedItem.toString())
-                    }
-                }
-            }
+            LoggedUserUtils.actualizar("ciudad", spinner.selectedItem.toString())
             dialog.dismiss()
         }
 
@@ -211,13 +219,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         builder.setView(spinner)
 
         builder.setPositiveButton("Aceptar") { dialog, _ ->
-            db.collection("Usuarios").get().addOnSuccessListener { result ->
-                for (document in result) {
-                    if (profile?.email.equals(document.get("email").toString())) {
-                        document.reference.update("profesion", spinner.selectedItem.toString())
-                    }
-                }
-            }
+            LoggedUserUtils.actualizar("profesion", spinner.selectedItem.toString())
             dialog.dismiss()
         }
 
@@ -237,13 +239,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         builder.setView(editText)
 
         builder.setPositiveButton("Positive") { dialog, _ ->
-            db.collection("Usuarios").get().addOnSuccessListener { result ->
-                for (document in result) {
-                    if (profile?.email.equals(document.get("email").toString())) {
-                        document.reference.update("nombre", editText.text.toString())
-                    }
-                }
-            }
+            LoggedUserUtils.actualizar("nombre", editText.text.toString())
             dialog.dismiss()
         }
 
@@ -264,20 +260,11 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         builder.setView(editText)
 
         builder.setPositiveButton("Positive") { dialog, _ ->
-            if (profile != null) {
-                db.collection("Usuarios").get().addOnSuccessListener { result ->
-                    for (document in result) {
-                        if (profile.email.equals(document.get("email").toString())) {
-                            document.reference.update("descripcion", editText.text.toString())
-                        }
-                    }
-                }
-            }
+            LoggedUserUtils.actualizar("descripcion", editText.text.toString())
             dialog.dismiss()
         }
 
-
-        val dialog: AlertDialog = builder.create()
+        val dialog = builder.create()
         dialog.show()
     }
 
@@ -286,7 +273,6 @@ class ProfileConfigurationActivity : AppCompatActivity() {
      * Solicita un nuevo nombre de usuario y actualiza el campo en la base de datos.
      */
     private fun cambiarCita() {
-
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("Introduzca una nueva cita")
 
@@ -294,18 +280,9 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         builder.setView(editText)
 
         builder.setPositiveButton("Positive") { dialog, _ ->
-            if (profile != null) {
-                db.collection("Usuarios").get().addOnSuccessListener { result ->
-                    for (document in result) {
-                        if (profile.email.equals(document.get("email").toString())) {
-                            document.reference.update("cita", editText.text.toString())
-                        }
-                    }
-                }
-            }
+            LoggedUserUtils.actualizar("cita", editText.text.toString())
             dialog.dismiss()
         }
-
 
         val dialog: AlertDialog = builder.create()
         dialog.show()
@@ -318,7 +295,8 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         // Crear un conjunto de valores para la imagen
         val values = ContentValues().apply {
             put(
-                MediaStore.Images.Media.DISPLAY_NAME, "foto_${System.currentTimeMillis()}.jpg"
+                MediaStore.Images.Media.DISPLAY_NAME,
+                "foto_${System.currentTimeMillis()}.jpg"
             )  // Nombre del archivo
             put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")  // Tipo de la imagen
             put(
@@ -327,7 +305,10 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         }
 
         // Insertar en MediaStore y obtener la URI
-        return contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)!!
+        return contentResolver.insert(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            values
+        )!!
     }
 
     /**
@@ -373,7 +354,8 @@ class ProfileConfigurationActivity : AppCompatActivity() {
     private fun showNumberRangePopUp() {
 
         //------------- { Valor máximo y mínimo del rango de edad } -------------//
-        val min = 18 ; val max = 100
+        val min = 18;
+        val max = 100
 
         /*
         * Crea un cuadro de dialogo que existe en el mismo contexto que esta ventana y le establece
@@ -418,7 +400,8 @@ class ProfileConfigurationActivity : AppCompatActivity() {
             valueFrom = 18f             // Valor mínimo del RangeSlider.
             valueTo = 100f              // Valor máximo del RangeSlider.
             stepSize = 1f               // Incremento de 1 año para cada paso.
-            values = listOf(18f, 100f)  // Valores iniciales: 18 como mínimo y 100 como máximo.
+            values =
+                listOf(18f, 100f)  // Valores iniciales: 18 como mínimo y 100 como máximo.
 
             /*
             * Establezco un Listener que se encargará de que cuando se detecte un cambio actualice
@@ -489,7 +472,9 @@ class ProfileConfigurationActivity : AppCompatActivity() {
     private fun showRomanticPreferencesPopUp() {
 
         val items = listOf(
-            getString(R.string.hombres), getString(R.string.mujeres), getString(R.string.otros)
+            getString(R.string.hombres),
+            getString(R.string.mujeres),
+            getString(R.string.otros)
         )
 
         /*

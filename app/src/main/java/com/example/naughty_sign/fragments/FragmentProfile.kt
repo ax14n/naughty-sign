@@ -16,9 +16,8 @@ import com.example.naughty_sign.R
 import com.example.naughty_sign.activities.GeneralSettingsActivity
 import com.example.naughty_sign.activities.ProfileConfigurationActivity
 import com.example.naughty_sign.databinding.FragmentProfileBinding
-import com.example.naughty_sign.firebase.User
 import com.example.naughty_sign.fragments.FragmentProfile.Companion.newInstance
-import com.example.naughty_sign.recycleview.RecyclerViewAdapter
+import com.example.naughty_sign.utils.LoggedUserUtils
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -89,30 +88,28 @@ class FragmentProfile : Fragment() {
         }
 
         // Carga los datos del usuario especificado
-        loadProfile()
+        cargarPerfil()
     }
 
     /**
      * Carga el pefil del usuario tras leer el JSON del servidor.
      */
-    private fun loadProfile() {
-        if (profile != null) {
-            db.collection("Usuarios").get().addOnSuccessListener { result ->
-                for (document in result) {
-                    if (profile.email.equals(document.get("email").toString())) {
-                        binding.profileName.text = document.get("nombre").toString()
-                        binding.profileQuote.text = document.get("cita").toString()
-                        binding.profileProfession.text = document.get("profesion").toString()
-                        binding.profileCity.text = document.get("ciudad").toString()
-                        binding.profileDescription.text = document.get("descripcion").toString()
-                        // document.get("intereses") as List<String>
-                        // document.get("foto_perfil").toString()
-                        // document.get("ubicacion").toString()
-                        // Integer.parseInt(document.get("edad").toString())
-                    }
-                }
-            }
+    private fun cargarPerfil() {
+
+
+        val bundle = LoggedUserUtils.extraerDatosPerfil { bundle ->
+
+            binding.profileName.text = bundle.getString("nombre")
+            binding.profileQuote.text = bundle.getString("cita").toString()
+            binding.profileProfession.text = bundle.getString("profesion").toString()
+            binding.profileCity.text = bundle.getString("ciudad").toString()
+            binding.profileDescription.text = bundle.getString("descripcion").toString()
+            // bundle.getString("intereses") as List<String>
+            // bundle.getString("foto_perfil").toString()
+            // bundle.getString("ubicacion").toString()
+            // bundle.getString(document.get("edad").toString())
         }
+
     }
 
     /**

@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.naughty_sign.databinding.ActivityPostRegisterBinding
-import com.example.naughty_sign.firebase.User
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.example.naughty_sign.utils.LoggedUserUtils
 
 /**
  * Clase encargada de enlazar y administrar los datos mínimos necesarios para el perfil del usuario
@@ -21,11 +18,6 @@ class PostRegisterActivity : AppCompatActivity() {
      * poder interactuar con ellas.
      */
     private lateinit var binding: ActivityPostRegisterBinding
-
-    /**
-     * Objeto que se encarga de las operaciones con la base de datos Firestore.
-     */
-    private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,11 +42,25 @@ class PostRegisterActivity : AppCompatActivity() {
              * -> No dejar sin rellenar el campo de la pequeña cita.
              */
             if (binding.name.text.isNotBlank() && binding.smallQuote.text.isNotBlank()) {
-                createUser()
+
+                //----------- { Almacenamiento de datos mínimos necesarios } -----------//
+                val bundle = Bundle().apply {
+                    putString("id", LoggedUserUtils.obtenerUid())
+                    putString("email", LoggedUserUtils.obtenerEmail())
+                    putString("nombre", binding.name.text.toString())
+                    putString("cita", binding.smallQuote.text.toString())
+                    putInt("edad", binding.agePicker.value)
+                }
+
+                //----------- { Creación del documento de la base de datos } -----------//
+                LoggedUserUtils.crearDocumento(bundle)
+
+                //----------- { Cambio de actividad } -----------//
                 startActivity(Intent(this, LogInActivity::class.java))
+
             } else Toast.makeText(
                 baseContext,
-                "No se han rellenado los campos.",
+                "No se han rellenado los campos necesarios",
                 Toast.LENGTH_SHORT,
             ).show()
         }
@@ -63,30 +69,4 @@ class PostRegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    /**
-     * Se crea un nuevo usuario dentro de la base de datos con los datos mínimos necesarios.
-     */
-    private fun createUser() {
-        // Obtengo la colección llamada 'Usuarios'.
-        val collection = db.collection("Usuarios")
-
-        // Operación de agregación del usuario a la base de datos.
-        collection.get().addOnSuccessListener { document ->
-            val newId = document.size()
-            val user = User(
-                FirebaseAuth.getInstance().currentUser!!.email.toString(),
-                newId,
-                binding.name.text.toString(),
-                binding.smallQuote.text.toString(),
-                "",
-                "",
-                "",
-                listOf(),
-                "",
-                "",
-                binding.agePicker.value
-            )
-            collection.document(newId.toString()).set(user)
-        }
-    }
 }

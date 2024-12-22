@@ -21,14 +21,20 @@
 
                 <!-- Botón de retroceder. -->
                 <ImageView
-                    android:id="@+id/go_back"
+                    android:id="@+id/go_back_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
+                    android:layout_gravity="start"
                     android:contentDescription="Botón para cerrar sesión"
                     android:padding="12dp"
-                    android:src="@drawable/logout_24dp_ff1e1e_fill0_wght400_grad0_opsz24"
+                    android:src="@drawable/chevron_right_30dp_e8eaed_fill0_wght400_grad0_opsz24"
                     tools:ignore="HardcodedText" /> <!-- Descripción añadida -->
+
+                <!-- Espaciador flexible para separar ambos botones. -->
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <!-- Botón de cerrar sesión. -->
                 <ImageView
