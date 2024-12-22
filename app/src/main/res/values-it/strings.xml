@@ -73,5 +73,13 @@
     <string name="no_se_ha_almacenado_la_foto">La foto non è stata salvata</string>
     <string name="a_os">años</string>
     <string name="mostrar_mapa">mostrar_mapa</string>
+    <string name="cambiar_ciudad">Cambiar Ciudad</string>
+    <string name="cambiar_profesi_n">Cambiar Profesión</string>
+    <string name="introduzca_una_nueva_cita">Introduzca una nueva cita</string>
+    <string name="aplicar">Aplicar</string>
+    <string name="introduzca_un_nuevo_nombre_de_usuario">Introduzca un nuevo nombre de usuario.</string>
+    <string name="introduzca_una_nueva_descripci_n">Introduzca una nueva descripción</string>
+    <string name="seleccione_la_ciudad_en_donde_habita">Seleccione la ciudad en donde habita</string>
+    <string name="seleccione_su_profesi_n">Seleccione su profesión</string>
 
 </resources>

@@ -70,8 +70,8 @@ class ProfileConfigurationActivity : AppCompatActivity() {
             binding.changeUsernameButton to getString(R.string.cambiar_nombre_de_usuario),
             binding.changeDescriptionButton to getString(R.string.cambiar_descripci_n),
             binding.changeQuoteButton to getString(R.string.cambiar_cita),
-            binding.changeCityButton to "Cambiar Ciudad",
-            binding.changeProfessionButton to "Cambiar Profesión",
+            binding.changeCityButton to getString(R.string.cambiar_ciudad),
+            binding.changeProfessionButton to getString(R.string.cambiar_profesi_n),
             binding.changeRomaticPreferencesButton to getString(R.string.cambiar_preferencias_rom_nticas),
             binding.changeAgeRangeButton to getString(R.string.cambiar_rango_de_edad),
             binding.changeHobbiesButton to getString(R.string.cambiar_hobbies),
@@ -148,7 +148,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
      */
     private fun cambiarCiudad() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Seleccione la ciudad en donde habita")
+        builder.setTitle(getString(R.string.seleccione_la_ciudad_en_donde_habita))
 
         val spinner = Spinner(this)
         val ciudades = arrayOf(
@@ -177,7 +177,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
             ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, ciudades)
         builder.setView(spinner)
 
-        builder.setPositiveButton("Aceptar") { dialog, _ ->
+        builder.setPositiveButton(getString(R.string.aplicar)) { dialog, _ ->
             LoggedUserUtils.actualizar("ciudad", spinner.selectedItem.toString())
             dialog.dismiss()
         }
@@ -191,7 +191,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
      */
     private fun cambiarProfesion() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Seleccione la ciudad en donde habita")
+        builder.setTitle(getString(R.string.seleccione_su_profesi_n))
 
         val spinner = Spinner(this)
         val profesiones = arrayOf(
@@ -218,7 +218,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
             ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, profesiones)
         builder.setView(spinner)
 
-        builder.setPositiveButton("Aceptar") { dialog, _ ->
+        builder.setPositiveButton(getString(R.string.aplicar)) { dialog, _ ->
             LoggedUserUtils.actualizar("profesion", spinner.selectedItem.toString())
             dialog.dismiss()
         }
@@ -233,12 +233,12 @@ class ProfileConfigurationActivity : AppCompatActivity() {
     private fun cambiarNombreUsuario() {
 
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Introduzca un nuevo nombre de usuario.")
+        builder.setTitle(getString(R.string.introduzca_un_nuevo_nombre_de_usuario))
 
         val editText = EditText(this)
         builder.setView(editText)
 
-        builder.setPositiveButton("Positive") { dialog, _ ->
+        builder.setPositiveButton(getString(R.string.aplicar)) { dialog, _ ->
             LoggedUserUtils.actualizar("nombre", editText.text.toString())
             dialog.dismiss()
         }
@@ -254,12 +254,12 @@ class ProfileConfigurationActivity : AppCompatActivity() {
     private fun cambiarDescripcion() {
 
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Introduzca un nuevo nombre de usuario.")
+        builder.setTitle(getString(R.string.introduzca_una_nueva_descripci_n))
 
         val editText = EditText(this)
         builder.setView(editText)
 
-        builder.setPositiveButton("Positive") { dialog, _ ->
+        builder.setPositiveButton(getString(R.string.aplicar)) { dialog, _ ->
             LoggedUserUtils.actualizar("descripcion", editText.text.toString())
             dialog.dismiss()
         }
@@ -274,12 +274,12 @@ class ProfileConfigurationActivity : AppCompatActivity() {
      */
     private fun cambiarCita() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Introduzca una nueva cita")
+        builder.setTitle(getString(R.string.introduzca_una_nueva_cita))
 
         val editText = EditText(this)
         builder.setView(editText)
 
-        builder.setPositiveButton("Positive") { dialog, _ ->
+        builder.setPositiveButton(getString(R.string.aplicar)) { dialog, _ ->
             LoggedUserUtils.actualizar("cita", editText.text.toString())
             dialog.dismiss()
         }
