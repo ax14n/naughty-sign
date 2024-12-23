@@ -19,6 +19,10 @@ import com.example.naughty_sign.databinding.FragmentProfileBinding
 import com.example.naughty_sign.fragments.FragmentProfile.Companion.newInstance
 import com.example.naughty_sign.utils.LoggedUserUtils
 import com.google.android.material.chip.Chip
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -87,25 +91,33 @@ class FragmentProfile : Fragment() {
     }
 
     /**
-     * Carga el pefil del usuario tras leer el JSON del servidor.
+     * Carga la información del perfil.
      */
+    @OptIn(DelicateCoroutinesApi::class)
     private fun cargarPerfil() {
-        LoggedUserUtils.extraerDatosPerfil { bundle ->
+        // Creamos el bundle dentro de la corutina ya que este se llena con datos asíncronos.
+        GlobalScope.launch(Dispatchers.Main) {
+            // Obtenemos los datos del perfil (desde un repositorio o API)
+            val bundle: Bundle = LoggedUserUtils.extraerDatosPerfil()
 
-            binding.profileName.text = bundle.getString("nombre")
-            binding.profileQuote.text = bundle.getString("cita").toString()
-            binding.profileProfession.text = bundle.getString("profesion").toString()
-            binding.profileCity.text = bundle.getString("ciudad").toString()
-            binding.profileDescription.text = bundle.getString("descripcion").toString()
-            val intereses = bundle.getStringArrayList("intereses") as List<String?>
-            for (interes in intereses) binding.chipGroup.addView(Chip(requireContext()).apply {
-                text = interes.toString()
-            })
-            // bundle.getString("foto_perfil").toString()
-            binding.profileCity.text = bundle.getString("ciudad").toString()
-            // bundle.getString(document.get("edad").toString())
+            // Actualizamos los elementos de la UI, asegurándonos de que se haga en el hilo principal
+            binding.profileName.text = bundle.getString("nombre", "Desconocido")
+            binding.profileQuote.text = bundle.getString("cita", "Sin cita").orEmpty()
+            binding.profileProfession.text = bundle.getString("profesion", "Desconocido").orEmpty()
+            binding.profileCity.text = bundle.getString("ciudad", "Desconocida").orEmpty()
+            binding.profileDescription.text = bundle.getString("descripcion", "Sin descripción").orEmpty()
+
+            // Si existe una lista de intereses, la agregamos a los chips
+            val intereses = bundle.getStringArrayList("intereses")
+            intereses?.forEach { interes ->
+                binding.chipGroup.addView(Chip(requireContext()).apply {
+                    text = interes
+                })
+            }
+            // val fotoPerfil = bundle.getString("foto_perfil")
         }
     }
+
 
     /**
      * Muestra un menú desplegable (PopupMenu) al usuario.

@@ -28,7 +28,10 @@ class ProfileConfigurationActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
     private val camara =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { resultado ->
-            if (resultado) MessageUtils.mostrarToast(this, getString(R.string.se_ha_almacenado_la_foto))
+            if (resultado) MessageUtils.mostrarToast(
+                this,
+                getString(R.string.se_ha_almacenado_la_foto)
+            )
             else MessageUtils.mostrarToast(this, getString(R.string.no_se_ha_almacenado_la_foto))
         }
 
@@ -441,7 +444,10 @@ class ProfileConfigurationActivity : AppCompatActivity() {
                     append(selectedMaxAge)
                 })
             } else {
-                MessageUtils.mostrarToast(this, getString(R.string.el_rango_seleccionado_no_es_v_lido))
+                MessageUtils.mostrarToast(
+                    this,
+                    getString(R.string.el_rango_seleccionado_no_es_v_lido)
+                )
             }
             dialog.dismiss()
         }
@@ -509,7 +515,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * por pantalla mostrando el valor seleccionado del Spinner.
         * */
         builder.setPositiveButton(getString(R.string.ok)) { dialog, _ ->
-            MessageUtils.mostrarToast(this,"Se ha seleccionado ${spinner.selectedItem}")
+            MessageUtils.mostrarToast(this, "Se ha seleccionado ${spinner.selectedItem}")
         }
 
         /*
