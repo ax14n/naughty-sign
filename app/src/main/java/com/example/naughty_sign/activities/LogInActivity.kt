@@ -16,7 +16,6 @@ class LogInActivity : BaseActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
 
-
     /**
      * Se inicializan variables y se preparan recursos no relacionados con la vista.
      */

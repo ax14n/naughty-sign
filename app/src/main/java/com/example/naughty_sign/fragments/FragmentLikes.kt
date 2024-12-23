@@ -7,11 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.naughty_sign.databinding.FragmentLikesBinding
-import com.example.naughty_sign.firebase.User
 import com.example.naughty_sign.recycleview.RecyclerViewAdapter
+import com.example.naughty_sign.utils.LoggedUserUtils
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -63,31 +67,14 @@ class FragmentLikes : Fragment() {
         loadLikes()
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun loadLikes() {
-
-        db.collection("Usuarios").get().addOnSuccessListener { result ->
-            val listaUsuarios: MutableList<User> = mutableListOf()
-            for (document in result) {
-                if (!profile!!.email.equals(document.get("email").toString())) {
-                    var user = User(
-                        document.get("id").toString(),
-                        "",
-                        document.get("nombre").toString(),
-                        document.get("cita").toString(),
-                        document.get("profesion").toString(),
-                        document.get("ciudad").toString(),
-                        document.get("descripcion").toString(),
-                        document.get("intereses") as List<String>,
-                        document.get("foto_perfil").toString(),
-                        document.get("ubicacion").toString(),
-                        Integer.parseInt(document.get("edad").toString())
-                    )
-                    listaUsuarios.add(user)
-                }
-            }
+        GlobalScope.launch(Dispatchers.Main) {
+            val listaUsuarios = LoggedUserUtils.extraerListaLikes()
             binding?.likesView?.adapter = RecyclerViewAdapter(listaUsuarios, "Likes")
         }
     }
+
 
     companion object {
         /**
