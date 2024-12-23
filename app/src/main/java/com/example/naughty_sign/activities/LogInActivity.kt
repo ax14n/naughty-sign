@@ -29,9 +29,19 @@ class LogInActivity : BaseActivity() {
         * */
         binding.logInButton.setOnClickListener {
 
-            if (binding.email.text.isNotBlank() && binding.password.text.isNotBlank()) {
+            val validations = listOf(
+                binding.email.text.isNotBlank() to "El correo electrónico no puede estar vacío.",
+                binding.password.text.isNotBlank() to "La contraseña no puede estar vacía."
+            )
+
+            val errorMessage = validations.firstOrNull { !it.first }?.second
+
+            if (errorMessage != null) {
+                MessageUtils.mostrarToast(this, errorMessage)
+            } else {
                 sigIn(binding.email.text.toString(), binding.password.text.toString())
             }
+
         }
 
         /*

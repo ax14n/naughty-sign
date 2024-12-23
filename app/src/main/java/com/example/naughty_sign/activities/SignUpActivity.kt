@@ -43,16 +43,17 @@ class SignUpActivity : AppCompatActivity() {
         //------------- { Funcionabilidad de botón de registro. } -------------//
         binding.registerButton.setOnClickListener {
 
-            /**
-             * Tras revisar una serie de condiciones, crea un nuevo usuario. Las condiciones que
-             * han de cumplirse son:
-             * ---------------------------------------------------------------------------------
-             * -> Campo email no se ha dejado vacío.
-             * -> Campo contraseña no se ha dejado vacía.
-             * -> Se han aceptado los acuerdos y condiciones.
-             *
-             */
-            if (binding.email.text.isNotBlank() || binding.password.text.isNotBlank()) {
+            val validations = listOf(
+                binding.email.text.isNotBlank() to "El correo electrónico no puede estar vacío.",
+                binding.password.text.isNotBlank() to "La contraseña no puede estar vacía.",
+                binding.terms.isChecked to "Debes aceptar los términos."
+            )
+
+            val errorMessage = validations.firstOrNull { !it.first }?.second
+
+            if (errorMessage != null) {
+                MessageUtils.mostrarToast(this, errorMessage)
+            } else {
                 createAccount(binding.email.text.toString(), binding.password.text.toString())
             }
 

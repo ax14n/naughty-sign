@@ -4,94 +4,137 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="50dp"
-        android:orientation="vertical"
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:text="Dinos un poco más acerca de ti"
-            android:textSize="35sp" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:text="¡No te preocupes, solo requerimos datos esenciales!"
-            android:textColor="@color/dark_red"
-            android:textSize="12dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="¿Cómo te llamas?"
-            android:textColor="@color/passion_red" />
-
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Tu nombre"
-            android:textColor="@color/gray"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="¡Empieza con una pequeña cita!"
-            android:textColor="@color/passion_red" />
-
-        <EditText
-            android:id="@+id/small_quote"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Tu cita"
-            android:textColor="@color/gray"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="¿Cuál es tu edad?"
-            android:textColor="@color/passion_red" />
-
-        <NumberPicker
-            android:id="@+id/age_picker"
-            android:layout_width="match_parent"
-            android:layout_height="126dp"
-            android:layout_gravity="center"
-            android:textColor="@color/gray" />
-
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal" />
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/finish_post_register"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:backgroundTint="@color/passion_red"
-            android:text="@string/continuar" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:text="@string/dinos_un_poco_m_s_acerca_de_ti"
+                android:textSize="35sp" />
 
-    </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/no_te_preocupes_solo_requerimos_datos_esenciales"
+                android:textColor="@color/dark_red"
+                android:textSize="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/c_mo_te_llamas"
+                android:textColor="@color/passion_red" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/tu_nombre"
+                android:textColor="@color/gray"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/empieza_con_una_peque_a_cita"
+                android:textColor="@color/passion_red" />
+
+            <EditText
+                android:id="@+id/small_quote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/tu_cita"
+                android:textColor="@color/gray"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/comentanos_un_poco_sobre_t"
+                android:textColor="@color/passion_red" />
+
+            <EditText
+                android:id="@+id/descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/tu_cita"
+                android:textColor="@color/gray"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="¿Dónde vives?"
+                android:textColor="@color/passion_red" />
+
+            <Spinner
+                android:id="@+id/city_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="¿Cuál es tu profesion?"
+                android:textColor="@color/passion_red" />
+
+            <Spinner
+                android:id="@+id/profesion_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/cu_l_es_tu_edad"
+                android:textColor="@color/passion_red" />
+
+            <NumberPicker
+                android:id="@+id/age_picker"
+                android:layout_width="match_parent"
+                android:layout_height="126dp"
+                android:layout_gravity="center"
+                android:textColor="@color/gray" />
+
+            <Button
+                android:id="@+id/finish_post_register"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:backgroundTint="@color/passion_red"
+                android:text="@string/continuar" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
