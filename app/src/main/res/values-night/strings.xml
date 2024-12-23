@@ -83,4 +83,12 @@
     <string name="seleccione_su_profesi_n">Seleccione su profesión</string>
     <string name="like">Like!</string>
     <string name="next">Next!</string>
+    <string name="dinos_un_poco_m_s_acerca_de_ti">Dinos un poco más acerca de ti</string>
+    <string name="no_te_preocupes_solo_requerimos_datos_esenciales">¡No te preocupes, solo requerimos datos esenciales!</string>
+    <string name="c_mo_te_llamas">¿Cómo te llamas?</string>
+    <string name="tu_nombre">Tu nombre</string>
+    <string name="empieza_con_una_peque_a_cita">¡Empieza con una pequeña cita!</string>
+    <string name="tu_cita">Tu cita</string>
+    <string name="cu_l_es_tu_edad">¿Cuál es tu edad?</string>
+    <string name="comentanos_un_poco_sobre_t">Comentanos un poco sobre tí</string>
 </resources>

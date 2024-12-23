@@ -152,26 +152,12 @@ class ProfileConfigurationActivity : AppCompatActivity() {
 
         val spinner = Spinner(this)
         val ciudades = arrayOf(
-            "Madrid",
-            "Barcelona",
-            "Valencia",
-            "Sevilla",
-            "Zaragoza",
-            "Málaga",
-            "Murcia",
-            "Palma",
-            "Las Palmas de Gran Canaria",
-            "Bilbao",
-            "Alicante",
-            "Córdoba",
-            "Valladolid",
-            "Vigo",
-            "Gijón",
-            "L'Hospitalet de Llobregat",
-            "A Coruña",
-            "Granada",
-            "Elche",
-            "Oviedo"
+            "Madrid", "Barcelona", "Valencia", "Sevilla",
+            "Zaragoza", "Málaga", "Murcia", "Palma",
+            "Las Palmas de Gran Canaria", "Bilbao",
+            "Alicante", "Córdoba", "Valladolid",
+            "Vigo", "Gijón", "L'Hospitalet de Llobregat",
+            "A Coruña", "Granada", "Elche", "Oviedo"
         )
         spinner.adapter =
             ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, ciudades)
@@ -195,24 +181,11 @@ class ProfileConfigurationActivity : AppCompatActivity() {
 
         val spinner = Spinner(this)
         val profesiones = arrayOf(
-            "Abogado",
-            "Arquitecto",
-            "Ingeniero",
-            "Médico",
-            "Enfermero",
-            "Profesor",
-            "Cocinero",
-            "Escritor",
-            "Artista",
-            "Diseñador gráfico",
-            "Desarrollador de software",
-            "Contador",
-            "Psicólogo",
-            "Científico",
-            "Periodista",
-            "Fotógrafo",
-            "Electricista",
-            "Carpintero"
+            "Abogado", "Arquitecto", "Ingeniero", "Médico",
+            "Enfermero", "Profesor", "Cocinero", "Escritor",
+            "Artista", "Diseñador gráfico", "Desarrollador de software",
+            "Contador", "Psicólogo", "Científico", "Periodista",
+            "Fotógrafo", "Electricista", "Carpintero"
         )
         spinner.adapter =
             ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, profesiones)
