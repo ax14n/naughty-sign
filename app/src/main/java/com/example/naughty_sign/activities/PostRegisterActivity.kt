@@ -53,7 +53,7 @@ class PostRegisterActivity : AppCompatActivity() {
                 }
 
                 //----------- { Creación del documento de la base de datos } -----------//
-                LoggedUserUtils.crearDocumento(bundle)
+                LoggedUserUtils.crearDocumentoUsuario(bundle)
 
                 //----------- { Cambio de actividad } -----------//
                 startActivity(Intent(this, LogInActivity::class.java))

@@ -50,7 +50,6 @@
         <activity android:name=".activities.PostRegisterActivity" />
 
 
-
         <service
             android:name=".notifications.MyFirebaseMessagingService"
             android:exported="false">

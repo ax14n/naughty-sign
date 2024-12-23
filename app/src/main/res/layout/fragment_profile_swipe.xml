@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/attachment_photo"
+        android:id="@+id/user_photo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="photo"
         android:scaleType="fitXY"
-        android:src="@drawable/sophia_swipe_photo" />
+        android:src="@drawable/sophia_swipe_photo"
+        tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:id="@+id/attachment_information"
@@ -19,7 +21,7 @@
         android:background="#1D000000"
         android:orientation="vertical"
         android:padding="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/attachment_photo">
+        app:layout_constraintBottom_toBottomOf="@+id/user_photo">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,13 +35,15 @@
                 android:layout_height="wrap_content"
                 android:text="20"
                 android:textColor="@color/yellow"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="20dp"
-                android:text=" KM de distancia."
+                android:paddingStart="20dp"
+                android:text="@string/km_de_distancia"
                 android:textColor="@color/yellow"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -56,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="21"
+                tools:ignore="HardcodedText"
                 android:textColor="@color/yellow"
                 android:textSize="30sp" />
 
@@ -64,13 +69,15 @@
                 android:layout_height="wrap_content"
                 android:text=" - "
                 android:textColor="@color/yellow"
-                android:textSize="35sp" />
+                android:textSize="35sp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/attachment_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sophia"
+                tools:ignore="HardcodedText"
                 android:textColor="@color/yellow"
                 android:textSize="30sp" />
 
@@ -78,6 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" | "
+                tools:ignore="HardcodedText"
                 android:textColor="@color/yellow"
                 android:textSize="35sp" />
 
@@ -86,7 +94,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="20dp"
+                android:paddingStart="10dp"
                 android:text="IT"
+                tools:ignore="HardcodedText"
                 android:textColor="@color/yellow"
                 android:textSize="30sp" />
 
@@ -112,71 +122,65 @@
                 android:layout_height="wrap_content"
                 android:padding="15dp"
                 android:text="Soy una apasionada del arte que disfruta explorando exposiciones, perdiéndome entre pinceles y lienzos, o saboreando una copa de vino en algún rincón encantador de la ciudad."
+                tools:ignore="HardcodedText"
                 android:textAlignment="textEnd"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <ScrollView
-
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
             <com.google.android.material.chip.ChipGroup
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:singleLine="true">
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fotografía"
+                    android:text="@string/fotografia"
                     app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Arte"
+                    android:text="@string/arte"
                     app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Baile"
+                    android:text="@string/baile"
                     app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Deporte"
+                    android:text="@string/deporte"
                     app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fitness"
+                    android:text="@string/guitarra"
                     app:chipCornerRadius="20dp" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Moda"
-                    app:chipCornerRadius="20dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Caza"
+                    android:text="@string/viajes"
                     app:chipCornerRadius="20dp" />
 
 
             </com.google.android.material.chip.ChipGroup>
-        </ScrollView>
+        </HorizontalScrollView>
 
         <!-- Contenedor de botones -->
         <LinearLayout
             android:id="@+id/button_container"
+            style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
@@ -187,22 +191,24 @@
             <!-- Botón Like -->
             <Button
                 android:id="@+id/btn_like"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/sea_green"
-                android:text="Like"
+                android:text="@string/like"
                 android:textColor="@color/white" />
 
             <!-- Botón Dislike -->
             <Button
                 android:id="@+id/btn_dislike"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/crimson"
-                android:text="Dislike"
+                android:text="@string/next"
                 android:textColor="@android:color/white" />
         </LinearLayout>
     </LinearLayout>

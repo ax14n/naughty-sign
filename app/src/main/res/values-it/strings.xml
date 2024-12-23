@@ -81,5 +81,7 @@
     <string name="introduzca_una_nueva_descripci_n">Introduzca una nueva descripción</string>
     <string name="seleccione_la_ciudad_en_donde_habita">Seleccione la ciudad en donde habita</string>
     <string name="seleccione_su_profesi_n">Seleccione su profesión</string>
+    <string name="like">Like!</string>
+    <string name="next">Next!</string>
 
 </resources>
