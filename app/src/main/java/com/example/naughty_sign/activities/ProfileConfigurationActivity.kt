@@ -112,7 +112,11 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         * que cambie la ventana actual por la ventana de inicio de sesión mediante la llamada a
         * la función 'goToLogIn'.
         * */
-        binding.logOutButton.setOnClickListener { goToLogIn() }
+        binding.logOutButton.setOnClickListener {
+            LoggedUserUtils.cerrarSesionUsuario()
+            finish()
+            goToLogIn()
+        }
 
         /*
         * Le asigno al botón 'logOutButton' mediante una expresión lambda en 'setOnClickListener',

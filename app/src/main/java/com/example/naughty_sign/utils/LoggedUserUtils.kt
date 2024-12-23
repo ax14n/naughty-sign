@@ -10,6 +10,7 @@ import com.example.naughty_sign.firebase.User
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -68,19 +69,20 @@ object LoggedUserUtils {
     private val database = Firebase.firestore
 
     /**
-     * Usuario actual de la aplicación.
+     * Encargado de la autentificación de Firebase
      */
-    private val perfil = Firebase.auth.currentUser
+    private val firebaseAuth = Firebase.auth
+
 
     /**
      * Obtiene el email del usuario y lo devuelve en forma de cadena.
      */
-    fun obtenerEmail(): String = perfil?.email.toString()
+    fun obtenerEmail(): String = firebaseAuth.currentUser?.email.toString()
 
     /**
      * Obtiene el uid y lo devuelve en forma de cadena.
      */
-    fun obtenerUid(): String = perfil?.uid.toString()
+    fun obtenerUid(): String = firebaseAuth.currentUser?.uid.toString()
 
     /**
      * Actualiza un dato especificado y lo sutituye por otro.
@@ -118,7 +120,7 @@ object LoggedUserUtils {
     /**
      * Crea un documento en la base de datos que será usado por el usuario a partir de ahora.
      */
-    fun crearDocumentoUsuario(bundle: Bundle) {
+    fun creacionDocumentoUsuario(bundle: Bundle) {
         // ------ { Se accede a la colección donde se almacenan los usuarios } ------ //
         val collection = database.collection("Usuarios")
         collection.get().addOnSuccessListener { _ ->
@@ -201,17 +203,19 @@ object LoggedUserUtils {
      * Se obtiene la lista de likes del usuario almacenado en la base de datos. Esta versión usa
      * coroutines para manejar la asincronía de manera más eficiente.
      */
-    suspend fun extraerListaLikes(): ArrayList<String> {
+    suspend fun extraerListaLikes(): List<User> {
+        val listaUsuarios = mutableListOf<User>()
         // ------ { Se extrae el documento del usuario actual y la colección de Likes } ------ //
         val documentReference = database.collection("Usuarios").document(obtenerUid())
         try {
             val documentSnapshot =
                 documentReference.collection("Likes").document("UUID").get().await()
-            return documentSnapshot.get("UUID") as ArrayList<String>
+            listaUsuarios.add(extraerUsuarioPorUUID(documentSnapshot.get("UUID").toString()))
         } catch (e: Exception) {
             println("Error al obtener los datos: ${e.message}")
             return ArrayList()
         }
+        return listaUsuarios
     }
 
     /**
@@ -248,5 +252,47 @@ object LoggedUserUtils {
             Log.d(TAG, "Error: No se pudieron obtener los datos: ", e)
         }
         return bundle
+    }
+
+    suspend fun extraerUsuarioPorUUID(uuid: String): User {
+        val collection = database.collection("Usuarios").document(uuid)
+        val source = Source.SERVER
+        lateinit var user: User
+
+        try {
+            // Obtener el documento de manera asincrónica
+            val documentSnapshot = collection.get(source).await()
+            if (documentSnapshot.exists()) {
+                // Si el documento existe, se agregan los datos al Bundle
+                user = User(
+                    documentSnapshot.getString("id"),
+                    documentSnapshot.getString("email"),
+                    documentSnapshot.getString("nombre"),
+                    documentSnapshot.getString("cita"),
+                    documentSnapshot.getString("profesion"),
+                    documentSnapshot.getString("ciudad"),
+                    documentSnapshot.getString("descripcion"),
+                    listOf(),
+                    documentSnapshot.getString("foto_perfil"),
+                    documentSnapshot.getString("ubicacion"),
+                    Integer.parseInt(documentSnapshot.getString("edad").toString()),
+                )
+            } else {
+                Log.w(TAG, "Error: El documento no existe")
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, "Error: No se pudieron obtener los datos: ", e)
+        }
+        return user
+    }
+
+    /**
+     * Cierra la sesión del usuario y limpia la caché.
+     */
+    fun cerrarSesionUsuario() {
+        if (firebaseAuth.currentUser != null) {
+            firebaseAuth.signOut()
+            FirebaseFirestore.getInstance().clearPersistence()
+        }
     }
 }

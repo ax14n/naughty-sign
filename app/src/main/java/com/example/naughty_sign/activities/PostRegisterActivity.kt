@@ -53,10 +53,10 @@ class PostRegisterActivity : AppCompatActivity() {
                 }
 
                 //----------- { Creación del documento de la base de datos } -----------//
-                LoggedUserUtils.crearDocumentoUsuario(bundle)
+                LoggedUserUtils.creacionDocumentoUsuario(bundle)
 
                 //----------- { Cambio de actividad } -----------//
-                startActivity(Intent(this, LogInActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
 
             } else MessageUtils.mostrarToast(this, "No se han rellenado los campos necesarios")
         }
