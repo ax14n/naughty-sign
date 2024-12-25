@@ -29,10 +29,11 @@
             android:orientation="horizontal"
             android:stretchColumns="0,1">
 
-            <TableRow>
+            <TableRow style="?android:attr/buttonBarStyle">
 
                 <Button
                     android:id="@+id/add_photo_button"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/trans"
@@ -41,6 +42,7 @@
 
                 <Button
                     android:id="@+id/remove_photo_button"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/trans"
