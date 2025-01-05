@@ -91,4 +91,6 @@
     <string name="tu_cita">Tu cita</string>
     <string name="cu_l_es_tu_edad">¿Cuál es tu edad?</string>
     <string name="comentanos_un_poco_sobre_t">Comentanos un poco sobre tí</string>
+    <string name="error_al_generar_uri">Error al generar URI</string>
+    <string name="error_al_guardar_foto">Error al guardar la imagen</string>
 </resources>

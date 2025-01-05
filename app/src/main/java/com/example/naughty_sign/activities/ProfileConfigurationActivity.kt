@@ -2,10 +2,12 @@ package com.example.naughty_sign.activities
 
 import android.app.AlertDialog
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -26,14 +28,25 @@ import com.google.android.material.slider.RangeSlider
 class ProfileConfigurationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
+    private var currentPhotoUri: Uri? = null
+
     private val camara =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { resultado ->
-            if (resultado) MessageUtils.mostrarToast(
-                this,
-                getString(R.string.se_ha_almacenado_la_foto)
-            )
-            else MessageUtils.mostrarToast(this, getString(R.string.no_se_ha_almacenado_la_foto))
+            if (resultado) {
+                currentPhotoUri?.let {
+                    binding.imageView.setImageURI(it)
+                    binding.imageView.invalidate() // Forzar actualización del ImageView
+                    MessageUtils.mostrarToast(this, getString(R.string.se_ha_almacenado_la_foto))
+                } ?: run {
+                    Log.e("ProfileConfig", "La URI de la foto es nula, no se puede actualizar la imagen.")
+                    MessageUtils.mostrarToast(this, getString(R.string.error_al_guardar_foto))
+                }
+            } else {
+                Log.e("ProfileConfig", "Error: La cámara devolvió un resultado negativo.")
+                MessageUtils.mostrarToast(this, getString(R.string.no_se_ha_almacenado_la_foto))
+            }
         }
+
 
     /**
      * Inicializa la actividad, configura los botones y sus funciones, y establece el listener para
@@ -103,8 +116,16 @@ class ProfileConfigurationActivity : AppCompatActivity() {
         }
 
         binding.changeAvatarButton.setOnClickListener {
-            val uri = obtenerUriImagen() // Obtén la URI de destino donde se almacenará la foto
-            camara.launch(uri)
+            val photoUri = obtenerUriImagen()
+            if (photoUri != null) {
+                currentPhotoUri = photoUri
+                camara.launch(photoUri)
+            } else {
+                MessageUtils.mostrarToast(
+                    this,
+                    getString(R.string.error_al_generar_uri)
+                )
+            }
         }
 
         /*
@@ -283,8 +304,7 @@ class ProfileConfigurationActivity : AppCompatActivity() {
             values
         )!!
     }
-
-    /**
+        /**
      * Navega a la actividad de inicio de sesión.
      * Crea un Intent que establece la transición desde la pantalla actual hacia la pantalla de
      * inicio de sesión (`LogInActivity`). Al invocar `startActivity(intent)`, se lanza la actividad
