@@ -32,46 +32,63 @@ object ServerUtils {
     /**
      * Dirección IP del servidor
      */
-    private const val IP_ADDRESS = "192.168.1.157"
+    private const val SERVER_ADDRESS = "192.168.1.157"
 
     /**
      * Establece conexión con el servidor propio para solicitar subir imagenes y respaldarlas
      * de lado del servidor.
      */
-    fun enviarImagenesPorSocket(uris: List<Uri>, contentResolver: ContentResolver) {
+    fun sendImagesThroughSocket(uris: List<Uri>, contentResolver: ContentResolver) {
         // ------- { Se hace un hilo secundario para las operaciones } ------- //
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 // ------- { Se conecta a un socket y se establece un Writer. } ------- //
-                val client = Socket(IP_ADDRESS, SERVER_PORT)
+                val client = Socket(SERVER_ADDRESS, SERVER_PORT)
+
+                // ------- { Establecemiento de escritura a través de Socket. } ------- //
                 val outputStream = DataOutputStream(client.getOutputStream())
 
-                // ------- { Se imprime el UUID de usuario para identificar donde guardarlo. } ------- //
-                val userUID = LoggedUserUtils.obtenerUid()
+                // ------- { Se informa la acción a realizar y el usuario que consulta. } ------- //
                 outputStream.writeUTF("write")
-                outputStream.writeUTF(userUID)
+                outputStream.writeUTF(LoggedUserUtils.obtenerUid())
 
-                // ------- { Se envía la información al servidor y se reconstruye allí. } ------- //
+                // ------- { Comienzo de proceso de envío de la imagen } ------- //
                 uris.forEach { uri ->
+
+                    /**
+                     * Se abre un flujo de datos a la imagen especificada por el URI proporcionado
+                     * por la lambda actual. Esto nos permite leer el contenido de la imagen.
+                     */
                     val inputStream: InputStream? = contentResolver.openInputStream(uri)
+
                     if (inputStream != null) {
 
-                        // ------- { Obtención de los datos necesarios de la imagen. } ------- //
+                        /**
+                         * Se extraen los datos necesarios como el tamaño de la imagen y el nombre
+                         * del fichero para pasarselo al servidor. En caso de que la imagen
+                         * no tenga un nombre definido, entonces se le asignará 'imagen_sin_nombre'.
+                         */
                         val fileBytes = inputStream.readBytes()
                         val fileName = uri.lastPathSegment ?: "imagen_sin_nombre"
 
-                        // ------- { Se envía el nombre del archivo, su tamaño y su contenido. } ------- //
-                        outputStream.writeUTF(fileName)
-                        outputStream.writeLong(fileBytes.size.toLong())
-                        outputStream.write(fileBytes)
+                        /**
+                         * Se escribe pasa al servidor la información necesaria para la formación
+                         * de la imagen.
+                         */
+                        outputStream.writeUTF(fileName) // Nombre del fichero.
+                        outputStream.writeLong(fileBytes.size.toLong()) // Tamaño del fichero.
+                        outputStream.write(fileBytes) // Contenido del fichero.
                     } else {
                         Log.d("ax14n", "No se pudo abrir la imagen: $uri")
                     }
                 }
 
-                // ------- { Se pone final y se cierra el socket de momento. } ------- //
+                // ------- { Informe al servidor de que se ha acabado el proceso. } ------- //
                 outputStream.writeUTF("EOF")
                 outputStream.flush()
+
+                // ------- { Cerrado de flujos de datos y puerto utilizado. } ------- //
+                outputStream.close()
                 client.close()
 
                 Log.d("ax14n", "Todas las imágenes fueron enviadas correctamente.")
@@ -84,34 +101,33 @@ object ServerUtils {
     /**
      * Solicita la información del usuario por medio de una conexión con el servidor.
      */
-    fun solicitarInformacionUsuario() {
+    fun requestUserInfo() {
+        // ------- { Se hace un hilo secundario para las operaciones } ------- //
         CoroutineScope(Dispatchers.IO).launch {
 
             try {
-                // Conectarse al servidor
-                val socket = Socket(IP_ADDRESS, SERVER_PORT)
+                // ------- { Se establece conexión con el servidor. } ------- //
+                val socket = Socket(SERVER_ADDRESS, SERVER_PORT)
 
-                // Leer los datos del socket
+                // ------- { Establecemiento de lectura y escritura a través de Socket. } ------- //
                 val input = socket.getInputStream().bufferedReader()
-
-                // Escribe el dato que desea e indica el usuario.
                 val output = PrintWriter(socket.getOutputStream())
+
+                // ------- { Se informa la acción a realizar y el usuario que consulta. } ------- //
                 output.println("get")
                 output.println(LoggedUserUtils.obtenerUid())
                 output.flush()
 
-
-                // Sitio donde se guardarán las líneas leídas
+                // ------- { Pasos previos al recebimiento de información } ------- //
                 val datosRecibidos = StringBuilder()
-
-                // Leer línea por línea
                 var linea: String?
+
+                // ------- { Se recibe la información y se almacena. } ------- //
                 while (input.readLine().also { linea = it } != null) {
                     datosRecibidos.appendLine(linea)
                 }
 
-
-                // Procesar las líneas con el formato "key -> value"
+                // ------- { Conversión de texto a diccionario K.V } ------- //
                 val datosMapeados = datosRecibidos.lines()
                     .filter { it.contains(" -> ") } // Asegurarnos de procesar solo líneas válidas
                     .associate { line ->
@@ -119,16 +135,17 @@ object ServerUtils {
                         key.trim() to value.trim()
                     }
 
-                // Imprimir los resultados
+                // ------- { Impresión de resultados. } ------- //
                 println("Datos recibidos:")
                 datosMapeados.forEach { (key, value) ->
                     println("$key -> $value")
                 }
 
-                // Cerramos los flujos de datos y el socket
+                // ------- { Cerrado de flujos de datos y puerto utilizado. } ------- //
                 output.close()
                 input.close()
                 socket.close()
+
             } catch (e: Exception) {
                 e.printStackTrace()
                 println("Error al conectarse o procesar datos del servidor.")
@@ -139,27 +156,51 @@ object ServerUtils {
     /**
      * Establece conexión con el servidor para cargar las imagenes respaldadas.
      */
-    fun solicitarImagenesPorSocket(context: Context) {
+    fun requestImagesThroughSocket(context: Context) {
+        // ------- { Se hace un hilo secundario para las operaciones } ------- //
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val client = Socket(IP_ADDRESS, SERVER_PORT)
+
+                // ------- { Se establece conexión con el servidor. } ------- //
+                val client = Socket(SERVER_ADDRESS, SERVER_PORT)
+
+                // ------- { Establecemiento de lectura y escritura a través de Socket. } ------- //
                 val outputStream = DataOutputStream(client.getOutputStream())
                 val inputStream = DataInputStream(client.getInputStream())
 
-                val userUID = LoggedUserUtils.obtenerUid()
+                // ------- { Se informa la acción a realizar y el usuario que consulta. } ------- //
                 outputStream.writeUTF("read")
-                outputStream.writeUTF(userUID)
+                outputStream.writeUTF(LoggedUserUtils.obtenerUid())
+                outputStream.flush()
 
+                // ------- { Se prepara el gestionador del sistema } ------- //
                 val resolver = context.contentResolver
 
+                // ------- { Comienzo de proceso de recibimiento de la imagen } ------- //
                 while (true) {
+
+                    /**
+                     * Se obtiene el nombre del fichero para su formación o 'EOF' como indicativo
+                     * de que no hay más imágenes que recibir. Recibir 'EOF' como resultado
+                     * del nombre del fichero significa la parada de ejecución de esta función,
+                     * dando por hecho que todas las imagenes han sido transferidas al dispositivo.
+                     */
                     val fileName = inputStream.readUTF()
                     if ("EOF" == fileName) {
                         Log.d("ax14n", "Fin de transferencia recibido.")
                         break
                     }
+
+                    /**
+                     * Se solicita y almacena el tamaño de la imagen. Sirve como prueba de hasta
+                     * donde hay que leer en los bytes que serán mandados por el servidor.
+                     */
                     val fileSize = inputStream.readLong()
 
+                    /**
+                     * Se forman los metadatos de la imagen preparandola para su posterior inserción
+                     * en el sistema.
+                     */
                     val values = ContentValues().apply {
                         put(MediaStore.Images.Media.DISPLAY_NAME, fileName)
                         put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
@@ -169,15 +210,24 @@ object ServerUtils {
                         )
                     }
 
+                    /**
+                     * Se informa al resolver encargado de gestionar el sistema donde se almacenará
+                     * la imagen y se le proporciona sus metadatos.
+                     */
                     val uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+
                     if (uri != null) {
+
+                        /**
+                         * Se comienza a escibir el contenido de la imagen.
+                         */
                         resolver.openOutputStream(uri)?.use { resolverOutputStream ->
-                            val buffer = ByteArray(8192)
-                            var remaining = fileSize
+                            val buffer = ByteArray(8192)    // Tramos de escritura.
+                            var remaining = fileSize             // Restante a leer.
 
                             while (remaining > 0) {
                                 val bytesRead = inputStream.read(
-                                    buffer,
+                                    buffer, // Tramo de Bytes a leer.
                                     0,
                                     min(buffer.size.toDouble(), remaining.toDouble()).toInt()
                                 )
@@ -191,13 +241,118 @@ object ServerUtils {
                     }
                 }
 
+                // ------- { Informe al servidor de que se ha acabado el proceso. } ------- //
                 outputStream.writeUTF("EOF")
                 outputStream.flush()
+
+                // ------- { Cerrado de flujos de datos y liberando puerto utilizado. } ------- //
+                outputStream.close()
+                inputStream.close()
                 client.close()
 
                 Log.d("ax14n", "Todas las imágenes fueron recibidas satisfactoriamente.")
             } catch (e: Exception) {
                 Log.e("ax14n", "Error recibiendo imágenes: ${e.message}", e)
+            }
+        }
+    }
+
+    /**
+     * Realiza una consulta al servidor local para solicitar la lista de likes que ha dado un usuario.
+     */
+    fun checkLikes() {
+        // ------- { Se hace un hilo secundario para las operaciones } ------- //
+        CoroutineScope(Dispatchers.IO).launch {
+
+            try {
+                // ------- { Se establece conexión con el servidor. } ------- //
+                val socket = Socket(SERVER_ADDRESS, SERVER_PORT)
+
+                // ------- { Establecemiento de lectura y escritura a través de Socket. } ------- //
+                val input = socket.getInputStream().bufferedReader()
+                val output = PrintWriter(socket.getOutputStream())
+
+                // ------- { Se informa la acción a realizar y el usuario que consulta. } ------- //
+                output.println("likes")
+                output.println(LoggedUserUtils.obtenerUid())
+                output.flush()
+
+                // ------- { Preparación para el recibimiento de la información } ------- //
+                val datosRecibidos = StringBuilder()
+                var linea: String?
+
+                // ------- { Se extrae la información del servidor y se almacena. } ------- //
+                while (input.readLine().also { linea = it } != null) {
+                    datosRecibidos.appendLine(linea)
+                }
+
+                // ------- { Se convierte la información obtenida en una lista de datos } ------- //
+                val likes = datosRecibidos.lines()
+
+                // ------- { Se muestran los datos obtenidos. } ------- //
+                println("Datos recibidos:")
+                likes.forEach {
+                    println(it)
+                }
+
+                // ------- { Cerrado de flujos de datos y liberando puerto utilizado. } ------- //
+                output.close()
+                input.close()
+                socket.close()
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                println("Error al conectarse o procesar datos del servidor.")
+            }
+        }
+    }
+
+    /**
+     * Realiza una consulta al servidor local para solicitar la lista de matches que ha logrado.
+     */
+    fun checkMatches() {
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            try {
+                // ------- { Se establece conexión con el servidor. } ------- //
+                val socket = Socket(SERVER_ADDRESS, SERVER_PORT)
+
+                // ------- { Establecemiento de lectura y escritura a través de Socket. } ------- //
+                val input = socket.getInputStream().bufferedReader()
+                val output = PrintWriter(socket.getOutputStream())
+
+                // ------- { Se informa la acción a realizar y el usuario que consulta. } ------- //
+                output.println("matches")
+                output.println(LoggedUserUtils.obtenerUid())
+                output.flush()
+
+                // ------- { Preparación para el recibimiento de la información } ------- //
+                val datosRecibidos = StringBuilder()
+                var linea: String?
+
+                // ------- { Se extrae la información del servidor y se almacena. } ------- //
+                while (input.readLine().also { linea = it } != null) {
+                    datosRecibidos.appendLine(linea)
+                }
+
+                // ------- { Se convierte la información obtenida en una lista de datos } ------- //
+                val matches = datosRecibidos.lines()
+
+                // ------- { Se muestran los datos obtenidos. } ------- //
+                println("Datos recibidos:")
+                matches.forEach {
+                    println(it)
+                }
+
+                // ------- { Cerrado de flujos de datos y liberando puerto utilizado. } ------- //
+                output.close()
+                input.close()
+                socket.close()
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                println("Error al conectarse o procesar datos del servidor.")
             }
         }
     }

@@ -40,7 +40,7 @@ class PhotoSelectorActivity : AppCompatActivity() {
         if (uris.isNullOrEmpty()) {
             MessageUtils.mostrarToast(this, "No se seleccionaron imágenes")
         } else {
-            ServerUtils.solicitarImagenesPorSocket(this)
+            ServerUtils.requestImagesThroughSocket(this)
         }
     }
 
