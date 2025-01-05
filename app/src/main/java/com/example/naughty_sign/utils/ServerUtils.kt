@@ -14,6 +14,7 @@ import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.io.IOException
 import java.io.InputStream
+import java.io.PrintWriter
 import java.net.Socket
 import kotlin.math.min
 
@@ -26,7 +27,7 @@ object ServerUtils {
     /**
      * Puerto del servidor.
      */
-    private const val SERVER_PORT = 23457
+    private const val SERVER_PORT = 12345
 
     /**
      * Dirección IP del servidor
@@ -76,6 +77,61 @@ object ServerUtils {
                 Log.d("ax14n", "Todas las imágenes fueron enviadas correctamente.")
             } catch (e: Exception) {
                 Log.e("ax14n", "Error enviando imágenes: ${e.message}", e)
+            }
+        }
+    }
+
+    /**
+     * Solicita la información del usuario por medio de una conexión con el servidor.
+     */
+    fun solicitarInformacionUsuario() {
+        CoroutineScope(Dispatchers.IO).launch {
+
+            try {
+                // Conectarse al servidor
+                val socket = Socket(IP_ADDRESS, SERVER_PORT)
+
+                // Leer los datos del socket
+                val input = socket.getInputStream().bufferedReader()
+
+                // Escribe el dato que desea e indica el usuario.
+                val output = PrintWriter(socket.getOutputStream())
+                output.println("get")
+                output.println(LoggedUserUtils.obtenerUid())
+                output.flush()
+
+
+                // Sitio donde se guardarán las líneas leídas
+                val datosRecibidos = StringBuilder()
+
+                // Leer línea por línea
+                var linea: String?
+                while (input.readLine().also { linea = it } != null) {
+                    datosRecibidos.appendLine(linea)
+                }
+
+
+                // Procesar las líneas con el formato "key -> value"
+                val datosMapeados = datosRecibidos.lines()
+                    .filter { it.contains(" -> ") } // Asegurarnos de procesar solo líneas válidas
+                    .associate { line ->
+                        val (key, value) = line.split(" -> ", limit = 2) // Dividir en clave y valor
+                        key.trim() to value.trim()
+                    }
+
+                // Imprimir los resultados
+                println("Datos recibidos:")
+                datosMapeados.forEach { (key, value) ->
+                    println("$key -> $value")
+                }
+
+                // Cerramos los flujos de datos y el socket
+                output.close()
+                input.close()
+                socket.close()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                println("Error al conectarse o procesar datos del servidor.")
             }
         }
     }
