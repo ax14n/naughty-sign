@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.NaughtySign." parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorPrimary">@color/primaryDark</item>
+        <item name="colorOnPrimary">@color/onPrimaryDark</item>
     </style>
 </resources>
