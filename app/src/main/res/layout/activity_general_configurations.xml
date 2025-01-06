@@ -11,7 +11,6 @@
         android:layout_marginTop="20dp"
         android:padding="10dp"
         android:text="@string/generales"
-        android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
         android:typeface="sans" />

@@ -62,6 +62,13 @@
     <color name="burlyWood">#DEB887</color>
     <color name="plum">#DDA0DD</color>
     <color name="gainsboro">#DCDCDC</color>
+    <!-- Modo claro -->
+    <color name="primary">#6200EE</color>
+    <color name="onPrimary">#FFFFFF</color>
+
+    <!-- Modo oscuro -->
+    <color name="primaryDark">#BB86FC</color>
+    <color name="onPrimaryDark">#000000</color>
     <color name="crimson">#DC143C</color>
     <color name="pale_violet_red">#DB7093</color>
     <color name="goldenrod">#DAA520</color>
