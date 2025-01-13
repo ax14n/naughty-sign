@@ -28,23 +28,14 @@ import com.google.android.material.slider.RangeSlider
 class ProfileConfigurationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
-    private var currentPhotoUri: Uri? = null
 
     private val camara =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { resultado ->
-            if (resultado) {
-                currentPhotoUri?.let {
-                    binding.imageView.setImageURI(it)
-                    binding.imageView.invalidate() // Forzar actualización del ImageView
-                    MessageUtils.mostrarToast(this, getString(R.string.se_ha_almacenado_la_foto))
-                } ?: run {
-                    Log.e("ProfileConfig", "La URI de la foto es nula, no se puede actualizar la imagen.")
-                    MessageUtils.mostrarToast(this, getString(R.string.error_al_guardar_foto))
-                }
-            } else {
-                Log.e("ProfileConfig", "Error: La cámara devolvió un resultado negativo.")
-                MessageUtils.mostrarToast(this, getString(R.string.no_se_ha_almacenado_la_foto))
-            }
+            if (resultado) MessageUtils.mostrarToast(
+                this,
+                getString(R.string.se_ha_almacenado_la_foto)
+            )
+            else MessageUtils.mostrarToast(this, getString(R.string.no_se_ha_almacenado_la_foto))
         }
 
 
@@ -117,15 +108,8 @@ class ProfileConfigurationActivity : AppCompatActivity() {
 
         binding.changeAvatarButton.setOnClickListener {
             val photoUri = obtenerUriImagen()
-            if (photoUri != null) {
-                currentPhotoUri = photoUri
-                camara.launch(photoUri)
-            } else {
-                MessageUtils.mostrarToast(
-                    this,
-                    getString(R.string.error_al_generar_uri)
-                )
-            }
+            camara.launch(photoUri)
+            binding.imageView.setImageURI(photoUri)
         }
 
         /*
@@ -304,7 +288,8 @@ class ProfileConfigurationActivity : AppCompatActivity() {
             values
         )!!
     }
-        /**
+
+    /**
      * Navega a la actividad de inicio de sesión.
      * Crea un Intent que establece la transición desde la pantalla actual hacia la pantalla de
      * inicio de sesión (`LogInActivity`). Al invocar `startActivity(intent)`, se lanza la actividad

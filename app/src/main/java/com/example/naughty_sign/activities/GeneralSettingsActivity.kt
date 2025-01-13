@@ -8,6 +8,8 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.graphics.drawable.DrawableCompat.applyTheme
 import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.ActivityGeneralConfigurationsBinding
 import com.google.android.material.slider.RangeSlider
@@ -31,6 +33,34 @@ class GeneralSettingsActivity : AppCompatActivity() {
             getSharedPreferences("general_config", MODE_PRIVATE)
 
         setContentView(binding.root)
+
+        createButtons()
+    }
+
+    private fun applySavedTheme() {
+        val isDarkModeEnabled = sharedPreferences.getBoolean("dark_mode", false)
+        applyTheme(isDarkModeEnabled)
+    }
+
+    private fun applyTheme(isDarkMode: Boolean) {
+        AppCompatDelegate.setDefaultNightMode(
+            if (isDarkMode) AppCompatDelegate.MODE_NIGHT_YES
+            else AppCompatDelegate.MODE_NIGHT_NO
+        )
+    }
+
+    private fun saveThemePreference(isDarkMode: Boolean) {
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("dark_mode", isDarkMode)
+        editor.apply()
+    }
+
+    private fun toggleTheme() {
+        // Cambia el modo oscuro únicamente cuando se pulsa el botón de "Cambiar tema"
+        val isDarkModeEnabled = sharedPreferences.getBoolean("dark_mode", false)
+        val newMode = !isDarkModeEnabled
+        saveThemePreference(newMode)
+        applyTheme(newMode)
     }
 
     private fun createButtons() {
@@ -48,7 +78,7 @@ class GeneralSettingsActivity : AppCompatActivity() {
                 )
             },
 
-                binding.changeTheme to { changeTheme() },
+                binding.changeTheme to { toggleTheme() },
                 binding.changeLanguage to { showLanguageOptions() })
 
         for (boton in botonesYTexto.keys) {
