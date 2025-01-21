@@ -2,12 +2,15 @@ package com.example.naughty_sign.fragments
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.animation.doOnEnd
 import androidx.fragment.app.Fragment
+import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.FragmentProfileSwipeBinding
 import com.example.naughty_sign.utils.LoggedUserUtils
 
@@ -37,10 +40,30 @@ class FragmentProfileSwipe : Fragment() {
         binding.btnLike.setOnClickListener {
             LoggedUserUtils.almacenarLike("")
             cambiarUsuario()
-            val scaleX = ObjectAnimator.ofFloat(binding.corason, "scaleX", 1f, 0.5f)
-            val scaleY = ObjectAnimator.ofFloat(binding.corason, "scaleY", 1f, 0.5f)
 
-            binding.corason.visibility = View.VISIBLE
+//            // Sound
+//            val soundPull = SoundPool.Builder().setMaxStreams(1).build()
+//            val soundId = soundPull.load(requireContext(), R.raw.rain, 1)
+//
+//            soundPull.setOnLoadCompleteListener { _, _, status ->
+//                if (status == 0)
+//                    soundPull.play(soundId, 1f, 1f, 0, 0, 1f)
+//            }
+
+            try {
+                val mediaplayer = MediaPlayer.create(context, R.raw.bubble)
+                mediaplayer.start()
+                mediaplayer.setOnCompletionListener {
+                    mediaplayer.release()
+                }
+            } catch (e: Exception) {
+                Log.d("MediaPlayer", e.stackTraceToString())
+            }
+
+            val scaleX = ObjectAnimator.ofFloat(binding.corazonLike, "scaleX", 1f, 0.5f)
+            val scaleY = ObjectAnimator.ofFloat(binding.corazonLike, "scaleY", 1f, 0.5f)
+
+            binding.corazonLike.visibility = View.VISIBLE
 
             scaleX.repeatCount = 3
             scaleY.repeatCount = 3
@@ -49,26 +72,29 @@ class FragmentProfileSwipe : Fragment() {
                 it.start()
             }
             animatorSet.doOnEnd {
-                binding.corason.visibility = View.GONE
+                binding.corazonLike.visibility = View.GONE
             }
 
         }
 
-//        val animation_corason = binding.corason. as AnimationDrawable
-//            binding.corason.visibility = View.VISIBLE
-//            animation_corason.start() // Se inicia
-////            CoroutineScope(Dispaxtchers.Main).launch {
-//            Log.d("HOLA", "Se ha lanzado el hilo")
-//            binding.corason.visibility = View.INVISIBLE
-//            Thread.sleep(1_000)  // wait for 1 second
-////            }
         // ------- { Asignación de boton de Next! } ------- //
         binding.btnDislike.setOnClickListener {
             cambiarUsuario()
-            val scaleX = ObjectAnimator.ofFloat(binding.corason, "scaleX", 1f, 0.5f)
-            val scaleY = ObjectAnimator.ofFloat(binding.corason, "scaleY", 1f, 0.5f)
 
-            binding.corason.visibility = View.VISIBLE
+            try {
+                val mediaplayer = MediaPlayer.create(context, R.raw.bubble)
+                mediaplayer.start()
+                mediaplayer.setOnCompletionListener {
+                    mediaplayer.release()
+                }
+            } catch (e: Exception) {
+                Log.d("MediaPlayer", e.stackTraceToString())
+            }
+
+            val scaleX = ObjectAnimator.ofFloat(binding.caraDislike, "scaleX", 1f, 0.5f)
+            val scaleY = ObjectAnimator.ofFloat(binding.caraDislike, "scaleY", 1f, 0.5f)
+
+            binding.caraDislike.visibility = View.VISIBLE
 
             scaleX.repeatCount = 3
             scaleY.repeatCount = 3
@@ -77,7 +103,7 @@ class FragmentProfileSwipe : Fragment() {
                 it.start()
             }
             animatorSet.doOnEnd {
-                binding.corason.visibility = View.GONE
+                binding.caraDislike.visibility = View.GONE
             }
         }
 

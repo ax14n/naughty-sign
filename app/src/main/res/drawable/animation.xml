@@ -1,8 +1,0 @@
-<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:oneshot="true">
-    <item android:drawable="@drawable/frame_00_delay0_06s" android:duration="100"/>
-    <item android:drawable="@drawable/frame_02_delay0_06s" android:duration="100"/>
-    <item android:drawable="@drawable/frame_04_delay0_06s" android:duration="100"/>
-    <item android:drawable="@drawable/frame_06_delay0_06s" android:duration="100"/>
-    <item android:drawable="@drawable/frame_08_delay0_06s" android:duration="100"/>
-    <item android:drawable="@drawable/frame_10_delay0_06s" android:duration="100"/>
-</animation-list>

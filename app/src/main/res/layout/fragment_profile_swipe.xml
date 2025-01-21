@@ -224,11 +224,19 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/corason"
+        android:id="@+id/corazon_like"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/frame_00_delay0_06s"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/cara_dislike"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/dislike_image"
         android:visibility="gone" />
 
     <!--        android:background="@drawable/animation"-->
