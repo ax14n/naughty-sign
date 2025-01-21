@@ -228,8 +228,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/animation"
-        android:src="@drawable/animation"
+        android:src="@drawable/frame_00_delay0_06s"
         android:visibility="gone" />
+
+    <!--        android:background="@drawable/animation"-->
 
 </FrameLayout>
