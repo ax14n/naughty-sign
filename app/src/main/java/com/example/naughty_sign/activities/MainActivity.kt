@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
                 as NavHostFragment
         val navController = navHostFragment.navController
 
+        val treasureAnimation = binding
+
         // Conectar el BottomNavigationView con el NavController
         binding.bottomNavigation.setupWithNavController(navController)
         setContentView(binding.root)
@@ -75,8 +77,6 @@ class MainActivity : AppCompatActivity() {
                 subscribeToTopic("naughty_sign_alerts")
 
                 delay(5000) // Pausar durante 5 segundos
-                //Mostrar notificación local
-                showNotification("¡Has recibido un like, fenómeno!", "¿A qué estás esperando?")
             }
         }
     }
