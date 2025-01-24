@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.naughty_sign.R
 import com.example.naughty_sign.databinding.FragmentMatchesBinding
 import com.example.naughty_sign.firebase.User
 import com.example.naughty_sign.recycleview.RecyclerViewAdapter
@@ -49,6 +50,11 @@ class FragmentMatches : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentMatchesBinding.inflate(inflater, container, false)
+
+        binding?.cabra?.setOnClickListener {
+            playGoatVideo()
+        }
+
         return binding!!.root
     }
 
@@ -61,6 +67,19 @@ class FragmentMatches : Fragment() {
 
         loadMatches()
     }
+
+    private fun playGoatVideo() {
+        binding?.videoOverlay?.visibility = View.VISIBLE // Muestra el FrameLayout con el VideoView
+
+        binding?.videoView?.apply {
+            setVideoPath("android.resource://${requireContext().packageName}/${R.raw.videoplayback}")
+            setOnCompletionListener {
+                binding?.videoOverlay?.visibility = View.GONE // Oculta el FrameLayout al terminar
+            }
+            start() // Inicia la reproducción del video
+        }
+    }
+
 
     private fun loadMatches() {
 
