@@ -98,7 +98,7 @@
                 android:id="@+id/log_in_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/trans"
+                android:backgroundTint="@color/transparent"
                 android:text="@string/iniciar_sesion"
                 android:textColor="@color/passion_red" />
 

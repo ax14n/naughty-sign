@@ -239,6 +239,4 @@
         android:src="@drawable/dislike_image"
         android:visibility="gone" />
 
-    <!--        android:background="@drawable/animation"-->
-
 </FrameLayout>

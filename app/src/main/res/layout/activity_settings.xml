@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/trans"
+                android:backgroundTint="@color/transparent"
                 android:text="@string/editar_foto_o_avatar"
                 android:textColor="@color/blue" />
 
